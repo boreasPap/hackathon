@@ -210,3 +210,24 @@ export type AiModel = {
   versionId?: string;
   platform: "eachlabs";
 };
+
+/** What a card needs to show a creative, without its analysis and iterations. */
+export type CreativeSummary = {
+  id: string;
+  app: string;
+  tags: string[];
+  hook: string;
+  fileName: string;
+  videoPath: string;
+  posterPath: string | null;
+  analysisStatus: JobStatus;
+  iterationCount: number;
+};
+
+/** A favorite joined with what it points at. */
+export type FavoriteView = {
+  favorite: Favorite;
+  creative: CreativeSummary | null;
+  item: IterationItem | null;
+  iterationCreatedAt: string | null;
+};

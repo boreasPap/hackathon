@@ -1,15 +1,6 @@
-import { connection } from "next/server";
-import { Suspense } from "react";
-import { CreativeLibrary } from "@/features/creative-library/CreativeLibrary";
-import { readDb } from "@/features/creative-library/server/db";
-import { toSummary } from "@/features/creative-library/server/views";
+import { redirect } from "next/navigation";
 
-export default async function CreativeLibraryPage() {
-  await connection();
-  const db = await readDb();
-  return (
-    <Suspense>
-      <CreativeLibrary apps={db.apps} creatives={db.creatives.map(toSummary)} favorites={db.favorites} />
-    </Suspense>
-  );
+// The library moved under Creative › Asset Library.
+export default function CreativeLibraryPage() {
+  redirect("/dashboard/creative/asset-library/home?app=hairapp");
 }

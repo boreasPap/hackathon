@@ -1,13 +1,14 @@
-import type { CreativeSummary } from "../CreativeLibrary";
-import type { FavoriteView } from "../FavoritesPage";
-import type { Creative, Db } from "../types";
+import type { Creative, CreativeSummary, Db, FavoriteView } from "../types";
 
 export function toSummary(c: Creative): CreativeSummary {
   return {
     id: c.id,
     app: c.app,
     tags: c.tags,
-    hook: c.hook,
+    // Creatives added without an opening text show the one the analysis read off the video.
+    hook: c.hook || (c.extracted?.wallTexts.find((w) => w.role === "hook") ?? c.extracted?.wallTexts[0])?.text || "",
+    fileName: c.fileName,
+    videoPath: c.videoPath,
     posterPath: c.posterPath,
     analysisStatus: c.analysis.status,
     iterationCount: c.iterations.length,

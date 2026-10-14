@@ -76,7 +76,7 @@
       "customConfig": null
     },
     "apiUsageModels": "e739b60d-781b-4fa7-b1a8-7f7fc943d518",
-    "versionId": "v1",
+    "versionId": "v3",
     "platform": "eachlabs"
   },
   {
@@ -96,18 +96,22 @@
     "platform": "eachlabs"
   },
   {
-    "id": "txt2img-template",
-    "modelType": "txt2img",
+    "id": "vid2img-template",
+    "modelType": "vid2img",
     "subModelType": "template",
     "validationRules": null,
     "cost": 0.08,
     "requestConfig": {
-      "type": "txt2img",
-      "inputTypes": ["text"],
+      "type": "vid2img",
+      "inputTypes": ["video"],
       "outputTypes": ["image"],
-      "customConfig": null
+      "customConfig": null,
+      "input": {
+        "app_brief": "HairApp: AI Hairstyle Try On - users upload a selfie and instantly try any haircut, hair color, bangs, volume and beard style."
+      }
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "140205df-c261-47ad-98e4-ea0729bbff20",
+    "versionId": "v1",
     "platform": "eachlabs"
   }
 ]

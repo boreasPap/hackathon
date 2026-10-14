@@ -384,6 +384,54 @@ function mediaTypeFor(url: string, model: AiModel): MediaType {
   return declared ?? "image";
 }
 
+/**
+ * The "### TEMPLATE n - Name" sections of the brief the template workflow
+ * writes before it renders one image per template, keyed by n.
+ */
+function templateSections(brief: string): Map<number, IterationItem> {
+  const sections = new Map<number, IterationItem>();
+  for (const part of brief.split(/^#{1,6}\s*(?=template\s+\d+)/im).slice(1)) {
+    const head = part.match(/^template\s+(\d+)\s*[-–—:]?\s*(.*)$/im);
+    if (!head) continue;
+    const field = (label: string) => part.match(new RegExp(`^\\s*\\**${label}\\**:\\**\\s*(.+)$`, "im"))?.[1].trim();
+    const hook = field("Hook text");
+    const concept = field("Concept");
+    sections.set(
+      Number(head[1]),
+      strip({
+        title: head[2].trim() || undefined,
+        text: hook ? `“${hook.replace(/^["“]|["”]$/g, "")}”` : undefined,
+        notes: [field("Layout"), concept].filter(Boolean).join("\n") || undefined,
+      }),
+    );
+  }
+  return sections;
+}
+
+/**
+ * A parallel last step (one `branch_<n>` per image) next to an LLM brief with
+ * one "TEMPLATE n" section per branch: each image gets its template's name,
+ * hook and layout. A failed branch is skipped without shifting the others.
+ */
+function branchImageItems(execution: Execution, model: AiModel): IterationItem[] | null {
+  const output = execution.output;
+  if (!isRecord(output)) return null;
+  const branches = Object.entries(output)
+    .map(([key, value]) => ({ index: Number(key.match(/^branch_(\d+)$/)?.[1]), value }))
+    .filter((b) => Number.isInteger(b.index))
+    .sort((a, b) => a.index - b.index);
+  if (!branches.length) return null;
+  const sections = templateSections(extractContent(execution) ?? "");
+  if (!sections.size) return null;
+  return branches.flatMap(({ index, value }) => {
+    const url = [isRecord(value) ? value.primary : null, isRecord(value) ? value.output : value].find(
+      (v): v is string => typeof v === "string" && /^https?:\/\//i.test(v),
+    );
+    if (!url) return [];
+    return [{ ...sections.get(index + 1), url, mediaType: mediaTypeFor(url, model) }];
+  });
+}
+
 export function parseIterationItems(execution: Execution, model: AiModel): IterationItem[] {
   const embedded = findEmbeddedError(execution);
   if (embedded) throw new Error(embedded);
@@ -391,7 +439,10 @@ export function parseIterationItems(execution: Execution, model: AiModel): Itera
   const outputs = model.requestConfig.outputTypes;
   const items: IterationItem[] = [];
   if (outputs.includes("text")) items.push(...textItems(execution));
-  if (outputs.some((t) => t !== "text")) {
+  const branched = outputs.includes("text") ? null : branchImageItems(execution, model);
+  if (branched?.length) {
+    items.push(...branched);
+  } else if (outputs.some((t) => t !== "text")) {
     items.push(...extractOutputUrls(execution).map((url) => ({ url, mediaType: mediaTypeFor(url, model) })));
   }
   if (!items.length) throw new Error("The workflow finished but returned no results.");

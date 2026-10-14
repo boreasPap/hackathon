@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 import { Button, Input, Label, Select } from "@/components/design-system";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { api } from "../client";
+import { creativeHref } from "../paths";
 import type { App } from "../types";
 
 const MAX_VIDEO_BYTES = 100 * 1024 * 1024;
@@ -117,7 +118,7 @@ export function AddCreativeDialog({ apps, defaultApp }: { apps: App[]; defaultAp
       toast.success(`${creative.id} was added`);
       setOpen(false);
       reset();
-      router.push(`/dashboard/creative-library/${encodeURIComponent(creative.id)}`);
+      router.push(creativeHref(creative));
     } catch (err) {
       setError(err instanceof Error ? err.message : "Could not add the creative.");
     } finally {

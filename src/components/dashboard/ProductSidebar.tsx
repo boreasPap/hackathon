@@ -34,6 +34,9 @@ type Product = {
   icon: React.ReactNode;
 };
 
+// The frosted Papcorns logo under the footer is left out of this project.
+const HIDE_LOGO = "[&>div[aria-hidden]:last-child]:hidden";
+
 const PRODUCTS: Product[] = [
   { key: "dashboard", name: "Papcorns", href: "/dashboard/welcome", color: "papcorns", icon: <PapcornsMark size={18} /> },
 ];
@@ -48,6 +51,9 @@ export type NavLinkDef = {
   icon?: React.ReactNode;
   /** "prefix" also lights the link on the pages under it; the default is the product's. */
   match?: "exact" | "prefix";
+  /** Other pages that light the link, unless they fall under `excludePrefixes`. */
+  prefixes?: string[];
+  excludePrefixes?: string[];
 };
 
 export type NavGroupDef = {
@@ -77,7 +83,9 @@ function useShell(product: ProductKey, nav: NavSectionDef[], defaultMatch: "exac
   const pathname = usePathname() ?? "";
 
   const isActive = (link: NavLinkDef) =>
-    (link.match ?? defaultMatch) === "prefix" ? startsWithPath(pathname, link.href) : pathname === link.href;
+    ((link.match ?? defaultMatch) === "prefix" ? startsWithPath(pathname, link.href) : pathname === link.href) ||
+    ((link.prefixes ?? []).some((p) => startsWithPath(pathname, p)) &&
+      !(link.excludePrefixes ?? []).some((p) => startsWithPath(pathname, p)));
 
   const toLink = (link: NavLinkDef): SidebarLink => ({
     id: link.href,
@@ -126,10 +134,13 @@ export function ProductSidebar({
   product,
   nav,
   defaultMatch = "prefix",
+  className,
 }: {
   product: ProductKey;
   nav: NavSectionDef[];
   defaultMatch?: "exact" | "prefix";
+  /** Extra classes for the sidebar, e.g. to style particular links. */
+  className?: string;
 }) {
   const { sections, workspaces } = useShell(product, nav, defaultMatch);
   const [accent, setAccent] = useAccentTheme();
@@ -163,11 +174,11 @@ export function ProductSidebar({
 
   return (
     <>
-      <Sidebar {...shared} collapsed={collapsed} onCollapsedChange={changeCollapsed} className="hidden md:flex" />
+      <Sidebar {...shared} collapsed={collapsed} onCollapsedChange={changeCollapsed} className={cn("hidden md:flex", HIDE_LOGO, className)} />
       {mobileOpen ? (
         <div className="fixed inset-0 z-50 md:hidden">
           <div className="absolute inset-0 bg-ink/40" onClick={() => setMobileOpen(false)} aria-hidden />
-          <Sidebar {...shared} onClose={() => setMobileOpen(false)} className="absolute inset-y-0 left-0 max-w-[85%] shadow-modal" />
+          <Sidebar {...shared} onClose={() => setMobileOpen(false)} className={cn("absolute inset-y-0 left-0 max-w-[85%] shadow-modal", HIDE_LOGO, className)} />
         </div>
       ) : null}
     </>

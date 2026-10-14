@@ -1,128 +1,89 @@
 "use client";
 
-import Link from "next/link";
+import { useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { PageHeader, Select } from "@/components/design-system";
-import { formatDateTime } from "./client";
-import { EmptyState, Panel, Tag } from "./components/bits";
-import { ItemActions, ItemView } from "./components/IterationCard";
-import { TYPE_LABELS } from "./constants";
-import { CreativeCard, type CreativeSummary } from "./CreativeLibrary";
-import type { Favorite, FavoriteType, IterationItem } from "./types";
-import { useFavorites } from "./useFavorites";
+import { PageHeader, SearchInput, Select } from "@/components/design-system";
+import { APPS, HAIR_APP, getApp } from "./apps";
+import { Favorites } from "./Favorites";
+import { Breadcrumbs, EmptyNote, Tabs } from "./parts";
+import { HOME_PATH } from "./paths";
+import { findTab, tagTabs } from "./TopCreatives";
+import type { CreativeSummary, FavoriteView } from "./types";
+import { FavoritesProvider } from "./useFavorites";
 
-export type FavoriteView = {
-  favorite: Favorite;
-  creative: CreativeSummary | null;
-  item: IterationItem | null;
-  iterationCreatedAt: string | null;
-};
+const ALL_TAB = "all";
+// Hair App is the app with a library (and so favorites) for now.
+const DEFAULT_APP = HAIR_APP;
 
-const TYPE_SLUGS: Record<FavoriteType, string> = {
-  creative: "creatives",
-  wallText: "wall-texts",
-  voiceover: "voiceover",
-  similarAvatar: "similar-avatars",
-  avatarVariation: "avatar-variations",
-  music: "music",
-  template: "templates",
-};
-
-export function FavoritesPage({ views }: { views: FavoriteView[] }) {
+/** Everything saved with a heart, split by category like the Home tabs. */
+export function FavoritesPage({ views, creatives }: { views: FavoriteView[]; creatives: CreativeSummary[] }) {
   const router = useRouter();
   const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const { favorites, isFavorite, toggle } = useFavorites(views.map((v) => v.favorite));
+  const params = useSearchParams();
+  const [query, setQuery] = useState("");
+  const app = getApp(params.get("app") ?? "") ?? getApp(DEFAULT_APP)!;
+  const appCreatives = creatives.filter((c) => c.app === app.id);
+  const hasLibrary = appCreatives.length > 0 || app.id === HAIR_APP;
+  const tabs = tagTabs(appCreatives);
+  const category = hasLibrary ? findTab(tabs, params.get("tab")?.toLowerCase() ?? "") : undefined;
+  const tab = category?.value ?? ALL_TAB;
 
-  const typeParam = searchParams.get("type")?.toLowerCase();
-  const type = (Object.keys(TYPE_SLUGS) as FavoriteType[]).find((t) => TYPE_SLUGS[t] === typeParam) ?? "all";
-
-  // A favorite removed on this page stays hidden; the views list is the server snapshot.
-  const live = new Set(favorites.map((f) => f.id));
-  const shown = views.filter((v) => live.has(v.favorite.id) && (type === "all" || v.favorite.type === type));
-
-  const setType = (value: string) => {
-    const qs = new URLSearchParams(searchParams.toString());
-    if (value === "all") qs.delete("type");
-    else qs.set("type", TYPE_SLUGS[value as FavoriteType]);
-    const query = qs.toString();
-    router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
+  const update = (key: string, next: string, fallback: string) => {
+    const qs = new URLSearchParams(params);
+    if (next === fallback) qs.delete(key);
+    else qs.set(key, next);
+    if (key === "app") qs.delete("tab");
+    const q = qs.toString();
+    router.replace(q ? `${pathname}?${q}` : pathname, { scroll: false });
   };
 
-  const counts = views.reduce<Record<string, number>>((acc, v) => {
-    if (live.has(v.favorite.id)) acc[v.favorite.type] = (acc[v.favorite.type] ?? 0) + 1;
-    return acc;
-  }, {});
-
   return (
-    <div className="flex flex-col gap-8 font-sans">
-      <PageHeader
-        title="Favorites"
-        description="Creatives and iterations you saved, with a link back to their source."
-        filters={
-          <Select
-            aria-label="Type"
-            value={type}
-            onValueChange={setType}
-            options={[
-              { value: "all", label: `All (${live.size})` },
-              ...(Object.keys(TYPE_LABELS) as FavoriteType[]).map((t) => ({
-                value: t,
-                label: `${TYPE_LABELS[t]} (${counts[t] ?? 0})`,
-              })),
+    <FavoritesProvider initial={views.map((v) => v.favorite)}>
+      <div className="flex flex-col gap-8 font-sans">
+        <div className="flex flex-col gap-3">
+          <Breadcrumbs
+            items={[
+              { label: "Home", href: HOME_PATH },
+              { label: "Favorites" },
+              { label: app.name, href: category ? `${pathname}?app=${app.id}` : undefined },
+              ...(category ? [{ label: category.label }] : []),
             ]}
           />
-        }
-      />
-
-      {shown.length ? (
-        <div className="@container">
-          <div className="grid grid-cols-1 gap-4 @min-[640px]:grid-cols-2 @min-[1100px]:grid-cols-3">
-            {shown.map(({ favorite, creative, item, iterationCreatedAt }) => {
-              if (favorite.type === "creative" && creative) {
-                return (
-                  <CreativeCard
-                    key={favorite.id}
-                    creative={creative}
-                    favorite={isFavorite(favorite)}
-                    onToggleFavorite={() => toggle(favorite)}
-                  />
-                );
-              }
-              return (
-                <Panel key={favorite.id} className="flex flex-col gap-3">
-                  <div className="flex items-center justify-between gap-2">
-                    <Tag>{TYPE_LABELS[favorite.type]}</Tag>
-                    {iterationCreatedAt ? (
-                      <span className="text-caption text-ink-3">{formatDateTime(iterationCreatedAt)}</span>
-                    ) : null}
-                  </div>
-                  {item ? (
-                    <div className="flex gap-3">
-                      <ItemView item={item} />
-                      <ItemActions item={item} favorite={isFavorite(favorite)} onToggleFavorite={() => toggle(favorite)} />
-                    </div>
-                  ) : (
-                    <p className="text-body-sm text-ink-3">The source is no longer available.</p>
-                  )}
-                  {creative ? (
-                    <Link
-                      href={`/dashboard/creative-library/${encodeURIComponent(creative.id)}?tab=${TYPE_SLUGS[favorite.type]}`}
-                      className="mt-auto text-body-sm text-accent-text hover:underline"
-                    >
-                      Open source {creative.id}
-                    </Link>
-                  ) : null}
-                </Panel>
-              );
-            })}
-          </div>
+          <PageHeader
+            title="Favorites"
+            description={`${app.name} creatives, texts, avatars, music and templates you saved with a heart.`}
+            actions={
+              <Select
+                aria-label="App"
+                value={app.id}
+                onValueChange={(next) => update("app", next, DEFAULT_APP)}
+                options={APPS.map((a) => ({ value: a.id, label: a.name }))}
+              />
+            }
+          />
         </div>
-      ) : (
-        <EmptyState title="Nothing saved yet">
-          Save a creative or a generated iteration with the heart button and it shows up here.
-        </EmptyState>
-      )}
-    </div>
+        <div className="flex flex-col gap-8">
+          <div className="flex flex-wrap items-end justify-between gap-3 border-b border-line">
+            <Tabs
+              value={tab}
+              onChange={(next) => update("tab", next, ALL_TAB)}
+              options={[{ value: ALL_TAB, label: "All" }, ...(hasLibrary ? tabs : [])]}
+            />
+            <SearchInput
+              aria-label="Search favorites"
+              placeholder="Search favorites…"
+              value={query}
+              onChange={(e) => setQuery(e.target.value)}
+              className="mb-2 w-full border border-line bg-surface sm:w-64"
+            />
+          </div>
+          {hasLibrary ? (
+            <Favorites views={views} app={app.id} tag={category?.label} query={query} />
+          ) : (
+            <EmptyNote>{app.name} has no favorites yet.</EmptyNote>
+          )}
+        </div>
+      </div>
+    </FavoritesProvider>
   );
 }

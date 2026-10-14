@@ -1,4 +1,4 @@
-import { avatarFrames, OWN_INPUT_TYPES } from "../constants";
+import { avatarFrames, OWN_INPUT_TYPES, VIDEO_ONLY_TYPES } from "../constants";
 import type { AiModel, Creative, CreativeExtraction, IterationType } from "../types";
 import { HttpError } from "./http";
 
@@ -10,8 +10,10 @@ import { HttpError } from "./http";
 // `requestConfig.input` of its aiModels.json entry. The OWN_INPUT_TYPES
 // workflows are the exception: they get only their own inputs (`text` for the
 // wall texts and the voiceover script, `image` / `image_urls` for the avatar
-// frame, `voice-test` for the soundtrack to make a new track from). The
-// similar avatar workflow also takes the page's direction as `notes`.
+// frame, `voice-test` for the soundtrack to make a new track from,
+// `reference_video` for the template workflow, which reads the video itself
+// and needs no analysis). The similar avatar workflow also takes the page's
+// direction as `notes`.
 
 function mergePrompt(model: AiModel, userPrompt: string | null): string | undefined {
   const parts = [model.requestConfig.prompt, userPrompt].map((p) => p?.trim()).filter(Boolean);
@@ -47,6 +49,16 @@ function avatarImage(extracted: CreativeExtraction, requested: string | null): s
   return requested ?? frames[0];
 }
 
+function videoInputs(creative: Creative): Record<string, unknown> {
+  if (!creative.videoUrl) {
+    throw new HttpError(
+      400,
+      `Add a public video URL for ${creative.id} first: eachlabs cannot read videos from this computer.`,
+    );
+  }
+  return { reference_video: creative.videoUrl };
+}
+
 function typeInputs(
   type: IterationType,
   extracted: CreativeExtraction,
@@ -75,8 +87,7 @@ function typeInputs(
       return { "voice-test": audioUrl };
     }
     case "template":
-      if (!extracted.template) throw new HttpError(400, "The analysis found no template in this video.");
-      return { template: JSON.stringify(extracted.template) };
+      throw new HttpError(400, "The template workflow reads the video itself.");
   }
 }
 
@@ -87,6 +98,7 @@ export function buildIterationInputs(
   userPrompt: string | null,
   avatarUrl: string | null = null,
 ): Record<string, unknown> {
+  if (VIDEO_ONLY_TYPES.has(type)) return { ...(model.requestConfig.input ?? {}), ...videoInputs(creative) };
   const extracted = creative.extracted;
   if (creative.analysis.status !== "completed" || !extracted) {
     throw new HttpError(400, "Analyze the video first.");
