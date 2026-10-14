@@ -1,0 +1,960 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "./shadcn-tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.145 0 0);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.145 0 0);
+  --primary: oklch(0.205 0 0);
+  --primary-foreground: oklch(0.985 0 0);
+  --secondary: oklch(0.97 0 0);
+  --secondary-foreground: oklch(0.205 0 0);
+  --muted: oklch(0.97 0 0);
+  --muted-foreground: oklch(0.556 0 0);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: 210 40% 98%;
+  --input: oklch(0.922 0 0);
+  --ring: oklch(0.708 0 0);
+  --radius: 0.625rem;
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.145 0 0);
+  --chart-1: oklch(0.87 0 0);
+  --chart-2: oklch(0.556 0 0);
+  --chart-3: oklch(0.439 0 0);
+  --chart-4: oklch(0.371 0 0);
+  --chart-5: oklch(0.269 0 0);
+  --sidebar: oklch(0.985 0 0);
+  --sidebar-foreground: oklch(0.145 0 0);
+  --sidebar-primary: oklch(0.205 0 0);
+  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-accent: oklch(0.97 0 0);
+  --sidebar-accent-foreground: oklch(0.205 0 0);
+  --sidebar-border: oklch(0.922 0 0);
+  --sidebar-ring: oklch(0.708 0 0);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-sans);
+  --font-bomstad: var(--font-bomstad);
+  --font-num: var(--font-numeric);
+  --font-prose: var(--font-numeric);
+  --font-mono: var(--font-mono);
+  --font-heading: var(--font-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Design system (docs/frontend/foundations.md). Each name points at the
+     raw token, so a [data-theme] or .dark subtree re-themes the utility. */
+  --color-page: var(--bg-page);
+  --color-surface: var(--bg-surface);
+  --color-muted: var(--bg-muted);
+  --color-line: var(--border);
+  --color-line-strong: var(--border-strong);
+  --color-ink: var(--text-primary);
+  --color-ink-2: var(--text-secondary);
+  --color-ink-3: var(--text-tertiary);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-active: var(--accent-active);
+  --color-accent-muted: var(--accent-muted);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-border: var(--accent-border);
+  --color-accent-contrast: var(--accent-contrast);
+  --color-accent-text: var(--accent-text);
+  --color-accent-foreground: var(--accent-contrast);
+  --color-success: var(--success);
+  --color-success-bg: var(--success-bg);
+  --color-danger: var(--danger);
+  --color-danger-bg: var(--danger-bg);
+  --color-warning: var(--warning);
+  --color-warning-bg: var(--warning-bg);
+  --color-info: var(--accent);
+  --color-info-bg: var(--accent-subtle);
+  --color-viz-installs: var(--viz-installs);
+  --color-viz-cost: var(--viz-cost);
+  --color-viz-cps: var(--viz-cps);
+  --color-viz-revenue: var(--viz-revenue);
+  --color-viz-subscribe: var(--viz-subscribe);
+  --color-viz-arpu: var(--viz-arpu);
+  --color-viz-retention: var(--viz-retention);
+  --color-viz-pltv: var(--viz-pltv);
+  --color-series-own: var(--series-own);
+  --color-series-1: var(--series-1);
+  --color-series-2: var(--series-2);
+  --color-series-3: var(--series-3);
+  --color-series-4: var(--series-4);
+  --color-series-5: var(--series-5);
+  --color-series-6: var(--series-6);
+  --color-series-7: var(--series-7);
+  --color-series-other: var(--series-other);
+  --color-series-muted: var(--series-muted);
+  --color-series-neutral: var(--series-neutral);
+  --color-workspace-papcorns: var(--workspace-papcorns);
+  --color-workspace-intelligence: var(--workspace-intelligence);
+  --color-workspace-growth: var(--workspace-growth);
+  --color-workspace-creative: var(--workspace-creative);
+  --color-theme-lilac: var(--theme-lilac);
+  --color-theme-green: var(--theme-green);
+  --color-theme-blue: var(--theme-blue);
+  --shadow-xs: var(--shadow-xs);
+  --shadow-sm: var(--shadow-sm);
+  --shadow-popover: var(--shadow-popover);
+  --shadow-modal: var(--shadow-modal);
+
+  /* Radius scale follows the design doc (§5). It replaces shadcn's
+     --radius-based steps. */
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Type scale (design doc §2.2). `text-<name>` sets size, line height and
+   weight; family and case are separate utilities: `text-kpi-value font-num
+   tabular-nums`, `text-kpi-label uppercase`. Weight stays overridable with
+   `font-*`. */
+@theme {
+  --text-page-title: 28px;
+  --text-page-title--line-height: 39px;
+  --text-page-title--font-weight: 600;
+  --text-section-title: 28px;
+  --text-section-title--line-height: 39px;
+  --text-section-title--font-weight: 600;
+  --text-section-title--letter-spacing: -0.35px;
+  --text-page-desc: 14px;
+  --text-page-desc--line-height: 20px;
+  --text-page-desc--font-weight: 500;
+  --text-kpi-value: 32px;
+  --text-kpi-value--line-height: 38px;
+  --text-kpi-value--font-weight: 600;
+  --text-kpi-label: 11px;
+  --text-kpi-label--line-height: 15px;
+  --text-kpi-label--font-weight: 600;
+  --text-body: 13px;
+  --text-body--line-height: 19.5px;
+  --text-body--font-weight: 500;
+  --text-body-sm: 12px;
+  --text-body-sm--line-height: 18px;
+  --text-body-sm--font-weight: 500;
+  --text-caption: 11px;
+  --text-caption--line-height: 16.5px;
+  --text-caption--font-weight: 500;
+  --text-micro: 10px;
+  --text-micro--line-height: 15px;
+  --text-micro--font-weight: 500;
+  --text-delta: 11px;
+  --text-delta--line-height: 15px;
+  --text-delta--font-weight: 600;
+  --text-overline: 11px;
+  --text-overline--line-height: 15px;
+  --text-overline--font-weight: 600;
+  --text-overline--letter-spacing: 1px;
+  --text-code: 12px;
+  --text-code--line-height: 18px;
+  --text-code--font-weight: 400;
+}
+
+/* ---------------------------------------------------------------------------
+   Design system tokens.
+
+   Source of truth: docs/frontend/design-system.md.
+   Names are the design doc's, verbatim; Tailwind names are mapped in the
+   @theme block above (bg-surface, text-ink-2, border-line, bg-accent-subtle …,
+   full table in docs/frontend/foundations.md).
+
+   Two independent axes: the accent theme (`data-theme="blue|lilac|green"`,
+   a user preference) and the mode (the `dark` class, which the design doc
+   writes as `data-mode="dark"`). Both may sit on <html> or on any subtree.
+   Every theme block declares all of its accent tokens, because a token that
+   is derived from another is resolved where it is declared.
+   --------------------------------------------------------------------------- */
+:root {
+  /* Numbers that are data are set in the system font, words in Bomstad
+     (docs/frontend/foundations.md#typography). The default stack does it per
+     glyph: --font-bomstad-letters has no numerals (unicode-range in
+     src/lib/bomstad-font.ts), so they fall to --font-numeric. --font-bomstad keeps every
+     glyph for the digits the design sets in Bomstad (dates, calendar,
+     counters). Long text (paragraphs, notes, reports) is the system font as
+     a whole: `font-prose`. */
+  --font-numeric: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, system-ui, sans-serif;
+  --font-sans: var(--font-bomstad-letters), var(--font-numeric);
+  --font-bomstad: var(--font-bomstad-face), var(--font-numeric);
+  --font-mono: var(--font-dm-mono), ui-monospace, monospace;
+
+  --bg-page: #fafafa;
+  --bg-surface: #ffffff;
+  --bg-muted: #f3f4f6;
+  --border: #eaeaea;
+  --border-strong: #d1d5dc;
+  --text-primary: #111827;
+  --text-secondary: #4b5563;
+  --text-tertiary: #797979;
+
+  --success: #10b981;
+  --success-bg: #f0fbf1;
+  --danger: #ef4444;
+  --danger-bg: #fef4f4;
+  --warning: #fbbf24;
+  --warning-bg: #fffbeb;
+
+  --viz-installs: #10b981;
+  --viz-cost: #629eff;
+  --viz-cps: #14b8a6;
+  --viz-revenue: #0051ed;
+  --viz-subscribe: #a78bfa;
+  --viz-arpu: #fbbf24;
+  --viz-retention: #34d399;
+  --viz-pltv: #f9a8d4;
+
+  /* Categorical chart series (design doc §3.7): `own` is one fixed blue
+     whatever the accent theme, the other series take slots 1 – 7 in this
+     order (the order is what the colour-blind check validated), Other a grey
+     that stands off the empty track (--bg-muted), muted a lighter grey for
+     Unknown, neutral a darker grey for a single series. Dark mode has its
+     own steps below. */
+  --series-own: #0051ed;
+  --series-1: #eb6834;
+  --series-2: #1baf7a;
+  --series-3: #eda100;
+  --series-4: #e87ba4;
+  --series-5: #008300;
+  --series-6: #4a3aa7;
+  --series-7: #e34948;
+  --series-other: #b8bfcc;
+  --series-muted: #d8dce3;
+  --series-neutral: #7a8292;
+
+  /* Workspace identity colours (switcher icon box, header tile). Not a
+     theme: the user's theme stays when the workspace changes. */
+  --workspace-papcorns: #0051ed;
+  --workspace-intelligence: #0d9488;
+  --workspace-growth: #ea580c;
+  --workspace-creative: #7c3aed;
+
+  /* Each accent theme's own colour, for the Theme Color swatches:
+     fixed, whatever theme is on. */
+  --theme-lilac: #c6b5f5;
+  --theme-green: #8eff1e;
+  --theme-blue: #0051ed;
+
+  --shadow-xs: 0 1px 2px -1px #e5e7eb, 0 1px 3px 0 #e5e7eb, 0 0 0 1px rgba(0, 0, 0, 0.05);
+  --shadow-sm: 0 1px 2px -1px rgba(0, 0, 0, 0.1), 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  --shadow-popover: 0 10px 28px 0 rgba(10, 13, 26, 0.16);
+  --shadow-modal: 0 8px 32px 0 rgba(0, 0, 0, 0.12);
+
+  --sidebar-w: 232px;
+  --sidebar-w-collapsed: 64px;
+  --content-max-w: 1416px;
+  --content-pad-l: 32px;
+  --content-pad-r: 24px;
+}
+
+:root,
+[data-theme="blue"] {
+  --accent: #0051ed;
+  --accent-hover: #0047d1;
+  --accent-active: #003fb9;
+  --accent-muted: #d1e0fc;
+  --accent-subtle: #e6eefd;
+  --accent-border: #94b6f7;
+  --accent-contrast: #ffffff;
+  --accent-text: #0051ed;
+}
+
+/* Lilac and Green: --accent-text is not designed yet. The accent itself is
+   unreadable as text on white, so text falls back to --text-primary. */
+[data-theme="lilac"] {
+  --accent: #c6b5f5;
+  --accent-hover: #ae9fd8;
+  --accent-active: #9a8dbf;
+  --accent-muted: #f5f2fd;
+  --accent-subtle: #f9f8fe;
+  --accent-border: #e7e0fb;
+  --accent-contrast: #111827;
+  --accent-text: var(--text-primary);
+}
+
+[data-theme="green"] {
+  --accent: #8eff1e;
+  --accent-hover: #7de01a;
+  --accent-active: #6fc717;
+  --accent-muted: #ebffd7;
+  --accent-subtle: #f4ffe9;
+  --accent-border: #d0ffa1;
+  --accent-contrast: #111827;
+  --accent-text: var(--text-primary);
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--color-gray-100) 25%,
+    var(--color-gray-200) 37%,
+    var(--color-gray-100) 63%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s ease-in-out infinite;
+}
+
+@keyframes row-cascade {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-row-cascade {
+  animation: row-cascade 0.38s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Horizontal-scroll containers that must not show a scrollbar (e.g. long
+   names that scroll in place instead of truncating). */
+@utility scrollbar-none {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.dark {
+  color-scheme: dark;
+  /* shadcn names on the design system's dark tokens (below). Primary is the
+     accent as a fill (with --accent-contrast on it); where it is used as
+     text, the utilities further down turn it into --accent-text, which is
+     the one that reads on a dark surface. */
+  --background: var(--bg-page);
+  --foreground: var(--text-primary);
+  --card: var(--bg-surface);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-surface);
+  --popover-foreground: var(--text-primary);
+  --primary: var(--accent);
+  --primary-foreground: var(--accent-contrast);
+  --secondary: var(--bg-muted);
+  --secondary-foreground: var(--text-primary);
+  --muted: var(--bg-muted);
+  --muted-foreground: var(--text-tertiary);
+  --destructive: var(--danger);
+  --input: var(--border-strong);
+  --ring: var(--accent-text);
+  --chart-1: var(--accent);
+  --chart-2: var(--text-secondary);
+  --chart-3: var(--text-tertiary);
+  --chart-4: var(--border-strong);
+  --chart-5: var(--border);
+  --sidebar: var(--bg-surface);
+  --sidebar-foreground: var(--text-primary);
+  --sidebar-primary: var(--accent);
+  --sidebar-primary-foreground: var(--accent-contrast);
+  --sidebar-accent: var(--bg-muted);
+  --sidebar-accent-foreground: var(--text-primary);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--accent-text);
+}
+
+/* Design system dark mode (design doc §3.6). Neutral and semantic tokens
+   change; accent fills and the metric data-viz colours do not.
+   Accent-coloured text becomes --accent-text. The chart series take their
+   dark steps (design doc §3.7). */
+.dark {
+  --bg-page: #0e1015;
+  --bg-surface: #161920;
+  --bg-muted: #1f232c;
+  --border: #2a2f3a;
+  --border-strong: #3a404c;
+  --text-primary: #f3f4f6;
+  --text-secondary: #b4bac6;
+  --text-tertiary: #8a909c;
+
+  --success: #34d399;
+  --success-bg: #0f2a20;
+  --danger: #f87171;
+  --danger-bg: #2e1517;
+  --warning: #fbbf24;
+  --warning-bg: #2a2310;
+
+  --series-own: #3987e5;
+  --series-1: #d95926;
+  --series-2: #199e70;
+  --series-3: #c98500;
+  --series-4: #d55181;
+  --series-5: #008300;
+  --series-6: #9085e9;
+  --series-7: #e66767;
+  --series-other: #4c5360;
+  --series-muted: #353b47;
+  --series-neutral: #687080;
+
+  --shadow-xs: 0 1px 2px -1px rgba(0, 0, 0, 0.5), 0 1px 3px 0 rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-sm: 0 1px 2px -1px rgba(0, 0, 0, 0.3), 0 1px 3px 0 rgba(0, 0, 0, 0.3);
+  --shadow-popover: 0 10px 28px 0 rgba(10, 13, 26, 0.48);
+  --shadow-modal: 0 8px 32px 0 rgba(0, 0, 0, 0.36);
+}
+
+:root.dark:not([data-theme]),
+.dark[data-theme="blue"],
+.dark [data-theme="blue"] {
+  --accent-muted: #1c3366;
+  --accent-subtle: #15254a;
+  --accent-text: #6b97ff;
+}
+
+/* Dark Lilac / Green tints are not designed yet: the doc's interim rule is
+   the accent mixed into the surface at 15% / 25%. */
+.dark[data-theme="lilac"],
+.dark [data-theme="lilac"],
+.dark[data-theme="green"],
+.dark [data-theme="green"] {
+  --accent-muted: color-mix(in srgb, var(--accent) 25%, var(--bg-surface));
+  --accent-subtle: color-mix(in srgb, var(--accent) 15%, var(--bg-surface));
+  --accent-text: var(--accent);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+  html {
+    @apply font-sans;
+  }
+}
+
+/* ---------------------------------------------------------------------------
+   Dark mode for markup written with the raw Tailwind palette.
+
+   A safety net for code that uses `bg-white`, `text-gray-900`,
+   `border-gray-200`, `bg-indigo-600` … instead of the tokens (pasted
+   snippets, third-party components). Tailwind v4 emits those utilities as
+   `var(--color-gray-*)`, so re-pointing the variables under `.dark` flips
+   them all at once.
+
+   Values are the design system's dark tokens (design doc §3.6). The neutral
+   scale mirrors light mode: each step takes the dark token of the role it has
+   in light, so `bg-gray-100` is --bg-muted, `border-gray-200` --border,
+   `text-gray-500` / `-600` / `-900` the tertiary / secondary / primary text;
+   the steps in between are interpolated. Gray, neutral, slate and zinc get
+   the same values. Indigo becomes the user's accent theme: fills are --accent
+   (with --accent-contrast text), text is --accent-text. Light mode is
+   untouched; nothing below applies without the `dark` class. New code still
+   uses the tokens.
+   --------------------------------------------------------------------------- */
+.dark {
+  /* Deliberately dark surfaces (`bg-gray-900 text-white`) and their hover. */
+  --palette-raised: #262b35;
+  --palette-raised-hover: #2f3542;
+
+  --color-gray-50: #1a1d24;
+  --color-gray-100: var(--bg-muted);
+  --color-gray-200: var(--border);
+  --color-gray-300: var(--border-strong);
+  --color-gray-400: #5c6370;
+  --color-gray-500: var(--text-tertiary);
+  --color-gray-600: var(--text-secondary);
+  --color-gray-700: #ccd1da;
+  --color-gray-800: #e2e5ea;
+  --color-gray-900: var(--text-primary);
+  --color-gray-950: #f9fafb;
+
+  --color-neutral-50: #1a1d24;
+  --color-neutral-100: var(--bg-muted);
+  --color-neutral-200: var(--border);
+  --color-neutral-300: var(--border-strong);
+  --color-neutral-400: #5c6370;
+  --color-neutral-500: var(--text-tertiary);
+  --color-neutral-600: var(--text-secondary);
+  --color-neutral-700: #ccd1da;
+  --color-neutral-800: #e2e5ea;
+  --color-neutral-900: var(--text-primary);
+  --color-neutral-950: #f9fafb;
+
+  --color-slate-50: #1a1d24;
+  --color-slate-100: var(--bg-muted);
+  --color-slate-200: var(--border);
+  --color-slate-300: var(--border-strong);
+  --color-slate-400: #5c6370;
+  --color-slate-500: var(--text-tertiary);
+  --color-slate-600: var(--text-secondary);
+  --color-slate-700: #ccd1da;
+  --color-slate-800: #e2e5ea;
+  --color-slate-900: var(--text-primary);
+  --color-slate-950: #f9fafb;
+
+  --color-zinc-50: #1a1d24;
+  --color-zinc-100: var(--bg-muted);
+  --color-zinc-200: var(--border);
+  --color-zinc-300: var(--border-strong);
+  --color-zinc-400: #5c6370;
+  --color-zinc-500: var(--text-tertiary);
+  --color-zinc-600: var(--text-secondary);
+  --color-zinc-700: #ccd1da;
+  --color-zinc-800: #e2e5ea;
+  --color-zinc-900: var(--text-primary);
+  --color-zinc-950: #f9fafb;
+
+  /* Accent: indigo -> the accent theme. Steps 50-300 are tints of the
+     accent text colour for tinted backgrounds and borders; 400 and 800-950
+     are used as text and take --accent-text; 500-700 are fills (700 is what
+     `hover:bg-indigo-700` resolves to). */
+  --color-indigo-50: color-mix(in srgb, var(--accent-text) 8%, transparent);
+  --color-indigo-100: color-mix(in srgb, var(--accent-text) 15%, transparent);
+  --color-indigo-200: color-mix(in srgb, var(--accent-text) 25%, transparent);
+  --color-indigo-300: color-mix(in srgb, var(--accent-text) 40%, transparent);
+  --color-indigo-400: var(--accent-text);
+  --color-indigo-500: var(--accent);
+  --color-indigo-600: var(--accent);
+  --color-indigo-700: var(--accent-hover);
+  --color-indigo-800: var(--accent-text);
+  --color-indigo-900: var(--accent-text);
+  --color-indigo-950: var(--accent-text);
+}
+
+/* Utilities that cannot be fixed through the variables alone.
+   `--color-white` / `--color-black` are deliberately left as-is: `text-white`
+   on a blue or emerald button must stay white. `:where(.dark)` keeps
+   specificity at a single class so `hover:` and explicit `dark:` utilities on
+   the same element still win. */
+@layer utilities {
+  :where(.dark) .bg-white {
+    background-color: var(--card);
+  }
+  :where(.dark) .text-black {
+    color: var(--foreground);
+  }
+  :where(.dark) .border-white,
+  :where(.dark) .divide-white > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--border);
+  }
+
+  /* Accent fills take the accent's own text colour: white on Blue, dark on
+     Lilac and Green (`bg-indigo-600 text-white` as a primary button). */
+  :where(.dark) .bg-indigo-500,
+  :where(.dark) .bg-indigo-600,
+  :where(.dark) .bg-indigo-700,
+  :where(.dark) .hover\:bg-indigo-500:hover,
+  :where(.dark) .hover\:bg-indigo-600:hover,
+  :where(.dark) .hover\:bg-indigo-700:hover {
+    color: var(--accent-contrast);
+  }
+
+  /* The accent as text: the fill colour (#0051ED on Blue) is too dark to read
+     on a dark surface, --accent-text is the readable one. `dark:text-primary`
+     carries the dark variant's own weight, so it is matched with `.dark`. */
+  :where(.dark) .text-indigo-500,
+  :where(.dark) .text-indigo-600,
+  :where(.dark) .text-indigo-700,
+  :where(.dark) .hover\:text-indigo-600:hover,
+  :where(.dark) .hover\:text-indigo-700:hover,
+  :where(.dark) .text-primary,
+  .dark .dark\:text-primary {
+    color: var(--accent-text);
+  }
+
+  /* Deliberately dark surfaces (`bg-gray-900 text-white` buttons, badges,
+     code blocks). With the inverted scale their background would turn white
+     under white text, so pin them to a raised dark surface instead. */
+  :where(.dark) .bg-gray-800,
+  :where(.dark) .bg-gray-900,
+  :where(.dark) .bg-gray-950,
+  :where(.dark) .bg-neutral-800,
+  :where(.dark) .bg-neutral-900,
+  :where(.dark) .bg-neutral-950,
+  :where(.dark) .bg-slate-800,
+  :where(.dark) .bg-slate-900,
+  :where(.dark) .bg-zinc-800,
+  :where(.dark) .bg-zinc-900 {
+    background-color: var(--palette-raised);
+  }
+  :where(.dark) .hover\:bg-gray-800:hover,
+  :where(.dark) .hover\:bg-gray-700:hover,
+  :where(.dark) .hover\:bg-neutral-800:hover,
+  :where(.dark) .hover\:bg-slate-900:hover {
+    background-color: var(--palette-raised-hover);
+  }
+}
+
+/* Gradients. Stops are separate utilities (`from-white`, `to-indigo-600`)
+   and bypass the `.bg-white` rule above, so a `from-white to-gray-50` card
+   would fade from pure white into a dark surface. White stops become the
+   card colour; indigo stops keep Tailwind's real indigo so `from-indigo-600 to-violet-600` buttons and banners stay one
+   coherent hue with readable white text. */
+.dark {
+  --palette-indigo-500: oklch(58.5% 0.233 277.117);
+  --palette-indigo-600: oklch(51.1% 0.262 276.966);
+}
+@layer utilities {
+  :where(.dark) .from-white {
+    --tw-gradient-from: var(--card);
+  }
+  :where(.dark) .via-white {
+    --tw-gradient-via: var(--card);
+  }
+  :where(.dark) .to-white {
+    --tw-gradient-to: var(--card);
+  }
+  :where(.dark) .from-indigo-500 {
+    --tw-gradient-from: var(--palette-indigo-500);
+  }
+  :where(.dark) .from-indigo-600 {
+    --tw-gradient-from: var(--palette-indigo-600);
+  }
+  :where(.dark) .to-indigo-600 {
+    --tw-gradient-to: var(--palette-indigo-600);
+  }
+  :where(.dark) .hover\:from-indigo-600\/90:hover {
+    --tw-gradient-from: color-mix(in oklab, var(--palette-indigo-600) 90%, transparent);
+  }
+  /* `file:bg-indigo-600 file:text-white` upload buttons: the accent's text colour. */
+  :where(.dark) .file\:bg-indigo-600::file-selector-button,
+  :where(.dark) .file\:bg-indigo-700::file-selector-button,
+  :where(.dark) .hover\:file\:bg-indigo-700:hover::file-selector-button {
+    color: var(--accent-contrast);
+  }
+}
+
+/* Native <select> popups are painted by the browser, not by the page's CSS.
+   Chrome and Firefox take the popup's colours from the <option> elements
+   (and the select's colour scheme), so give them explicit dark values or the
+   list opens white under a dark page. */
+.dark select,
+.dark option,
+.dark optgroup {
+  color-scheme: dark;
+}
+.dark option,
+.dark optgroup {
+  background-color: var(--card);
+  color: var(--foreground);
+}
+.dark option:checked {
+  background-color: var(--bg-muted);
+}
+
+/* Scrollbars: thin, translucent white thumb. */
+.dark ::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+.dark ::-webkit-scrollbar-thumb {
+  background: #ffffff1a;
+  border-radius: 9px;
+}
+.dark ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* Colored families (status badges, alerts, row hovers such as `bg-blue-50`
+   or `bg-red-50 text-red-700`). In light mode the 50-300 steps are pale
+   tints that turn a dark row almost white. Under `.dark` they become the
+   family's 500 hue at low alpha, so the hue survives but the surface stays
+   dark; semi-transparent heat-map cells drawn over them stay dark too. */
+.dark {
+  --color-red-50: color-mix(in oklab, var(--color-red-500) 12%, transparent);
+  --color-red-100: color-mix(in oklab, var(--color-red-500) 20%, transparent);
+  --color-red-200: color-mix(in oklab, var(--color-red-500) 32%, transparent);
+  --color-red-300: color-mix(in oklab, var(--color-red-500) 45%, transparent);
+  --color-orange-50: color-mix(in oklab, var(--color-orange-500) 12%, transparent);
+  --color-orange-100: color-mix(in oklab, var(--color-orange-500) 20%, transparent);
+  --color-orange-200: color-mix(in oklab, var(--color-orange-500) 32%, transparent);
+  --color-orange-300: color-mix(in oklab, var(--color-orange-500) 45%, transparent);
+  --color-amber-50: color-mix(in oklab, var(--color-amber-500) 12%, transparent);
+  --color-amber-100: color-mix(in oklab, var(--color-amber-500) 20%, transparent);
+  --color-amber-200: color-mix(in oklab, var(--color-amber-500) 32%, transparent);
+  --color-amber-300: color-mix(in oklab, var(--color-amber-500) 45%, transparent);
+  --color-yellow-50: color-mix(in oklab, var(--color-yellow-500) 12%, transparent);
+  --color-yellow-100: color-mix(in oklab, var(--color-yellow-500) 20%, transparent);
+  --color-yellow-200: color-mix(in oklab, var(--color-yellow-500) 32%, transparent);
+  --color-yellow-300: color-mix(in oklab, var(--color-yellow-500) 45%, transparent);
+  --color-lime-50: color-mix(in oklab, var(--color-lime-500) 12%, transparent);
+  --color-lime-100: color-mix(in oklab, var(--color-lime-500) 20%, transparent);
+  --color-lime-200: color-mix(in oklab, var(--color-lime-500) 32%, transparent);
+  --color-lime-300: color-mix(in oklab, var(--color-lime-500) 45%, transparent);
+  --color-green-50: color-mix(in oklab, var(--color-green-500) 12%, transparent);
+  --color-green-100: color-mix(in oklab, var(--color-green-500) 20%, transparent);
+  --color-green-200: color-mix(in oklab, var(--color-green-500) 32%, transparent);
+  --color-green-300: color-mix(in oklab, var(--color-green-500) 45%, transparent);
+  --color-emerald-50: color-mix(in oklab, var(--color-emerald-500) 12%, transparent);
+  --color-emerald-100: color-mix(in oklab, var(--color-emerald-500) 20%, transparent);
+  --color-emerald-200: color-mix(in oklab, var(--color-emerald-500) 32%, transparent);
+  --color-emerald-300: color-mix(in oklab, var(--color-emerald-500) 45%, transparent);
+  --color-teal-50: color-mix(in oklab, var(--color-teal-500) 12%, transparent);
+  --color-teal-100: color-mix(in oklab, var(--color-teal-500) 20%, transparent);
+  --color-teal-200: color-mix(in oklab, var(--color-teal-500) 32%, transparent);
+  --color-teal-300: color-mix(in oklab, var(--color-teal-500) 45%, transparent);
+  --color-cyan-50: color-mix(in oklab, var(--color-cyan-500) 12%, transparent);
+  --color-cyan-100: color-mix(in oklab, var(--color-cyan-500) 20%, transparent);
+  --color-cyan-200: color-mix(in oklab, var(--color-cyan-500) 32%, transparent);
+  --color-cyan-300: color-mix(in oklab, var(--color-cyan-500) 45%, transparent);
+  --color-sky-50: color-mix(in oklab, var(--color-sky-500) 12%, transparent);
+  --color-sky-100: color-mix(in oklab, var(--color-sky-500) 20%, transparent);
+  --color-sky-200: color-mix(in oklab, var(--color-sky-500) 32%, transparent);
+  --color-sky-300: color-mix(in oklab, var(--color-sky-500) 45%, transparent);
+  --color-blue-50: color-mix(in oklab, var(--color-blue-500) 12%, transparent);
+  --color-blue-100: color-mix(in oklab, var(--color-blue-500) 20%, transparent);
+  --color-blue-200: color-mix(in oklab, var(--color-blue-500) 32%, transparent);
+  --color-blue-300: color-mix(in oklab, var(--color-blue-500) 45%, transparent);
+  --color-violet-50: color-mix(in oklab, var(--color-violet-500) 12%, transparent);
+  --color-violet-100: color-mix(in oklab, var(--color-violet-500) 20%, transparent);
+  --color-violet-200: color-mix(in oklab, var(--color-violet-500) 32%, transparent);
+  --color-violet-300: color-mix(in oklab, var(--color-violet-500) 45%, transparent);
+  --color-purple-50: color-mix(in oklab, var(--color-purple-500) 12%, transparent);
+  --color-purple-100: color-mix(in oklab, var(--color-purple-500) 20%, transparent);
+  --color-purple-200: color-mix(in oklab, var(--color-purple-500) 32%, transparent);
+  --color-purple-300: color-mix(in oklab, var(--color-purple-500) 45%, transparent);
+  --color-fuchsia-50: color-mix(in oklab, var(--color-fuchsia-500) 12%, transparent);
+  --color-fuchsia-100: color-mix(in oklab, var(--color-fuchsia-500) 20%, transparent);
+  --color-fuchsia-200: color-mix(in oklab, var(--color-fuchsia-500) 32%, transparent);
+  --color-fuchsia-300: color-mix(in oklab, var(--color-fuchsia-500) 45%, transparent);
+  --color-pink-50: color-mix(in oklab, var(--color-pink-500) 12%, transparent);
+  --color-pink-100: color-mix(in oklab, var(--color-pink-500) 20%, transparent);
+  --color-pink-200: color-mix(in oklab, var(--color-pink-500) 32%, transparent);
+  --color-pink-300: color-mix(in oklab, var(--color-pink-500) 45%, transparent);
+  --color-rose-50: color-mix(in oklab, var(--color-rose-500) 12%, transparent);
+  --color-rose-100: color-mix(in oklab, var(--color-rose-500) 20%, transparent);
+  --color-rose-200: color-mix(in oklab, var(--color-rose-500) 32%, transparent);
+  --color-rose-300: color-mix(in oklab, var(--color-rose-500) 45%, transparent);
+}
+
+/* The text that sits on those tints (`text-red-700` on `bg-red-50`) is a
+   dark shade in light mode. Lift it to a light shade of the same hue. Only
+   the text role is touched; `bg-blue-600` buttons keep their colour. */
+@layer utilities {
+  :where(.dark) .text-red-600 {
+    color: var(--color-red-400);
+  }
+  :where(.dark) .text-red-700 {
+    color: var(--color-red-300);
+  }
+  :where(.dark) .text-red-800 {
+    color: var(--color-red-300);
+  }
+  :where(.dark) .text-red-900 {
+    color: var(--color-red-200);
+  }
+  :where(.dark) .text-orange-600 {
+    color: var(--color-orange-400);
+  }
+  :where(.dark) .text-orange-700 {
+    color: var(--color-orange-300);
+  }
+  :where(.dark) .text-orange-800 {
+    color: var(--color-orange-300);
+  }
+  :where(.dark) .text-orange-900 {
+    color: var(--color-orange-200);
+  }
+  :where(.dark) .text-amber-600 {
+    color: var(--color-amber-400);
+  }
+  :where(.dark) .text-amber-700 {
+    color: var(--color-amber-300);
+  }
+  :where(.dark) .text-amber-800 {
+    color: var(--color-amber-300);
+  }
+  :where(.dark) .text-amber-900 {
+    color: var(--color-amber-200);
+  }
+  :where(.dark) .text-yellow-600 {
+    color: var(--color-yellow-400);
+  }
+  :where(.dark) .text-yellow-700 {
+    color: var(--color-yellow-300);
+  }
+  :where(.dark) .text-yellow-800 {
+    color: var(--color-yellow-300);
+  }
+  :where(.dark) .text-yellow-900 {
+    color: var(--color-yellow-200);
+  }
+  :where(.dark) .text-lime-600 {
+    color: var(--color-lime-400);
+  }
+  :where(.dark) .text-lime-700 {
+    color: var(--color-lime-300);
+  }
+  :where(.dark) .text-lime-800 {
+    color: var(--color-lime-300);
+  }
+  :where(.dark) .text-lime-900 {
+    color: var(--color-lime-200);
+  }
+  :where(.dark) .text-green-600 {
+    color: var(--color-green-400);
+  }
+  :where(.dark) .text-green-700 {
+    color: var(--color-green-300);
+  }
+  :where(.dark) .text-green-800 {
+    color: var(--color-green-300);
+  }
+  :where(.dark) .text-green-900 {
+    color: var(--color-green-200);
+  }
+  :where(.dark) .text-emerald-600 {
+    color: var(--color-emerald-400);
+  }
+  :where(.dark) .text-emerald-700 {
+    color: var(--color-emerald-300);
+  }
+  :where(.dark) .text-emerald-800 {
+    color: var(--color-emerald-300);
+  }
+  :where(.dark) .text-emerald-900 {
+    color: var(--color-emerald-200);
+  }
+  :where(.dark) .text-teal-600 {
+    color: var(--color-teal-400);
+  }
+  :where(.dark) .text-teal-700 {
+    color: var(--color-teal-300);
+  }
+  :where(.dark) .text-teal-800 {
+    color: var(--color-teal-300);
+  }
+  :where(.dark) .text-teal-900 {
+    color: var(--color-teal-200);
+  }
+  :where(.dark) .text-cyan-600 {
+    color: var(--color-cyan-400);
+  }
+  :where(.dark) .text-cyan-700 {
+    color: var(--color-cyan-300);
+  }
+  :where(.dark) .text-cyan-800 {
+    color: var(--color-cyan-300);
+  }
+  :where(.dark) .text-cyan-900 {
+    color: var(--color-cyan-200);
+  }
+  :where(.dark) .text-sky-600 {
+    color: var(--color-sky-400);
+  }
+  :where(.dark) .text-sky-700 {
+    color: var(--color-sky-300);
+  }
+  :where(.dark) .text-sky-800 {
+    color: var(--color-sky-300);
+  }
+  :where(.dark) .text-sky-900 {
+    color: var(--color-sky-200);
+  }
+  :where(.dark) .text-blue-600 {
+    color: var(--color-blue-400);
+  }
+  :where(.dark) .text-blue-700 {
+    color: var(--color-blue-300);
+  }
+  :where(.dark) .text-blue-800 {
+    color: var(--color-blue-300);
+  }
+  :where(.dark) .text-blue-900 {
+    color: var(--color-blue-200);
+  }
+  :where(.dark) .text-violet-600 {
+    color: var(--color-violet-400);
+  }
+  :where(.dark) .text-violet-700 {
+    color: var(--color-violet-300);
+  }
+  :where(.dark) .text-violet-800 {
+    color: var(--color-violet-300);
+  }
+  :where(.dark) .text-violet-900 {
+    color: var(--color-violet-200);
+  }
+  :where(.dark) .text-purple-600 {
+    color: var(--color-purple-400);
+  }
+  :where(.dark) .text-purple-700 {
+    color: var(--color-purple-300);
+  }
+  :where(.dark) .text-purple-800 {
+    color: var(--color-purple-300);
+  }
+  :where(.dark) .text-purple-900 {
+    color: var(--color-purple-200);
+  }
+  :where(.dark) .text-fuchsia-600 {
+    color: var(--color-fuchsia-400);
+  }
+  :where(.dark) .text-fuchsia-700 {
+    color: var(--color-fuchsia-300);
+  }
+  :where(.dark) .text-fuchsia-800 {
+    color: var(--color-fuchsia-300);
+  }
+  :where(.dark) .text-fuchsia-900 {
+    color: var(--color-fuchsia-200);
+  }
+  :where(.dark) .text-pink-600 {
+    color: var(--color-pink-400);
+  }
+  :where(.dark) .text-pink-700 {
+    color: var(--color-pink-300);
+  }
+  :where(.dark) .text-pink-800 {
+    color: var(--color-pink-300);
+  }
+  :where(.dark) .text-pink-900 {
+    color: var(--color-pink-200);
+  }
+  :where(.dark) .text-rose-600 {
+    color: var(--color-rose-400);
+  }
+  :where(.dark) .text-rose-700 {
+    color: var(--color-rose-300);
+  }
+  :where(.dark) .text-rose-800 {
+    color: var(--color-rose-300);
+  }
+  :where(.dark) .text-rose-900 {
+    color: var(--color-rose-200);
+  }
+}

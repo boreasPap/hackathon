@@ -1,0 +1,107 @@
+[
+  {
+    "id": "vid2txt-creativeAnalysis",
+    "modelType": "vid2txt",
+    "subModelType": "creativeAnalysis",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "vid2txt",
+      "inputTypes": ["video"],
+      "outputTypes": ["text"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "txt2txt-wallText",
+    "modelType": "txt2txt",
+    "subModelType": "wallText",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "txt2txt",
+      "inputTypes": ["text"],
+      "outputTypes": ["text"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "txt2txt-voiceoverScript",
+    "modelType": "txt2txt",
+    "subModelType": "voiceover",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "txt2txt",
+      "inputTypes": ["text"],
+      "outputTypes": ["text"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "img2img-similarAvatar",
+    "modelType": "img2img",
+    "subModelType": "similarAvatar",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "img2img",
+      "inputTypes": ["image", "text"],
+      "outputTypes": ["image"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "img2img-avatarVariation",
+    "modelType": "img2img",
+    "subModelType": "avatarVariation",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "img2img",
+      "inputTypes": ["image", "text"],
+      "outputTypes": ["image"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "txt2audio-music",
+    "modelType": "txt2audio",
+    "subModelType": "music",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "txt2audio",
+      "inputTypes": ["text"],
+      "outputTypes": ["audio"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  },
+  {
+    "id": "txt2img-template",
+    "modelType": "txt2img",
+    "subModelType": "template",
+    "validationRules": null,
+    "cost": 0.08,
+    "requestConfig": {
+      "type": "txt2img",
+      "inputTypes": ["text"],
+      "outputTypes": ["image"],
+      "customConfig": null
+    },
+    "apiUsageModels": "WORKFLOW_ID",
+    "platform": "eachlabs"
+  }
+]

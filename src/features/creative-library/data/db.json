@@ -1,0 +1,189 @@
+{
+  "apps": [
+    {
+      "id": "hairapp",
+      "name": "HairApp"
+    }
+  ],
+  "creatives": [
+    {
+      "id": "V628_vers2",
+      "app": "hairapp",
+      "tags": [],
+      "fileName": "HA_MT_V628_vers2_Hairstyle_1080-1920_Asu.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/cff769a5-d378-45a5-9fce-fb4d7ee4eb67.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/b9fafdae-5b49-49f7-a84c-942bb91db885.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/cff769a5-d378-45a5-9fce-fb4d7ee4eb67.mp4",
+      "storage": {
+        "videoFileId": "cff769a5-d378-45a5-9fce-fb4d7ee4eb67",
+        "posterFileId": "b9fafdae-5b49-49f7-a84c-942bb91db885",
+        "expiresAt": "2027-04-12T11:32:26Z"
+      },
+      "createdAt": "2026-10-14T11:32:50.196Z",
+      "updatedAt": "2026-10-14T11:32:50.196Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    },
+    {
+      "id": "V577_vers2",
+      "app": "hairapp",
+      "tags": [
+        "Hairstyle"
+      ],
+      "fileName": "HA_MT_V577_vers2_Hairstyle_1080-1920_Zeynep.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/29848c42-b391-4a5b-ad2b-85c8584925f3.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/8b779e64-88d5-458a-9948-6779ba7b5b4f.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/29848c42-b391-4a5b-ad2b-85c8584925f3.mp4",
+      "storage": {
+        "videoFileId": "29848c42-b391-4a5b-ad2b-85c8584925f3",
+        "posterFileId": "8b779e64-88d5-458a-9948-6779ba7b5b4f",
+        "expiresAt": "2027-04-12T11:31:46Z"
+      },
+      "createdAt": "2026-10-14T11:31:54.669Z",
+      "updatedAt": "2026-10-14T11:31:54.669Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    },
+    {
+      "id": "V510",
+      "app": "hairapp",
+      "tags": [
+        "Hairstyle"
+      ],
+      "fileName": "HA_MT_V510_Hairstyle_1080-1920_Zeynep.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/a0979ef2-4217-4209-b503-6e6984a5cfb5.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/154e57ba-def3-405d-9d65-ba7252800182.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/a0979ef2-4217-4209-b503-6e6984a5cfb5.mp4",
+      "storage": {
+        "videoFileId": "a0979ef2-4217-4209-b503-6e6984a5cfb5",
+        "posterFileId": "154e57ba-def3-405d-9d65-ba7252800182",
+        "expiresAt": "2027-04-12T11:31:22Z"
+      },
+      "createdAt": "2026-10-14T11:31:32.604Z",
+      "updatedAt": "2026-10-14T11:31:32.604Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    },
+    {
+      "id": "V628_vers5",
+      "app": "hairapp",
+      "tags": [
+        "Hairstyle"
+      ],
+      "fileName": "HA_ES_MT_V628_vers5_Hairstyle_1080-1920_Asu.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/f2728ab2-0078-4807-b02b-45eea8000254.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/a762bd5a-7551-480b-9821-741896ed5769.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/f2728ab2-0078-4807-b02b-45eea8000254.mp4",
+      "storage": {
+        "videoFileId": "f2728ab2-0078-4807-b02b-45eea8000254",
+        "posterFileId": "a762bd5a-7551-480b-9821-741896ed5769",
+        "expiresAt": "2027-04-12T11:30:33Z"
+      },
+      "createdAt": "2026-10-14T11:30:44.300Z",
+      "updatedAt": "2026-10-14T11:30:44.300Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    },
+    {
+      "id": "V563",
+      "app": "hairapp",
+      "tags": [
+        "Hairstyle"
+      ],
+      "fileName": "HA_ES_MT_V563_Hairstyle_1080-1920_miray.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/d74b2502-208f-4683-bbbe-f72fecd39f03.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/47e4b147-9663-4b45-a685-668c13050168.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/d74b2502-208f-4683-bbbe-f72fecd39f03.mp4",
+      "storage": {
+        "videoFileId": "d74b2502-208f-4683-bbbe-f72fecd39f03",
+        "posterFileId": "47e4b147-9663-4b45-a685-668c13050168",
+        "expiresAt": "2027-04-12T11:29:55Z"
+      },
+      "createdAt": "2026-10-14T11:30:08.611Z",
+      "updatedAt": "2026-10-14T11:30:08.611Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    },
+    {
+      "id": "V521",
+      "app": "hairapp",
+      "tags": [
+        "Hairstyle"
+      ],
+      "fileName": "HA_ES_MT_V521_Hairstyle_1080-1350_Egemen.mp4",
+      "hook": "",
+      "videoPath": "https://cdn-us.eachlabs.ai/uploads/0634e366-8e6d-4e4b-89e3-7eae9f4a3b46.mp4",
+      "posterPath": "https://cdn-us.eachlabs.ai/uploads/35ab97a7-1d52-40c5-9c82-8780c059dc45.jpg",
+      "videoUrl": "https://cdn-us.eachlabs.ai/uploads/0634e366-8e6d-4e4b-89e3-7eae9f4a3b46.mp4",
+      "storage": {
+        "videoFileId": "0634e366-8e6d-4e4b-89e3-7eae9f4a3b46",
+        "posterFileId": "35ab97a7-1d52-40c5-9c82-8780c059dc45",
+        "expiresAt": "2027-04-12T11:29:29Z"
+      },
+      "createdAt": "2026-10-14T11:29:39.880Z",
+      "updatedAt": "2026-10-14T11:29:39.880Z",
+      "analysis": {
+        "status": "idle",
+        "executionId": null,
+        "aiModelId": null,
+        "error": null,
+        "startedAt": null,
+        "completedAt": null,
+        "raw": null
+      },
+      "extracted": null,
+      "iterations": []
+    }
+  ],
+  "favorites": []
+}

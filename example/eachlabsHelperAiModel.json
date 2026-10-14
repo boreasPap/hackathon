@@ -1,0 +1,29 @@
+  {
+    "id": "img2img-carRestore",
+    "modelType": "img2img",
+    "subModelType": "carRestore",
+    "validationRules": null,
+    "creditCount": 100,
+    "cost": 0.08,
+    "requestConfig": {
+      "prompt": "Restore the uploaded damaged, worn, or aged vehicle to factory-fresh condition; repair all visible dents, scratches, rust, faded paint, broken or missing trim, damaged panels, cloudy headlights, cracked glass, worn seals, and any signs of age or neglect; reconstruct missing details with realistic OEM fitment and proportions; preserve the exact same vehicle model, body shape, angle, composition, lighting, reflections, background, and camera perspective; keep the result photorealistic, clean, and professionally restored, as if the car has undergone a complete high-end restoration and detailing process.",
+      "source": "eachlabs",
+      "type": "img2img",
+      "inputTypes": [
+        "image"
+      ],
+      "outputTypes": [
+        "image"
+      ],
+      "customConfig": null,
+      "input": {
+        "image_urls": []
+      }
+    },
+    "apiUsageModels": [
+      "2854e253-788b-471a-8e00-d5e9437067a6"
+    ],
+    "platforms": [
+      "eachlabs"
+    ]
+  }
