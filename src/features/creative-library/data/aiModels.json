@@ -113,5 +113,21 @@
     "apiUsageModels": "140205df-c261-47ad-98e4-ea0729bbff20",
     "versionId": "v1",
     "platform": "eachlabs"
+  },
+  {
+    "id": "vid2vid-musicVideo",
+    "modelType": "vid2vid",
+    "subModelType": "musicVideo",
+    "validationRules": null,
+    "cost": 0.18,
+    "requestConfig": {
+      "type": "vid2vid",
+      "inputTypes": ["video"],
+      "outputTypes": ["video"],
+      "customConfig": null
+    },
+    "apiUsageModels": "b1478cb4-fb31-4914-a695-fd5fc7ca53f7",
+    "versionId": "v3",
+    "platform": "eachlabs"
   }
 ]

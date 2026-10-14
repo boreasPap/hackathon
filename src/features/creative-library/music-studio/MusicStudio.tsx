@@ -6,11 +6,12 @@ import { ArrowDown, ArrowUp, Loader2, Minus, Plus, Trash2, Video, Wand2 } from "
 import { Button, IconButton } from "@/components/design-system";
 import { formatCompact, formatDate, formatDateRange } from "@/lib/format";
 import { cn } from "@/lib/utils";
+import { api } from "../client";
 import { DownloadButton, SampleFavoriteButton } from "../parts";
 import { WaveformPlayer } from "../WaveformPlayer";
 import { sampleFavoriteKey, useSampleFavorites } from "../sample-favorites";
-import { type GeneratedSound, HISTORY_EVENT, deleteSound, listSounds, saveSounds } from "./history-store";
-import { TREND_WEEK, TRENDING_SOUNDS, type TrendFilter, type TrendingSound, filterTrends, movementOf } from "./trends";
+import { type GeneratedSound, HISTORY_EVENT, deleteSound, getSound, listSounds, saveSounds } from "./history-store";
+import { TREND_WEEK, type TrendFilter, type TrendingSound, filterTrends, movementOf } from "./trends";
 
 // Favorites of studio sounds use these ids in place of a creative id.
 export const trendFavoriteId = (id: string) => `trend:${id}`;
@@ -130,6 +131,110 @@ function useObjectUrl(blob: Blob | undefined) {
 }
 
 export function GeneratedSoundCard({ sound, onDelete }: { sound: GeneratedSound; onDelete?: () => void }) {
+  return sound.executionId ? <MusicVideoCard sound={sound} onDelete={onDelete} /> : <SampleSoundCard sound={sound} onDelete={onDelete} />;
+}
+
+/** A Music Generator run: the source video while eachlabs works, then each variant with music. */
+function MusicVideoCard({ sound, onDelete }: { sound: GeneratedSound; onDelete?: () => void }) {
+  const [variant, setVariant] = React.useState(0);
+  const sourceUrl = useObjectUrl(sound.video);
+  const videos = sound.videos ?? [];
+  const current = videos[Math.min(variant, videos.length - 1)];
+  const running = sound.status === "running";
+  const failed = sound.status === "failed";
+  const preview = sourceUrl ?? sound.videoUrl;
+
+  return (
+    <article className="flex gap-3 rounded-xl border border-line bg-surface p-3">
+      <div className="relative h-56 w-[126px] shrink-0 overflow-hidden rounded-lg bg-muted">
+        {current ? (
+          <video
+            key={current}
+            src={current}
+            controls
+            playsInline
+            preload="metadata"
+            aria-label={`${sound.source} with music, variant ${variant + 1}`}
+            className="size-full bg-ink object-cover"
+          />
+        ) : preview ? (
+          <video
+            src={preview}
+            muted
+            playsInline
+            preload="metadata"
+            aria-label={`${sound.source} preview`}
+            className={cn("size-full object-cover", running && "opacity-50")}
+          />
+        ) : null}
+        {running ? (
+          <span className="absolute inset-0 grid place-items-center">
+            <Loader2 className="size-6 animate-spin text-accent-active" />
+          </span>
+        ) : null}
+      </div>
+      <div className="flex min-w-0 flex-1 flex-col gap-2">
+        <div className="flex items-start justify-between gap-2">
+          <div className="flex min-w-0 flex-col">
+            <span className="truncate text-overline text-ink-3 uppercase">
+              {running ? "Adding music…" : failed ? "Generation failed" : `Variant ${variant + 1} of ${videos.length}`}
+            </span>
+            <span className="truncate text-caption text-ink-3">
+              {sound.source} · {formatDate(sound.createdAt)}
+            </span>
+          </div>
+          <div className="flex shrink-0 items-center gap-1">
+            <DownloadButton
+              href={current}
+              filename={`${sound.source.replace(/\.[^.]+$/, "")}-music-${variant + 1}.mp4`}
+              label="Download video"
+              className="size-7"
+            />
+            <SampleFavoriteButton creativeId={generatedFavoriteId(sound.id)} kind="music" className="size-7" />
+            {onDelete ? (
+              <IconButton size="sm" aria-label={`Delete ${sound.source}`} onClick={onDelete} className="size-7 text-ink-3 hover:text-danger">
+                <Trash2 className="size-4" />
+              </IconButton>
+            ) : null}
+          </div>
+        </div>
+        {running ? (
+          <p className="text-body-sm text-ink-3">
+            eachlabs is matching music to this video. This takes about two minutes; you can leave this page.
+          </p>
+        ) : null}
+        {failed ? (
+          <p className="rounded-lg bg-danger-bg px-3 py-2 text-body-sm text-danger">{sound.error ?? "The run failed."}</p>
+        ) : null}
+        {sound.prompt ? <p className="line-clamp-5 font-prose text-body-sm text-ink-2">{sound.prompt}</p> : null}
+        {videos.length > 1 ? (
+          <div role="radiogroup" aria-label="Variant" className="mt-auto flex flex-wrap gap-1.5">
+            {videos.map((url, i) => (
+              <button
+                key={url}
+                type="button"
+                role="radio"
+                aria-checked={i === variant}
+                onClick={() => setVariant(i)}
+                className={cn(
+                  "h-7 rounded-full border px-3 font-bomstad text-body-sm transition-colors focus-visible:ring-2 focus-visible:ring-accent-border focus-visible:outline-none",
+                  i === variant
+                    ? "border-accent-border bg-accent-subtle text-accent-text"
+                    : "border-line bg-surface text-ink-2 hover:bg-muted hover:text-ink",
+                )}
+              >
+                Variant {i + 1}
+              </button>
+            ))}
+          </div>
+        ) : null}
+      </div>
+    </article>
+  );
+}
+
+/** A sound made in the browser by the earlier sample generator. */
+function SampleSoundCard({ sound, onDelete }: { sound: GeneratedSound; onDelete?: () => void }) {
   const url = useObjectUrl(sound.blob);
   const videoSrc = useObjectUrl(sound.video);
   const video = React.useRef<HTMLVideoElement>(null);
@@ -187,51 +292,40 @@ export function GeneratedSoundCard({ sound, onDelete }: { sound: GeneratedSound;
   );
 }
 
-/**
- * Picks one of this week's trending sounds for the video. Sample: the pick is
- * random and the sound is its in-browser demo track, until a model is connected.
- */
-async function matchTrend() {
-  const trend = TRENDING_SOUNDS[Math.floor(Math.random() * Math.min(6, TRENDING_SOUNDS.length))];
-  const { demo, variant } = trendDemo(trend);
-  const { getDemoTrack } = await import("../demo-tracks");
-  const track = await getDemoTrack(demo, variant, 240);
-  return { label: `Matched to ${trend.title}`, blob: await (await fetch(track.src)).blob() };
-}
-
 /** A library video that can stand in for an upload. */
 export type SampleVideo = { id: string; videoPath: string };
-
-/** Without an upload, one of the library's creatives stands in so the result can be seen. */
-async function sampleVideo(videos: SampleVideo[]) {
-  const pick = videos[Math.floor(Math.random() * videos.length)];
-  if (!pick) throw new Error("No video");
-  const blob = await (await fetch(pick.videoPath)).blob();
-  return new File([blob], `${pick.id}.mp4`, { type: blob.type || "video/mp4" });
-}
 
 function GeneratePanel({ videos }: { videos: SampleVideo[] }) {
   const [file, setFile] = React.useState<File>();
   const [busy, setBusy] = React.useState(false);
   const fileUrl = useObjectUrl(file);
 
+  // The uploaded video goes to eachlabs storage and then to the Music Generator
+  // workflow; without an upload, one of the library's videos is used.
   const generate = async () => {
+    const pick = file ? undefined : videos[Math.floor(Math.random() * videos.length)];
+    if (!file && !pick) return toast.error("Upload a video first.");
     setBusy(true);
     try {
-      const [video, match] = await Promise.all([file ?? sampleVideo(videos), matchTrend()]);
+      const form = new FormData();
+      if (file) form.set("video", file);
+      else form.set("videoUrl", pick!.videoPath);
+      const executionId = await api.startMusicVideo(form);
       await saveSounds([
         {
-          id: `${Date.now()}`,
-          label: match.label,
-          source: video.name,
+          id: executionId,
+          label: "Adding music",
+          source: file?.name ?? `${pick!.id}.mp4`,
           createdAt: new Date().toISOString(),
-          blob: match.blob,
-          video,
+          executionId,
+          status: "running",
+          video: file,
+          videoUrl: pick?.videoPath,
         },
       ]);
-      toast.success("Your video has a sound");
-    } catch {
-      toast.error("This video could not be read. Try an MP4 or MOV file.");
+      toast.success("Started. The music takes about two minutes.");
+    } catch (error) {
+      toast.error(error instanceof Error ? error.message : "This video could not be sent. Try an MP4 or MOV file.");
     } finally {
       setBusy(false);
     }
@@ -275,10 +369,10 @@ function GeneratePanel({ videos }: { videos: SampleVideo[] }) {
           }}
         />
       </label>
-      <p className="text-caption text-ink-3">We add a sound that matches this week&apos;s trending music.</p>
+      <p className="text-caption text-ink-3">We watch your video and add music that fits it, in three versions.</p>
       <Button disabled={busy} onClick={generate} className="w-full">
         {busy ? <Loader2 className="animate-spin" /> : <Wand2 />}
-        {busy ? "Generating…" : "Generate"}
+        {busy ? (file ? "Uploading…" : "Starting…") : "Generate"}
       </Button>
     </section>
   );
@@ -294,6 +388,7 @@ function PanelTitle({ title, count }: { title: string; count?: number }) {
 }
 
 const HISTORY_VISIBLE = 5;
+const POLL_MS = 5000;
 // The last 190px (one and a half cards) fade out on the side that has more to scroll.
 const FADE = "190px";
 const FADED = "rgb(0 0 0 / 0.1)";
@@ -333,7 +428,7 @@ function HistoryPanel() {
     if (wasFavorite) setMany([favorite], false);
     toast((t) => (
       <span className="flex items-center gap-3">
-        Sound deleted
+        Deleted
         <Button
           variant="link"
           onClick={() => {
@@ -347,6 +442,35 @@ function HistoryPanel() {
       </span>
     ));
   };
+
+  // Runs still on eachlabs are checked until they finish; a run deleted meanwhile stays deleted.
+  React.useEffect(() => {
+    const running = (sounds ?? []).filter((s) => s.status === "running" && s.executionId);
+    if (!running.length) return;
+    const timer = window.setInterval(() => {
+      for (const sound of running) {
+        api
+          .checkMusicVideo(sound.executionId!)
+          .then(async (run) => {
+            if (run.status === "running" || !(await getSound(sound.id))) return;
+            await saveSounds([
+              {
+                ...sound,
+                status: run.status,
+                label: run.status === "completed" ? "Music added" : "Generation failed",
+                videos: run.videos,
+                prompt: run.prompt ?? undefined,
+                error: run.error ?? undefined,
+              },
+            ]);
+            if (run.status === "completed") toast.success(`Music added to ${sound.source}`);
+            else toast.error(run.error ?? "The music could not be generated.");
+          })
+          .catch(() => undefined);
+      }
+    }, POLL_MS);
+    return () => window.clearInterval(timer);
+  }, [sounds]);
 
   React.useEffect(() => {
     const load = () => void listSounds().then(setSounds).catch(() => setSounds([]));
@@ -362,7 +486,7 @@ function HistoryPanel() {
         <p className="py-6 text-center text-body-sm text-ink-3">Loading…</p>
       ) : !sounds.length ? (
         <p className="grid h-32 place-items-center rounded-xl border border-dashed border-line-strong text-center text-body-sm text-ink-3">
-          Sounds you generate will show up here.
+          Videos you add music to will show up here.
         </p>
       ) : (
         // Five and a half cards fit (122px each, 12px apart); the edge with more to scroll fades out.

@@ -16,8 +16,8 @@ const dmMono = DM_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Papcorns Hackathon Quickstart",
-  description: "An empty copy of the Papcorns internal dashboard to build hackathon projects in",
+  title: "Creative Asset Libraries & Auto-Iteration",
+  description: "A tool for generating and iterating on creative ideas using AI.",
 };
 
 // Bomstad Display is licensed and not in the repository (src/lib/bomstad-font.ts).

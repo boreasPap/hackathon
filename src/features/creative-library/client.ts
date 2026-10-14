@@ -1,4 +1,5 @@
 import { formatDate } from "@/lib/format";
+import type { MusicVideoRun } from "./server/music-video";
 import type { Creative, Favorite, FavoriteType } from "./types";
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
@@ -30,6 +31,15 @@ export const api = {
     }),
   sync: (id: string) =>
     request<{ creative: Creative }>(`${base}/creatives/${encodeURIComponent(id)}/sync`, { method: "POST" }),
+  /** Starts the Music Generator on an uploaded file (`video`) or a public URL (`videoUrl`). */
+  startMusicVideo: async (form: FormData) => {
+    const response = await fetch(`${base}/music`, { method: "POST", body: form });
+    const data = (await response.json().catch(() => ({}))) as { executionId?: string; error?: string };
+    if (!response.ok || !data.executionId) throw new Error(data.error || `Upload failed (${response.status})`);
+    return data.executionId;
+  },
+  checkMusicVideo: (executionId: string) =>
+    request<MusicVideoRun>(`${base}/music/${encodeURIComponent(executionId)}`),
   addFavorite: (target: FavoriteTarget) =>
     request<{ favorite: Favorite }>(`${base}/favorites`, { method: "POST", body: JSON.stringify(target) }),
   removeFavorite: (id: string) =>

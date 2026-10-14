@@ -195,7 +195,8 @@ export type Db = {
 export type AiModel = {
   id: string;
   modelType: string;
-  subModelType: "creativeAnalysis" | IterationType;
+  /** `musicVideo` is the Music Generator: a video in, the same video with music out. */
+  subModelType: "creativeAnalysis" | "musicVideo" | IterationType;
   validationRules: unknown;
   cost: number;
   requestConfig: {

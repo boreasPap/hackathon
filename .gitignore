@@ -36,3 +36,4 @@ next-env.d.ts
 /public/fonts/*
 !/public/fonts/README.md
 example
+videos

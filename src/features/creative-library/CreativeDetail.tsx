@@ -4,14 +4,12 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import toast from "react-hot-toast";
-import { ChevronLeft, ChevronRight, Copy, Heart, Loader2, Music, Sparkles } from "lucide-react";
+import { Check, ChevronLeft, ChevronRight, Copy, Heart, Loader2, Music, ScanSearch, Sparkles, Wand2 } from "lucide-react";
 import { Button, Label, PageHeader } from "@/components/design-system";
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { formatDate } from "@/lib/format";
 import { cn } from "@/lib/utils";
 import { appName as nameOfApp } from "./apps";
 import { api, type FavoriteTarget, formatDateTime, tagSlug } from "./client";
-import { StatusBadge } from "./components/bits";
 import { AVATAR_TYPES, avatarFrames, ITERATION_TABS, NO_DIRECTION_TYPES, tabOf, VIDEO_ONLY_TYPES } from "./constants";
 import { AiPanel, Breadcrumbs, Chip, CopyTextButton, DownloadButton, FavoriteButton, TypeIcon, creativeTarget } from "./parts";
 import { HOME_PATH, appHref as appPath, categoryHref, categoryOf, creativeLabel, detailHref } from "./paths";
@@ -20,7 +18,6 @@ import { FavoritesProvider, useFavoritesContext } from "./useFavorites";
 import { WaveformPlayer } from "./WaveformPlayer";
 
 const SYNC_INTERVAL_MS = 4000;
-const ANALYSIS_LABELS = { idle: "Not analyzed", running: "Analyzing", completed: "Analyzed", failed: "Analysis failed" };
 const TEXT_TYPES: ReadonlySet<IterationType> = new Set(["wallText", "voiceover"]);
 
 export function CreativeDetail({
@@ -48,7 +45,6 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
   const [prompts, setPrompts] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState<"analyze" | "generate" | null>(null);
   const [pickedAvatar, setPickedAvatar] = useState<string | null>(null);
-  const { columnRef, navRef, videoRef, offset } = useAlignToVideo();
 
   const running = creative.analysis.status === "running" || creative.iterations.some((it) => it.status === "running");
   const analyzed = creative.analysis.status === "completed" && !!creative.extracted;
@@ -63,6 +59,9 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
   const tag = creative.tags[0];
   const app = nameOfApp(creative.app);
   const suggestions = iterations.reduce((n, it) => n + it.items.length, 0);
+  // Anything generated for this type, finished or not, replaces the empty step.
+  const generated = iterations.length > 0;
+  const analyzing = creative.analysis.status === "running" || busy === "analyze";
 
   // Poll eachlabs through our sync route while something is running.
   const lastSyncError = useRef<string | null>(null);
@@ -86,6 +85,8 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
   }, [running, creative.id, creative.analysis.status]);
 
   const analyze = async () => {
+    // A finished analysis is replaced, and its run is billed again.
+    if (analyzed && !window.confirm(`Analyze ${creative.id} again? The new analysis replaces the current one.`)) return;
     setBusy("analyze");
     try {
       const { creative: next } = await api.analyze(creative.id);
@@ -131,30 +132,41 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
       </div>
 
       <div className="grid grid-cols-1 gap-6 lg:grid-cols-[340px_1fr]">
-        <OriginalCard creative={creative} appName={app} videoRef={videoRef}>
-          <AnalysisSection creative={creative} analyzed={analyzed} disabled={busy !== null} onAnalyze={analyze} />
-        </OriginalCard>
-        <section ref={columnRef} style={{ paddingTop: offset }} className="flex min-w-0 flex-col gap-4">
-          <nav ref={navRef} aria-label="Asset type" className="flex flex-wrap gap-1.5">
-            {ITERATION_TABS.map((t) => (
-              <Link
-                key={t.type}
-                href={detailHref(category, t.slug, creative.id)}
-                scroll={false}
-                aria-current={t.type === type ? "page" : undefined}
-                className={cn(
-                  "inline-flex h-7 items-center gap-1 rounded-sm border px-2.5 font-bomstad text-body-sm whitespace-nowrap transition-colors",
-                  t.type === type
-                    ? "border-accent-border bg-accent-subtle text-accent-text"
-                    : "border-line bg-surface text-ink-2 hover:bg-muted hover:text-ink",
-                )}
-              >
-                <TypeIcon type={t.type} className="size-3.5" />
-                {t.label}
-              </Link>
-            ))}
-          </nav>
-          {type !== "template" ? (
+        <OriginalCard creative={creative} appName={app} />
+        {/* Starts level with the video card's top edge. */}
+        <section className="flex min-w-0 flex-col gap-4">
+          <div className="flex flex-wrap items-center justify-between gap-2">
+            <nav aria-label="Asset type" className="flex flex-wrap gap-1.5">
+              {ITERATION_TABS.map((t) => (
+                <Link
+                  key={t.type}
+                  href={detailHref(category, t.slug, creative.id)}
+                  scroll={false}
+                  aria-current={t.type === type ? "page" : undefined}
+                  className={cn(
+                    "inline-flex h-7 items-center gap-1 rounded-sm border px-2.5 font-bomstad text-body-sm whitespace-nowrap transition-colors",
+                    t.type === type
+                      ? "border-accent-border bg-accent-subtle text-accent-text"
+                      : "border-line bg-surface text-ink-2 hover:bg-muted hover:text-ink",
+                  )}
+                >
+                  <TypeIcon type={t.type} className="size-3.5" />
+                  {t.label}
+                </Link>
+              ))}
+            </nav>
+            <Button
+              variant={analyzed ? "secondary" : "primary"}
+              disabled={analyzing || busy !== null || !creative.videoUrl}
+              title={analyzed ? "Analyze again" : creative.videoUrl ? undefined : NOT_UPLOADED}
+              onClick={analyze}
+              className={STEP_BUTTON}
+            >
+              {analyzing ? <Loader2 className="animate-spin" /> : analyzed ? <Check /> : <ScanSearch />}
+              {analyzing ? "Analyzing…" : analyzed ? "Analyzed" : "Analyze"}
+            </Button>
+          </div>
+          {analyzed ? (
             <OriginalPanel
               creative={creative}
               type={type}
@@ -162,15 +174,42 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
               selectedAvatar={selectedAvatar}
               onSelectAvatar={setPickedAvatar}
             />
-          ) : null}
+          ) : (
+            <EmptyStep
+              icon={ScanSearch}
+              title={
+                analyzing
+                  ? "Analyzing the original…"
+                  : creative.analysis.status === "failed"
+                    ? "The analysis failed"
+                    : "Analyze the original first"
+              }
+              text={
+                analyzing
+                  ? "eachlabs is breaking the video into parts. This can take a few minutes; you can leave this page."
+                  : creative.analysis.status === "failed"
+                    ? (creative.analysis.error ?? "The run failed. Try Analyze again.")
+                    : creative.videoUrl
+                      ? "Pulls its opening text, voiceover, presenter, audio and layout into this panel."
+                      : NOT_UPLOADED
+              }
+              busy={analyzing}
+              tone={!analyzing && creative.analysis.status === "failed" ? "danger" : undefined}
+            />
+          )}
           <AiPanel
-            note={`${suggestions} suggestions`}
+            note={generated ? `${suggestions} suggestions` : undefined}
             actions={
               <>
                 {TEXT_TYPES.has(type) ? <BulkTextActions creative={creative} iterations={iterations} /> : null}
-                <Button variant={ready ? "primary" : "secondary"} onClick={generate} disabled={!ready || busy !== null} className="gap-1.5">
-                  {busy === "generate" ? <Loader2 className="size-3.5 animate-spin" /> : <Sparkles className="size-3.5" />}
-                  Generate
+                <Button
+                  disabled={!ready || busy !== null}
+                  title={ready ? undefined : videoOnly ? NOT_UPLOADED : "Analyze the original first"}
+                  onClick={generate}
+                  className={STEP_BUTTON}
+                >
+                  {busy === "generate" ? <Loader2 className="animate-spin" /> : <Wand2 />}
+                  {busy === "generate" ? "Generating…" : "Generate"}
                 </Button>
               </>
             }
@@ -185,12 +224,29 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
                     value={prompts[type] ?? ""}
                     onChange={(e) => setPrompts((p) => ({ ...p, [type]: e.target.value }))}
                     placeholder={`What should the new ${tab.label.toLowerCase()} explore? ${tab.directionHint ?? "e.g. a curiosity-led angle, a calmer tone…"}`}
-                    disabled={!analyzed}
+                    disabled={!ready}
                     className="w-full resize-y rounded-lg border border-line bg-surface px-3 py-2 font-prose text-body text-ink outline-none placeholder:text-ink-3 focus-visible:ring-2 focus-visible:ring-accent-border disabled:opacity-40"
                   />
                 </div>
               ) : null}
-              <Iterations creative={creative} type={type} iterations={iterations} ready={ready} />
+              {generated ? (
+                <Iterations creative={creative} type={type} iterations={iterations} />
+              ) : (
+                <EmptyStep
+                  icon={Sparkles}
+                  title={busy === "generate" ? "Generating suggestions…" : `${tab.label} suggestions`}
+                  text={
+                    ready
+                      ? videoOnly
+                        ? "Press Generate to create them from the original video. Save the ones you like."
+                        : "Press Generate to create them from the analysed original. Save the ones you like."
+                      : videoOnly
+                        ? NOT_UPLOADED
+                        : "Analyze the original first, then generate suggestions from it."
+                  }
+                  busy={busy === "generate"}
+                />
+              )}
             </div>
           </AiPanel>
         </section>
@@ -199,20 +255,55 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
   );
 }
 
+const NOT_UPLOADED = "This video is only on this computer, so eachlabs cannot read it. Add it again with Add creative.";
+// Analyze and Generate match the asset type buttons beside them: same height, icon on the left with room before the label.
+const STEP_BUTTON = "h-7 shrink-0 gap-2 rounded-sm pr-3 pl-2.5 text-body-sm [&_svg]:size-3.5";
+
+function EmptyStep({
+  icon: Icon,
+  title,
+  text,
+  busy,
+  tone,
+}: {
+  icon: React.ComponentType<{ className?: string }>;
+  title: string;
+  text: string;
+  busy: boolean;
+  tone?: "danger";
+}) {
+  return (
+    <div className="flex items-center gap-3 rounded-xl border border-dashed border-line-strong bg-surface px-4 py-4">
+      <span className="grid size-9 shrink-0 place-items-center rounded-lg bg-muted text-ink-3">
+        {busy ? <Loader2 className="size-4 animate-spin" /> : <Icon className="size-4" />}
+      </span>
+      <div className="flex min-w-0 flex-col">
+        <span className="text-body-sm font-semibold text-ink">{title}</span>
+        <span className={cn("text-caption", tone === "danger" ? "text-danger" : "text-ink-3")}>{text}</span>
+      </div>
+    </div>
+  );
+}
+
 function OriginalCard({
   creative,
   appName,
-  videoRef,
-  children,
 }: {
   creative: Creative;
   appName: string;
-  videoRef: React.Ref<HTMLVideoElement>;
-  children?: React.ReactNode;
 }) {
   return (
     <aside className="flex flex-col gap-4 self-start rounded-xl border border-line bg-surface p-4 lg:sticky lg:top-0">
-      <div className="flex items-end justify-between gap-2">
+      <video
+        controls
+        playsInline
+        preload="metadata"
+        poster={creative.posterPath ?? undefined}
+        src={creative.videoPath}
+        aria-label={`${creative.id} original video`}
+        className="mx-auto aspect-[9/16] w-full max-w-72 rounded-lg bg-ink"
+      />
+      <div className="flex items-start justify-between gap-2">
         {/* Shrinks with the column so the full file name stays on one line. */}
         <div className="flex min-w-0 flex-1 flex-col gap-2 [container-type:inline-size]">
           <h2
@@ -235,72 +326,7 @@ function OriginalCard({
           <FavoriteButton target={creativeTarget(creative.id)} />
         </div>
       </div>
-      <video
-        ref={videoRef}
-        controls
-        playsInline
-        preload="metadata"
-        poster={creative.posterPath ?? undefined}
-        src={creative.videoPath}
-        aria-label={`${creative.id} original video`}
-        className="mx-auto aspect-[9/16] w-full max-w-72 rounded-lg bg-ink"
-      />
-      {children}
     </aside>
-  );
-}
-
-/** Analysis state and the Analyze button, under the original video. */
-function AnalysisSection({
-  creative,
-  analyzed,
-  disabled,
-  onAnalyze,
-}: {
-  creative: Creative;
-  analyzed: boolean;
-  disabled: boolean;
-  onAnalyze: () => void;
-}) {
-  const { analysis } = creative;
-  return (
-    <div className="flex flex-col gap-2.5 border-t border-line pt-4">
-      <div className="flex items-center justify-between gap-2">
-        <h2 className="text-overline text-ink-3 uppercase">Analysis</h2>
-        <StatusBadge status={analysis.status} labels={ANALYSIS_LABELS} />
-      </div>
-      {analysis.status === "running" ? (
-        <p className="text-body-sm text-ink-3">
-          eachlabs is breaking the video into parts. This can take a few minutes; you can leave this page.
-        </p>
-      ) : null}
-      {analysis.status === "failed" && analysis.error ? (
-        <p className="rounded-lg bg-danger-bg px-3 py-2 text-body-sm text-danger">{analysis.error}</p>
-      ) : null}
-      {analysis.completedAt && analysis.status === "completed" ? (
-        <p className="text-caption text-ink-3">Analyzed {formatDateTime(analysis.completedAt)}</p>
-      ) : null}
-      {creative.extracted?.summary ? <p className="font-prose text-body-sm text-ink-2">{creative.extracted.summary}</p> : null}
-      {creative.videoUrl ? (
-        creative.storage?.expiresAt ? (
-          <p className="text-caption text-ink-3">
-            Stored on eachlabs until <span className="font-bomstad">{formatDate(creative.storage.expiresAt)}</span>
-          </p>
-        ) : null
-      ) : (
-        <p className="text-caption text-ink-3">
-          This video is only on this computer, so eachlabs cannot read it. Add it again with Add creative to analyze it.
-        </p>
-      )}
-      <Button
-        variant={analyzed ? "secondary" : "primary"}
-        onClick={onAnalyze}
-        disabled={disabled || analysis.status === "running"}
-        className="self-start"
-      >
-        {analyzed ? "Analyze again" : "Analyze video"}
-      </Button>
-    </div>
   );
 }
 
@@ -323,15 +349,11 @@ function Iterations({
   creative,
   type,
   iterations,
-  ready,
 }: {
   creative: Creative;
   type: IterationType;
   iterations: Iteration[];
-  /** Whatever the workflow needs is there: the analysis, or for a template the public video. */
-  ready: boolean;
 }) {
-  const tab = tabOf(type);
   const grid = TEXT_TYPES.has(type)
     ? "grid grid-cols-1 gap-2 xl:grid-cols-2"
     : type === "music"
@@ -347,13 +369,6 @@ function Iterations({
 
   return (
     <>
-      {!ready ? (
-        <Notice>
-          {VIDEO_ONLY_TYPES.has(type)
-            ? "This video is only on this computer, so eachlabs cannot read it. Add it again with Add creative to generate templates."
-            : `Analyze the video first. ${tab.label} are generated from its analysis.`}
-        </Notice>
-      ) : null}
       {failed.map((it) => (
         <Notice key={it.id} tone="danger">
           {formatDateTime(it.createdAt)} · {it.error ?? "The run failed."}
@@ -374,8 +389,6 @@ function Iterations({
             ),
           )}
         </div>
-      ) : ready ? (
-        <Notice>No {tab.label.toLowerCase()} generated yet. Generated suggestions appear here, newest first.</Notice>
       ) : null}
     </>
   );
@@ -405,17 +418,6 @@ function Pending({ iteration, visual }: { iteration: Iteration; visual: boolean 
   );
 }
 
-function SourceLine({ creative, result }: { creative: Creative; result: Result }) {
-  const { iteration, item } = result;
-  return (
-    <p title={item.notes} className="line-clamp-3 border-t border-line pt-1.5 text-caption text-ink-3">
-      Source: <span className="font-mono">{creative.id}</span> · {formatDateTime(iteration.createdAt)}
-      {iteration.prompt ? ` · Direction: ${iteration.prompt}` : ""}
-      {item.notes ? ` · ${item.notes}` : ""}
-    </p>
-  );
-}
-
 function TextSuggestion({ creative, result }: { creative: Creative; result: Result }) {
   const { item, iteration, number } = result;
   return (
@@ -431,7 +433,6 @@ function TextSuggestion({ creative, result }: { creative: Creative; result: Resu
         </div>
       </div>
       {item.text ? <p className="font-prose text-body whitespace-pre-line text-ink">{item.text}</p> : null}
-      <SourceLine creative={creative} result={result} />
     </article>
   );
 }
@@ -595,23 +596,16 @@ function OriginalPanel({
   onSelectAvatar,
 }: {
   creative: Creative;
-  type: Exclude<IterationType, "template">;
+  type: IterationType;
   extracted: CreativeExtraction | null;
   /** The avatar frame the next generation starts from. */
   selectedAvatar?: string;
   onSelectAvatar: (url: string) => void;
 }) {
-  const missing = (what: string) => <p className="text-body-sm text-ink-2">The analysis found no {what} in this video.</p>;
+  // The layout is read from the video without a card of its own.
+  if (type === "template") return null;
 
-  const frameRow = (url: string | undefined, caption: string) => (
-    <div className="flex items-center gap-3">
-      <div className="relative h-20 w-14 shrink-0 overflow-hidden rounded-sm bg-muted">
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        {url ? <img src={url} alt="" className="absolute inset-0 size-full object-cover object-top" /> : null}
-      </div>
-      <p className="text-body-sm text-ink-2">{caption}</p>
-    </div>
-  );
+  const missing = (what: string) => <p className="text-body-sm text-ink-2">The analysis found no {what} in this video.</p>;
 
   const wallTexts = extracted?.wallTexts ?? [];
   const voiceover = extracted?.voiceover;
@@ -620,18 +614,18 @@ function OriginalPanel({
   const candidates: AvatarCandidate[] = avatar?.candidates?.length ? avatar.candidates : avatar?.imageUrl ? [{ url: avatar.imageUrl }] : [];
   const avatarIndex = Math.max(0, candidates.findIndex((c) => c.url === selectedAvatar));
 
-  const avatarBody = (caption: string) =>
-    !extracted ? (
-      frameRow(creative.posterPath ?? undefined, caption)
-    ) : !avatar ? (
+  // Only the frames to pick from: the original's thumbnail and caption are left out.
+  const avatarHeading = candidates.length ? (
+    <span className="text-caption text-ink-3">Pick the frame to generate from. Best first.</span>
+  ) : null;
+  const avatarBody = () =>
+    !avatar ? (
       missing("avatar")
     ) : (
       <div className="flex flex-col gap-3">
-        {frameRow(selectedAvatar ?? avatar.imageUrl, avatar.description || caption)}
         <Chips values={[avatar.gender, avatar.ageRange, avatar.setting, avatar.wardrobe, avatar.framing]} />
-        {candidates.length > 1 ? (
+        {candidates.length ? (
           <>
-            <span className="text-caption text-ink-3">Pick the frame to generate from. Best first.</span>
             <FramePicker
               label="Avatar frame"
               frames={candidates.map((c) => ({
@@ -654,7 +648,17 @@ function OriginalPanel({
     />
   );
 
-  const content: Record<Exclude<IterationType, "template">, { label: string; body: React.ReactNode; actions?: React.ReactNode; hint?: string }> = {
+  const content: Record<
+    Exclude<IterationType, "template">,
+    {
+      label: string;
+      /** Replaces the "Original · label" heading. */
+      heading?: React.ReactNode;
+      body: React.ReactNode;
+      actions?: React.ReactNode;
+      hint?: string;
+    }
+  > = {
     wallText: wallTexts.length
       ? {
           label: "Wall texts",
@@ -688,19 +692,7 @@ function OriginalPanel({
       label: "Voiceover",
       hint: voiceover ? "Transcribed automatically from the original video's audio." : undefined,
       body: voiceover ? (
-        <div className="flex flex-col gap-2">
-          <p className="font-prose text-body whitespace-pre-line text-ink">{voiceover.script}</p>
-          {voiceover.segments?.length ? (
-            <ol className="flex flex-col gap-1 border-t border-line pt-2">
-              {voiceover.segments.map((s, i) => (
-                <li key={i} className="flex items-baseline justify-between gap-4">
-                  <span className="font-prose text-body-sm text-ink-2">{s.text}</span>
-                  <span className="shrink-0 font-num text-caption text-ink-3 tabular-nums">{seconds(s.startSec, s.endSec)}</span>
-                </li>
-              ))}
-            </ol>
-          ) : null}
-        </div>
+        <p className="font-prose text-body whitespace-pre-line text-ink">{voiceover.script}</p>
       ) : extracted ? (
         missing("voiceover")
       ) : (
@@ -710,12 +702,14 @@ function OriginalPanel({
     },
     similarAvatar: {
       label: "Avatar",
-      body: avatarBody("The presenter of the original creative."),
+      heading: avatarHeading,
+      body: avatarBody(),
       actions: avatarActions("similar-avatars"),
     },
     avatarVariation: {
       label: "Avatar & setting",
-      body: avatarBody("The presenter and setting of the original creative."),
+      heading: avatarHeading,
+      body: avatarBody(),
       actions: avatarActions("avatar-variations"),
     },
     music: {
@@ -756,45 +750,12 @@ function OriginalPanel({
   return (
     <section title={c.hint} className="flex flex-col gap-1.5 rounded-xl border border-line bg-surface px-4 py-3">
       <div className="flex items-center justify-between gap-2">
-        <h2 className="text-overline text-ink-3 uppercase">Original · {c.label}</h2>
+        {c.heading !== undefined ? (c.heading ?? <span />) : <h2 className="text-overline text-ink-3 uppercase">Original · {c.label}</h2>}
         {c.actions ? <div className="flex shrink-0 items-center gap-1">{c.actions}</div> : null}
       </div>
       {c.body}
     </section>
   );
-}
-
-// On wide screens the first box on the right starts at the video's top edge,
-// whatever the height of the header above the video or of the asset type row.
-function useAlignToVideo() {
-  const columnRef = useRef<HTMLElement>(null);
-  const navRef = useRef<HTMLElement>(null);
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const [offset, setOffset] = useState(0);
-
-  useEffect(() => {
-    const column = columnRef.current;
-    const nav = navRef.current;
-    const video = videoRef.current;
-    if (!column || !nav || !video) return;
-    const wide = window.matchMedia("(min-width: 1024px)");
-    const measure = () => {
-      if (!wide.matches) return setOffset(0);
-      const columnTop = column.getBoundingClientRect().top;
-      const gap = parseFloat(getComputedStyle(column).rowGap) || 0;
-      setOffset(Math.max(0, video.getBoundingClientRect().top - columnTop - nav.offsetHeight - gap));
-    };
-    measure();
-    const observer = new ResizeObserver(measure);
-    [column, nav, video, video.parentElement!].forEach((el) => observer.observe(el));
-    wide.addEventListener("change", measure);
-    return () => {
-      observer.disconnect();
-      wide.removeEventListener("change", measure);
-    };
-  }, []);
-
-  return { columnRef, navRef, videoRef, offset };
 }
 
 function BulkTextActions({ creative, iterations }: { creative: Creative; iterations: Iteration[] }) {
