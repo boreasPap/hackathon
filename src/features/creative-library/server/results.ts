@@ -330,9 +330,41 @@ function toTextItem(value: unknown): IterationItem | null {
   });
 }
 
+/**
+ * A markdown answer with one "### VARIATION n" section per result, each made
+ * of `**Label:** value` fields (the voiceover workflow). The field named like
+ * "…Script" is the text, "…Angle" the title, the rest become notes.
+ */
+function markdownVariations(content: string): IterationItem[] {
+  const sections = content.split(/^#{1,6}\s*variation\b.*$/im).slice(1);
+  return sections.flatMap((section) => {
+    const fields: { label: string; lines: string[] }[] = [];
+    for (const line of section.split("\n")) {
+      if (/^\s*-{3,}\s*$/.test(line)) break;
+      const field = line.match(/^\s*\*\*([^*]+?):?\*\*:?\s*(.*)$/);
+      if (field) fields.push({ label: field[1].trim(), lines: [field[2]] });
+      else fields.at(-1)?.lines.push(line);
+    }
+    const value = (f: { lines: string[] }) => f.lines.join("\n").trim();
+    const script = fields.find((f) => /script/i.test(f.label));
+    const text = script && value(script);
+    if (!text) return [];
+    const angle = fields.find((f) => /angle/i.test(f.label));
+    const notes = fields
+      .filter((f) => f !== script && f !== angle && value(f))
+      .map((f) => `${f.label}: ${value(f)}`)
+      .join("\n");
+    return [strip({ text, title: angle && (value(angle) || undefined), notes: notes || undefined })];
+  });
+}
+
 function textItems(execution: Execution): IterationItem[] {
   const data = readContentJson(execution);
-  if (typeof data === "string") return data.trim() ? [{ text: data.trim() }] : [];
+  if (typeof data === "string") {
+    const variations = markdownVariations(data);
+    if (variations.length) return variations;
+    return data.trim() ? [{ text: data.trim() }] : [];
+  }
 
   let list: unknown = data;
   if (isRecord(data)) {

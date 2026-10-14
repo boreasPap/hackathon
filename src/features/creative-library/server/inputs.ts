@@ -1,4 +1,4 @@
-import { OWN_INPUT_TYPES } from "../constants";
+import { avatarFrames, OWN_INPUT_TYPES } from "../constants";
 import type { AiModel, Creative, CreativeExtraction, IterationType } from "../types";
 import { HttpError } from "./http";
 
@@ -8,9 +8,10 @@ import { HttpError } from "./http";
 // Every iteration workflow gets: video_url, language, prompt, context (the
 // whole analysis as JSON) + the type-specific fields below + the static
 // `requestConfig.input` of its aiModels.json entry. The OWN_INPUT_TYPES
-// workflows are the exception: they get only their own input (`text` for the
-// wall texts, `image` for the avatar frame, `voice-test` for the soundtrack to
-// make a new track from).
+// workflows are the exception: they get only their own inputs (`text` for the
+// wall texts and the voiceover script, `image` / `image_urls` for the avatar
+// frame, `voice-test` for the soundtrack to make a new track from). The
+// similar avatar workflow also takes the page's direction as `notes`.
 
 function mergePrompt(model: AiModel, userPrompt: string | null): string | undefined {
   const parts = [model.requestConfig.prompt, userPrompt].map((p) => p?.trim()).filter(Boolean);
@@ -33,7 +34,25 @@ export function buildAnalysisInputs(creative: Creative, model: AiModel): Record<
   };
 }
 
-function typeInputs(type: IterationType, extracted: CreativeExtraction): Record<string, unknown> {
+/** The frame the person picked, or the best one. Only this video's own frames are accepted. */
+function avatarImage(extracted: CreativeExtraction, requested: string | null): string {
+  if (!extracted.avatar) throw new HttpError(400, "The analysis found no avatar in this video.");
+  const frames = avatarFrames(extracted.avatar);
+  if (!frames.length) {
+    throw new HttpError(400, "The analysis did not return an avatar image (avatar.imageUrl), which this workflow needs.");
+  }
+  if (requested && !frames.includes(requested)) {
+    throw new HttpError(400, "That image is not one of this video's avatar frames. Reload the page and pick again.");
+  }
+  return requested ?? frames[0];
+}
+
+function typeInputs(
+  type: IterationType,
+  extracted: CreativeExtraction,
+  avatarUrl: string | null,
+  prompt: string | undefined,
+): Record<string, unknown> {
   switch (type) {
     case "wallText": {
       // Every on-screen line, in order, once: the workflow rewrites them together.
@@ -43,16 +62,12 @@ function typeInputs(type: IterationType, extracted: CreativeExtraction): Record<
     }
     case "voiceover":
       if (!extracted.voiceover?.script) throw new HttpError(400, "The analysis found no voiceover in this video.");
-      return { voiceover_script: extracted.voiceover.script };
+      return { text: extracted.voiceover.script };
     case "similarAvatar":
-    case "avatarVariation":
-      if (!extracted.avatar) throw new HttpError(400, "The analysis found no avatar in this video.");
-      if (!extracted.avatar.imageUrl) {
-        throw new HttpError(400, "The analysis did not return an avatar image (avatar.imageUrl), which this workflow needs.");
-      }
-      return type === "avatarVariation"
-        ? { image: extracted.avatar.imageUrl }
-        : { image_urls: [extracted.avatar.imageUrl], avatar_description: extracted.avatar.description };
+    case "avatarVariation": {
+      const image = avatarImage(extracted, avatarUrl);
+      return type === "avatarVariation" ? { image } : { image_urls: [image], notes: prompt ?? "none" };
+    }
     case "music": {
       // The music workflow describes this track and generates a new one like it.
       const audioUrl = extracted.music?.instrumentalUrl ?? extracted.music?.audioUrl;
@@ -70,21 +85,22 @@ export function buildIterationInputs(
   type: IterationType,
   model: AiModel,
   userPrompt: string | null,
+  avatarUrl: string | null = null,
 ): Record<string, unknown> {
   const extracted = creative.extracted;
   if (creative.analysis.status !== "completed" || !extracted) {
     throw new HttpError(400, "Analyze the video first.");
   }
-  if (OWN_INPUT_TYPES.has(type)) {
-    return { ...(model.requestConfig.input ?? {}), ...typeInputs(type, extracted) };
-  }
   const prompt = mergePrompt(model, userPrompt);
+  if (OWN_INPUT_TYPES.has(type)) {
+    return { ...(model.requestConfig.input ?? {}), ...typeInputs(type, extracted, avatarUrl, prompt) };
+  }
   return {
     ...(model.requestConfig.input ?? {}),
     video_url: creative.videoUrl,
     language: extracted.language || "en",
     context: JSON.stringify(extracted),
-    ...typeInputs(type, extracted),
+    ...typeInputs(type, extracted, avatarUrl, prompt),
     ...(prompt && { prompt }),
   };
 }

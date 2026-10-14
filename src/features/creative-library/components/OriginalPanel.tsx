@@ -1,3 +1,4 @@
+import { Check } from "lucide-react";
 import type * as React from "react";
 import { cn } from "@/lib/utils";
 import type { AvatarCandidate, CreativeExtraction, IterationType } from "../types";
@@ -33,35 +34,63 @@ function sec(n?: number): string | null {
   return n == null ? null : `${n.toFixed(1).replace(/\.0$/, "")}s`;
 }
 
-function AvatarCandidates({ candidates, chosen }: { candidates: AvatarCandidate[]; chosen?: string }) {
+function AvatarCandidates({
+  candidates,
+  best,
+  selected,
+  onSelect,
+}: {
+  candidates: AvatarCandidate[];
+  best?: string;
+  selected?: string;
+  onSelect: (url: string) => void;
+}) {
   return (
     <div className="flex flex-col gap-2">
-      <span className="text-caption text-ink-3">Candidate frames, best first</span>
-      <ol className="grid grid-cols-2 gap-3 sm:grid-cols-4">
-        {candidates.map((c) => (
-          <li key={c.url} className="flex min-w-0 flex-col gap-1">
-            <a href={c.url} target="_blank" rel="noopener noreferrer" className="block">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={c.url}
-                alt={`Avatar candidate at ${sec(c.atSec) ?? "an unknown second"}`}
+      <span className="text-caption text-ink-3">Pick the frame to generate from. Best first.</span>
+      <ol role="radiogroup" aria-label="Avatar frame" className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+        {candidates.map((c, i) => {
+          const isSelected = c.url === selected;
+          return (
+            <li key={c.url} className="flex min-w-0 flex-col gap-1">
+              <button
+                type="button"
+                role="radio"
+                aria-checked={isSelected}
+                aria-label={`Frame ${i + 1}${sec(c.atSec) ? ` at ${sec(c.atSec)}` : ""}`}
+                onClick={() => onSelect(c.url)}
                 className={cn(
-                  "aspect-9/16 w-full rounded-sm bg-muted object-cover",
-                  c.url === chosen && "ring-2 ring-accent ring-offset-2 ring-offset-surface",
+                  "group relative block rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-accent-border",
+                  isSelected && "ring-2 ring-accent ring-offset-2 ring-offset-surface",
                 )}
-              />
-            </a>
-            <div className="flex items-baseline justify-between gap-2 text-caption">
-              <span className={c.url === chosen ? "font-semibold text-accent-text" : "text-ink-3"}>
-                {c.url === chosen ? "Chosen" : "Candidate"}
-              </span>
-              <span className="font-num text-ink-3 tabular-nums">
-                {[sec(c.atSec), c.score != null ? `${c.score}/10` : null].filter(Boolean).join(" · ")}
-              </span>
-            </div>
-            {c.notes ? <p className="font-prose text-caption text-ink-3">{c.notes}</p> : null}
-          </li>
-        ))}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={c.url}
+                  alt=""
+                  className={cn(
+                    "aspect-9/16 w-full rounded-sm bg-muted object-cover transition-opacity",
+                    !isSelected && "opacity-70 group-hover:opacity-100",
+                  )}
+                />
+                {isSelected ? (
+                  <span className="absolute top-2 left-2 flex size-5 items-center justify-center rounded-full bg-accent text-accent-contrast shadow-popover">
+                    <Check className="size-3.5" />
+                  </span>
+                ) : null}
+              </button>
+              <div className="flex items-baseline justify-between gap-2 text-caption">
+                <span className={isSelected ? "font-semibold text-accent-text" : "text-ink-3"}>
+                  {isSelected ? "Selected" : c.url === best ? "Best pick" : `Frame ${i + 1}`}
+                </span>
+                <span className="font-num text-ink-3 tabular-nums">
+                  {[sec(c.atSec), c.score != null ? `${c.score}/10` : null].filter(Boolean).join(" · ")}
+                </span>
+              </div>
+              {c.notes ? <p className="font-prose text-caption text-ink-3">{c.notes}</p> : null}
+            </li>
+          );
+        })}
       </ol>
     </div>
   );
@@ -72,7 +101,18 @@ function Missing({ what }: { what: string }) {
 }
 
 /** The original part of the creative this tab iterates on, as the analysis extracted it. */
-export function OriginalPanel({ type, extracted }: { type: IterationType; extracted: CreativeExtraction | null }) {
+export function OriginalPanel({
+  type,
+  extracted,
+  selectedAvatar,
+  onSelectAvatar,
+}: {
+  type: IterationType;
+  extracted: CreativeExtraction | null;
+  /** The avatar frame the next generation starts from. */
+  selectedAvatar?: string;
+  onSelectAvatar: (url: string) => void;
+}) {
   if (!extracted) {
     return (
       <EmptyState title="Not analyzed yet">
@@ -136,9 +176,13 @@ export function OriginalPanel({ type, extracted }: { type: IterationType; extrac
         extracted.avatar ? (
           <div className="flex flex-col gap-4">
             <div className="flex gap-4">
-              {extracted.avatar.imageUrl ? (
+              {selectedAvatar ?? extracted.avatar.imageUrl ? (
                 // eslint-disable-next-line @next/next/no-img-element
-                <img src={extracted.avatar.imageUrl} alt="Avatar" className="h-40 w-28 shrink-0 rounded-sm object-cover" />
+                <img
+                  src={selectedAvatar ?? extracted.avatar.imageUrl}
+                  alt="Avatar"
+                  className="h-40 w-28 shrink-0 rounded-sm object-cover"
+                />
               ) : null}
               <div className="grid flex-1 grid-cols-1 gap-3 sm:grid-cols-2">
                 <div className="sm:col-span-2">
@@ -160,7 +204,12 @@ export function OriginalPanel({ type, extracted }: { type: IterationType; extrac
               </div>
             </div>
             {extracted.avatar.candidates?.length ? (
-              <AvatarCandidates candidates={extracted.avatar.candidates} chosen={extracted.avatar.imageUrl} />
+              <AvatarCandidates
+                candidates={extracted.avatar.candidates}
+                best={extracted.avatar.imageUrl}
+                selected={selectedAvatar}
+                onSelect={onSelectAvatar}
+              />
             ) : null}
           </div>
         ) : (

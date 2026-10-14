@@ -11,7 +11,7 @@ import { api, formatDateTime } from "./client";
 import { EmptyState, FavoriteButton, Overline, Panel, StatusBadge, TabBar, Tag } from "./components/bits";
 import { IterationCard } from "./components/IterationCard";
 import { OriginalPanel } from "./components/OriginalPanel";
-import { ITERATION_TABS, OWN_INPUT_TYPES, tabBySlug } from "./constants";
+import { AVATAR_TYPES, avatarFrames, ITERATION_TABS, NO_DIRECTION_TYPES, tabBySlug } from "./constants";
 import { ANALYSIS_LABELS } from "./CreativeLibrary";
 import type { Creative, Favorite } from "./types";
 import { useFavorites } from "./useFavorites";
@@ -27,11 +27,15 @@ export function CreativeDetail({ initialCreative, favorites }: { initialCreative
   const [creative, setCreative] = useState(initialCreative);
   const [prompts, setPrompts] = useState<Record<string, string>>({});
   const [busy, setBusy] = useState<"analyze" | "generate" | null>(null);
+  const [pickedAvatar, setPickedAvatar] = useState<string | null>(null);
   const { isFavorite, toggle } = useFavorites(favorites);
 
   const running = creative.analysis.status === "running" || creative.iterations.some((it) => it.status === "running");
   const analyzed = creative.analysis.status === "completed" && !!creative.extracted;
   const iterations = creative.iterations.filter((it) => it.type === tab.type);
+  // The first frame until one is picked; a new analysis brings new frames, so a pick from before falls back too.
+  const frames = avatarFrames(creative.extracted?.avatar);
+  const selectedAvatar = pickedAvatar && frames.includes(pickedAvatar) ? pickedAvatar : frames[0];
 
   // Poll eachlabs through our sync route while something is running.
   const lastSyncError = useRef<string | null>(null);
@@ -78,7 +82,8 @@ export function CreativeDetail({ initialCreative, favorites }: { initialCreative
   const generate = async () => {
     setBusy("generate");
     try {
-      const { creative: next } = await api.generate(creative.id, tab.type, prompts[tab.type] ?? "");
+      const imageUrl = AVATAR_TYPES.has(tab.type) ? selectedAvatar : undefined;
+      const { creative: next } = await api.generate(creative.id, tab.type, prompts[tab.type] ?? "", imageUrl);
       setCreative(next);
       toast.success(`${tab.label}: generation started`);
     } catch (error) {
@@ -184,10 +189,15 @@ export function CreativeDetail({ initialCreative, favorites }: { initialCreative
             }))}
           />
 
-          <OriginalPanel type={tab.type} extracted={creative.extracted} />
+          <OriginalPanel
+            type={tab.type}
+            extracted={creative.extracted}
+            selectedAvatar={selectedAvatar}
+            onSelectAvatar={setPickedAvatar}
+          />
 
           <Panel className="flex flex-col gap-3">
-            {!OWN_INPUT_TYPES.has(tab.type) ? (
+            {!NO_DIRECTION_TYPES.has(tab.type) ? (
               <>
                 <Label htmlFor="direction">Direction (optional)</Label>
                 <textarea
@@ -195,7 +205,7 @@ export function CreativeDetail({ initialCreative, favorites }: { initialCreative
                   rows={3}
                   value={prompts[tab.type] ?? ""}
                   onChange={(e) => setPrompts((p) => ({ ...p, [tab.type]: e.target.value }))}
-                  placeholder={`What should the new ${tab.label.toLowerCase()} explore? e.g. a curiosity-led angle, a calmer tone…`}
+                  placeholder={`What should the new ${tab.label.toLowerCase()} explore? ${tab.directionHint ?? "e.g. a curiosity-led angle, a calmer tone…"}`}
                   disabled={!analyzed}
                   className="w-full resize-y rounded-sm border border-line bg-surface px-2.5 py-2 font-prose text-body text-ink outline-none placeholder:text-ink-3 focus-visible:ring-2 focus-visible:ring-accent-border disabled:opacity-40"
                 />

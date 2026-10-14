@@ -49,11 +49,12 @@ export async function startIteration(
   creativeId: string,
   type: IterationType,
   userPrompt: string | null,
+  avatarUrl: string | null = null,
 ): Promise<Creative> {
   const label = ITERATION_TABS.find((t) => t.type === type)?.label ?? type;
   const creative = await getCreative(creativeId);
   const model = await requireAiModel(type, label);
-  const inputs = buildIterationInputs(creative, type, model, userPrompt);
+  const inputs = buildIterationInputs(creative, type, model, userPrompt, avatarUrl);
   const { executionId } = await triggerWorkflow({ workflowId: model.apiUsageModels, versionId: model.versionId, inputs });
 
   const now = new Date().toISOString();

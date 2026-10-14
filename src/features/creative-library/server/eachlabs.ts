@@ -183,6 +183,8 @@ export function extractOutputUrls(execution: Execution): string[] {
     if (isRecord(value)) {
       pushIfUrl(value.url || value.primary || value.result);
       if (value.output != null && value.output !== value) collect(value.output);
+      // A parallel step's output: one `branch_<n>` entry per branch, in order.
+      for (const [key, branch] of Object.entries(value)) if (/^branch_\d+$/.test(key)) collect(branch);
     }
   };
 

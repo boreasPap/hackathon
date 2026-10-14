@@ -23,10 +23,10 @@ export const api = {
   },
   analyze: (id: string) =>
     request<{ creative: Creative }>(`${base}/creatives/${encodeURIComponent(id)}/analyze`, { method: "POST" }),
-  generate: (id: string, type: string, prompt: string) =>
+  generate: (id: string, type: string, prompt: string, imageUrl?: string) =>
     request<{ creative: Creative }>(`${base}/creatives/${encodeURIComponent(id)}/iterations`, {
       method: "POST",
-      body: JSON.stringify({ type, prompt }),
+      body: JSON.stringify({ type, prompt, imageUrl }),
     }),
   sync: (id: string) =>
     request<{ creative: Creative }>(`${base}/creatives/${encodeURIComponent(id)}/sync`, { method: "POST" }),

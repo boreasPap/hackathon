@@ -43,7 +43,8 @@
       "outputTypes": ["text"],
       "customConfig": null
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "698bf384-e99a-46d1-a497-5e824bed92dd",
+    "versionId": "v1",
     "platform": "eachlabs"
   },
   {
@@ -58,7 +59,8 @@
       "outputTypes": ["image"],
       "customConfig": null
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "5e62cae2-1bc9-4a0d-980a-ba413f5f466d",
+    "versionId": "v2",
     "platform": "eachlabs"
   },
   {

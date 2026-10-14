@@ -35,3 +35,4 @@ next-env.d.ts
 # licensed Bomstad font files (keep only the README)
 /public/fonts/*
 !/public/fonts/README.md
+example
