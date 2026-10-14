@@ -9,11 +9,10 @@
       "type": "vid2txt",
       "inputTypes": ["video"],
       "outputTypes": ["text"],
-      "customConfig": null,
-      "input": { "language": "en" }
+      "customConfig": null
     },
     "apiUsageModels": "07921746-cd56-4009-b1e0-424fed797892",
-    "versionId": "v1",
+    "versionId": "v2",
     "platform": "eachlabs"
   },
   {

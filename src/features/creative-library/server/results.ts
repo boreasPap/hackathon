@@ -1,4 +1,4 @@
-import type { AiModel, CreativeExtraction, IterationItem, MediaType, TemplateFrame } from "../types";
+import type { AiModel, Avatar, AvatarCandidate, CreativeExtraction, IterationItem, MediaType, TemplateFrame } from "../types";
 import {
   type Execution,
   extractContent,
@@ -84,7 +84,56 @@ function records(value: unknown): Loose[] {
   return Array.isArray(value) ? value.filter(isRecord) : [];
 }
 
-const WORKFLOW_OUTPUT_KEYS = ["visual_analysis", "voiceover_script", "wall_text", "transcript_raw", "avatar_frame", "stems"];
+const WORKFLOW_OUTPUT_KEYS = ["visual_analysis", "voiceover_script", "wall_text", "transcript_raw", "avatar_frame", "best_avatar", "stems"];
+
+const AVATAR_CANDIDATES = 4;
+
+/**
+ * v2 grabs four candidate frames and lets an LLM step (`best_avatar`) rank
+ * them; v1 grabs one (`avatar_frame`). The ranking's URLs are matched against
+ * the frames themselves, so a URL the model misspelled is never used.
+ */
+function parseAvatar(out: Loose, times: Loose, visual: Loose): Avatar | null {
+  const visualAvatar = isRecord(visual.avatar) ? visual.avatar : {};
+  if ((times.avatar_present ?? visualAvatar.present) === false) return null;
+
+  const v1Frame = url(out.avatar_frame);
+  if (v1Frame) {
+    return strip({
+      description: "",
+      imageUrl: v1Frame,
+      frameSec: num(pick(times, "avatar_second") ?? visualAvatar.best_timestamp),
+    });
+  }
+
+  const frames = Array.from({ length: AVATAR_CANDIDATES }, (_, i) => ({
+    url: url(out[`avatar_candidate_${i + 1}`]),
+    atSec: num(times[`avatar_second_${i + 1}`]),
+  }));
+  const ranked = json(out.best_avatar) ?? {};
+  const ranking = records(ranked.ranking);
+  const known = (u: unknown) => frames.find((f) => f.url && f.url === url(u));
+  const byIndex = (i: unknown) => frames[(num(i) ?? 0) - 1];
+
+  // Same frame twice (parse-times pads short lists) is shown once.
+  const candidates: AvatarCandidate[] = [];
+  const add = (frame: { url?: string; atSec?: number } | undefined, extra: Partial<AvatarCandidate> = {}) => {
+    if (!frame?.url || candidates.some((c) => c.url === frame.url)) return;
+    candidates.push(strip({ url: frame.url, atSec: frame.atSec, ...extra }));
+  };
+  for (const r of ranking) add(known(r.url) ?? byIndex(r.index), { score: num(r.score), notes: str(r.notes) });
+  for (const f of frames) add(f);
+
+  const best = known(ranked.best_url) ?? byIndex(ranked.best_index) ?? candidates[0];
+  if (!best?.url) return null;
+  return strip({
+    description: "",
+    imageUrl: best.url,
+    frameSec: best.atSec ?? num(ranked.best_second),
+    reason: str(ranked.reason),
+    candidates: candidates.length > 1 ? candidates : undefined,
+  });
+}
 
 /**
  * The analyzer workflow (`anayzer-hackathon`) names its results in
@@ -128,17 +177,7 @@ function parseWorkflowOutput(out: Loose): CreativeExtraction {
       })
     : null;
 
-  const visualAvatar = isRecord(visual.avatar) ? visual.avatar : {};
-  const avatarPresent = times.avatar_present ?? visualAvatar.present;
-  const avatarFrame = url(out.avatar_frame);
-  const avatar =
-    avatarPresent !== false && avatarFrame
-      ? strip({
-          description: "",
-          imageUrl: avatarFrame,
-          frameSec: num(pick(times, "avatar_second") ?? visualAvatar.best_timestamp),
-        })
-      : null;
+  const avatar = parseAvatar(out, times, visual);
 
   const audioUrl = url(out.audio);
   const stemsUrl = url(out.stems);
@@ -166,6 +205,7 @@ function parseWorkflowOutput(out: Loose): CreativeExtraction {
     { url: url(out.first_frame), atSec: 0, label: "First frame" },
     { url: url(out.text_frame_1), atSec: num(times.text_second_1), label: "Text frame 1" },
     { url: url(out.text_frame_2), atSec: num(times.text_second_2), label: "Text frame 2" },
+    { url: url(out.text_frame_3), atSec: num(times.text_second_3), label: "Text frame 3" },
   ].flatMap((f): TemplateFrame[] => (f.url ? [strip({ ...f, url: f.url })] : []));
   const spriteSheetUrl = url(out.sprite_sheet);
   const lastEnd = Math.max(0, ...layoutSegments.map((s) => s.endSec ?? 0), ...wallTexts.map((w) => w.endSec ?? 0));

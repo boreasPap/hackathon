@@ -36,6 +36,14 @@ export type Voiceover = {
   transcript?: string;
 };
 
+export type AvatarCandidate = {
+  url: string;
+  atSec?: number;
+  /** 1–10, how good the frame is as a reference image. */
+  score?: number;
+  notes?: string;
+};
+
 export type Avatar = {
   description: string;
   gender?: string;
@@ -47,6 +55,10 @@ export type Avatar = {
   imageUrl?: string;
   /** The second of the video the avatar image was taken at. */
   frameSec?: number;
+  /** Why the analysis picked this frame. */
+  reason?: string;
+  /** Every frame the analysis considered, best first. */
+  candidates?: AvatarCandidate[];
 };
 
 export type Music = {

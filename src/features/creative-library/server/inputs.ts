@@ -17,7 +17,7 @@ function mergePrompt(model: AiModel, userPrompt: string | null): string | undefi
   return parts.length ? parts.join("\n\n") : undefined;
 }
 
-// The analysis workflow takes `video` (+ `language`, from requestConfig.input).
+// The analysis workflow (v2) takes only `video`.
 export function buildAnalysisInputs(creative: Creative, model: AiModel): Record<string, unknown> {
   if (!creative.videoUrl) {
     throw new HttpError(
