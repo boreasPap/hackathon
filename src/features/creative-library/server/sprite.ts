@@ -44,6 +44,8 @@ export type SpriteResult = {
   cellWidth: number;
   cellHeight: number;
   frameCount: number;
+  /** False when the sheet has no second labels (labels off, or no font / drawtext). */
+  labeled: boolean;
 };
 
 export class SpriteError extends Error {
@@ -169,27 +171,37 @@ export async function createSprite(videoUrl: string, opts: SpriteOptions): Promi
     // The first frame (t=0), then the first frame at least `intervalSeconds`
     // after the previous pick. Do not swap in `fps=1`: it shifts every cell by
     // about a second (the 0s cell shows second 1).
-    const filters = [
-      `select='isnan(prev_selected_t)+gte(t-prev_selected_t\\,${opts.intervalSeconds})'`,
-      `scale=${cellWidth}:${cellHeight}`,
-    ];
+    const select = `select='isnan(prev_selected_t)+gte(t-prev_selected_t\\,${opts.intervalSeconds})'`;
+    const scale = `scale=${cellWidth}:${cellHeight}`;
+    const tile = `tile=${opts.columns}x${opts.rows}:margin=0:padding=4:color=black`;
     const font = opts.labels ? resolveFontPath() : null;
+    let label: string | null = null;
     if (font) {
       const size = Math.max(14, Math.round(cellWidth / 9));
       const escaped = font.replace(/\\/g, "/").replace(/:/g, "\\:").replace(/'/g, "\\'");
-      filters.push(
+      label =
         `drawtext=fontfile='${escaped}':text='%{eif\\:n*${opts.intervalSeconds}\\:d}s':` +
-          `x=6:y=6:fontsize=${size}:fontcolor=white:box=1:boxcolor=black@0.75:boxborderw=6`,
-      );
+        `x=6:y=6:fontsize=${size}:fontcolor=white:box=1:boxcolor=black@0.75:boxborderw=6`;
     }
-    filters.push(`tile=${opts.columns}x${opts.rows}:margin=0:padding=4:color=black`);
 
     const out = path.join(dir, "sheet-%03d.jpg");
-    const { code, stderr } = await run(
-      ffmpeg,
-      ["-hide_banner", "-loglevel", "error", "-i", input, "-vf", filters.join(","), "-q:v", "3", "-vsync", "vfr", out],
-      120_000,
-    );
+    const render = (withLabel: boolean) => {
+      const filters = [select, scale, ...(withLabel && label ? [label] : []), tile].join(",");
+      return run(
+        ffmpeg,
+        ["-hide_banner", "-loglevel", "error", "-i", input, "-vf", filters, "-q:v", "3", "-vsync", "vfr", out],
+        120_000,
+      );
+    };
+    let labeled = label !== null;
+    let { code, stderr } = await render(labeled);
+    // Some ffmpeg builds ship without drawtext (ffmpeg-static's Linux 6.1.1 does,
+    // hence the 5.2.0 pin). An unlabelled sheet beats a failed workflow.
+    if (code !== 0 && labeled && /No such filter: 'drawtext'/.test(stderr)) {
+      console.warn("[sprite] ffmpeg has no drawtext filter; making the sheet without labels");
+      labeled = false;
+      ({ code, stderr } = await render(false));
+    }
     if (code !== 0) throw new SpriteError(`ffmpeg hata verdi: ${stderr.slice(-500)}`, 500);
 
     const files = (await readdir(dir)).filter((f) => /^sheet-\d+\.jpg$/.test(f)).sort();
@@ -230,6 +242,7 @@ export async function createSprite(videoUrl: string, opts: SpriteOptions): Promi
       cellWidth,
       cellHeight,
       frameCount,
+      labeled,
     };
   } finally {
     await rm(dir, { recursive: true, force: true });

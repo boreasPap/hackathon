@@ -108,6 +108,7 @@ export async function POST(request: Request) {
       video_width: result.videoWidth,
       video_height: result.videoHeight,
       truncated: result.sheets.length > 1,
+      labeled: result.labeled,
     });
   } catch (e) {
     const status = e instanceof SpriteError ? e.status : 500;
