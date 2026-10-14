@@ -10,6 +10,8 @@ export type Execution = {
   workflowId: string | null;
   status: string;
   output: unknown;
+  /** The workflow's named outputs (its `output_mapping`), when it defines one. */
+  workflowOutput: Record<string, unknown> | null;
   stepOutputs: Record<string, unknown> | null;
   error: unknown;
   errorCause: string | null;
@@ -149,6 +151,7 @@ export async function getExecution(executionId: string): Promise<Execution> {
     workflowId: typeof data.workflow_id === "string" ? data.workflow_id : null,
     status: String(data.status ?? "unknown"),
     output: data.output ?? null,
+    workflowOutput: isRecord(data.workflow_output) ? data.workflow_output : null,
     stepOutputs: isRecord(data.step_outputs) ? data.step_outputs : null,
     error: data.error ?? null,
     errorCause: typeof data.error_cause === "string" ? data.error_cause : null,

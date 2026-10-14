@@ -13,6 +13,7 @@ import {
 import { HttpError, newId } from "./http";
 import { buildAnalysisInputs, buildIterationInputs } from "./inputs";
 import { parseExtraction, parseIterationItems } from "./results";
+import { instrumentalFromStems } from "./stems";
 
 // Long eachlabs runs are tracked by polling, not webhooks (eachlabs cannot
 // reach localhost): a start call triggers the workflow and stores its
@@ -123,6 +124,12 @@ export async function syncCreative(creativeId: string): Promise<Creative> {
     creative.analysis.status === "running"
       ? settle(await poll(creative.analysis.executionId), parseExtraction)
       : null;
+
+  const stemsUrl = analysisResult?.ok ? analysisResult.value.music?.stemsUrl : undefined;
+  if (analysisResult?.ok && analysisResult.value.music && stemsUrl) {
+    const instrumentalUrl = await instrumentalFromStems(stemsUrl);
+    if (instrumentalUrl) analysisResult.value.music.instrumentalUrl = instrumentalUrl;
+  }
 
   const iterationResults = await Promise.all(
     running.map(async (it) => {

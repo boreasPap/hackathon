@@ -1,4 +1,4 @@
-import type { AiModel, CreativeExtraction, IterationItem, MediaType } from "../types";
+import type { AiModel, CreativeExtraction, IterationItem, MediaType, TemplateFrame } from "../types";
 import {
   type Execution,
   extractContent,
@@ -60,9 +60,139 @@ function unwrapExtraction(value: unknown): Loose | null {
   return null;
 }
 
+function isUrl(value: unknown): value is string {
+  return typeof value === "string" && /^https?:\/\//i.test(value.trim());
+}
+
+function url(value: unknown): string | undefined {
+  return isUrl(value) ? value.trim() : undefined;
+}
+
+/** An LLM step's text, parsed as JSON when it is JSON (with or without ``` fences). */
+function json(value: unknown): Loose | null {
+  if (isRecord(value)) return value;
+  if (typeof value !== "string" || !value.trim()) return null;
+  try {
+    const parsed = parseJsonContent(value);
+    return isRecord(parsed) ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
+function records(value: unknown): Loose[] {
+  return Array.isArray(value) ? value.filter(isRecord) : [];
+}
+
+const WORKFLOW_OUTPUT_KEYS = ["visual_analysis", "voiceover_script", "wall_text", "transcript_raw", "avatar_frame", "stems"];
+
+/**
+ * The analyzer workflow (`anayzer-hackathon`) names its results in
+ * `workflow_output`: LLM steps as JSON text, media steps as URLs.
+ */
+function parseWorkflowOutput(out: Loose): CreativeExtraction {
+  const visual = json(out.visual_analysis) ?? {};
+  const wallTextJson = json(out.wall_text) ?? {};
+  const vo = json(out.voiceover_script);
+  const times = isRecord(out.times) ? out.times : {};
+  const transcript = str(out.transcript_raw);
+
+  // The timeline step reads full-resolution frames; the visual step's list is only a fallback.
+  const timeline = records(wallTextJson.wall_text);
+  const wallTexts = (timeline.length ? timeline : records(visual.wall_text))
+    .filter((w) => !!str(w.text))
+    .map((w) =>
+      strip({
+        text: str(w.text)!,
+        startSec: num(pick(w, "start", "startSec")),
+        endSec: num(pick(w, "end", "endSec")),
+        position: str(w.position),
+        style: str(w.style),
+        persistent: typeof w.persistent === "boolean" ? w.persistent : undefined,
+      }),
+    );
+
+  const lines = records(vo?.lines);
+  const speakers = [...new Set(lines.map((l) => str(l.speaker)).filter(Boolean))];
+  const script = str(vo?.full_script) ?? (vo ? undefined : str(out.voiceover_script)) ?? transcript;
+  const voiceover = script
+    ? strip({
+        script,
+        speaker: speakers.length === 1 ? speakers[0] : undefined,
+        segments: lines.length
+          ? lines.map((l) =>
+              strip({ text: str(l.text) ?? "", startSec: num(l.start), endSec: num(l.end), speaker: str(l.speaker) }),
+            )
+          : undefined,
+        transcript,
+      })
+    : null;
+
+  const visualAvatar = isRecord(visual.avatar) ? visual.avatar : {};
+  const avatarPresent = times.avatar_present ?? visualAvatar.present;
+  const avatarFrame = url(out.avatar_frame);
+  const avatar =
+    avatarPresent !== false && avatarFrame
+      ? strip({
+          description: "",
+          imageUrl: avatarFrame,
+          frameSec: num(pick(times, "avatar_second") ?? visualAvatar.best_timestamp),
+        })
+      : null;
+
+  const audioUrl = url(out.audio);
+  const stemsUrl = url(out.stems);
+  const music = audioUrl || stemsUrl ? strip({ description: "", audioUrl, stemsUrl }) : null;
+
+  const layoutSegments = records(visual.layout_segments).map((seg) =>
+    strip({
+      startSec: num(seg.start),
+      endSec: num(seg.end),
+      layoutType: str(seg.layout_type) ?? "unknown",
+      regions: records(seg.regions).map((r) => ({
+        role: str(r.role) ?? "other",
+        x: num(r.x) ?? 0,
+        y: num(r.y) ?? 0,
+        w: num(r.w) ?? 0,
+        h: num(r.h) ?? 0,
+      })),
+    }),
+  );
+  const endCard = isRecord(visual.end_card) && visual.end_card.present === true ? num(visual.end_card.start) : undefined;
+  const sceneChangesSec = Array.isArray(visual.scene_changes)
+    ? visual.scene_changes.map(num).filter((n): n is number => n !== undefined)
+    : [];
+  const frames = [
+    { url: url(out.first_frame), atSec: 0, label: "First frame" },
+    { url: url(out.text_frame_1), atSec: num(times.text_second_1), label: "Text frame 1" },
+    { url: url(out.text_frame_2), atSec: num(times.text_second_2), label: "Text frame 2" },
+  ].flatMap((f): TemplateFrame[] => (f.url ? [strip({ ...f, url: f.url })] : []));
+  const spriteSheetUrl = url(out.sprite_sheet);
+  const lastEnd = Math.max(0, ...layoutSegments.map((s) => s.endSec ?? 0), ...wallTexts.map((w) => w.endSec ?? 0));
+
+  const template =
+    str(visual.aspect_ratio) || layoutSegments.length || frames.length || spriteSheetUrl
+      ? strip({
+          layout: [...new Set(layoutSegments.map((s) => s.layoutType))].join(", "),
+          aspectRatio: str(visual.aspect_ratio),
+          durationSec: endCard ?? (lastEnd || undefined),
+          layoutSegments: layoutSegments.length ? layoutSegments : undefined,
+          sceneChangesSec: sceneChangesSec.length ? sceneChangesSec : undefined,
+          endCardSec: endCard,
+          spriteSheetUrl,
+          frames: frames.length ? frames : undefined,
+        })
+      : null;
+
+  return { wallTexts, voiceover, avatar, music, template };
+}
+
 export function parseExtraction(execution: Execution): CreativeExtraction {
   const embedded = findEmbeddedError(execution);
   if (embedded) throw new Error(embedded);
+
+  const out = execution.workflowOutput;
+  if (out && WORKFLOW_OUTPUT_KEYS.some((k) => out[k] != null)) return parseWorkflowOutput(out);
 
   const data = unwrapExtraction(readContentJson(execution));
   if (!data) throw new Error("The analysis workflow finished but did not return the expected JSON.");

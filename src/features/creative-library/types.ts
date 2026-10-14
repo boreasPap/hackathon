@@ -20,14 +20,20 @@ export type WallText = {
   startSec?: number;
   endSec?: number;
   role?: "hook" | "body" | "cta";
+  position?: string;
+  style?: string;
+  /** Stays on screen across most of the video (a button, a score label). */
+  persistent?: boolean;
 };
 
-export type VoiceoverSegment = { text: string; startSec?: number; endSec?: number };
+export type VoiceoverSegment = { text: string; startSec?: number; endSec?: number; speaker?: string };
 
 export type Voiceover = {
   script: string;
   speaker?: string;
   segments?: VoiceoverSegment[];
+  /** The speech-to-text output before it was cleaned into a script. */
+  transcript?: string;
 };
 
 export type Avatar = {
@@ -39,6 +45,8 @@ export type Avatar = {
   wardrobe?: string;
   framing?: string;
   imageUrl?: string;
+  /** The second of the video the avatar image was taken at. */
+  frameSec?: number;
 };
 
 export type Music = {
@@ -47,6 +55,12 @@ export type Music = {
   mood?: string;
   energy?: "low" | "medium" | "high";
   tempoBpm?: number;
+  /** The original soundtrack (voice + music) as an mp3. */
+  audioUrl?: string;
+  /** The music without the voice, taken from the stems zip and stored on eachlabs. */
+  instrumentalUrl?: string;
+  /** Zip of every stem (vocals, bass, drums, instrumental …), as the stem splitter returned it. */
+  stemsUrl?: string;
 };
 
 export type TemplateScene = {
@@ -57,12 +71,25 @@ export type TemplateScene = {
   onScreenText?: string;
 };
 
+export type LayoutRegion = { role: string; x: number; y: number; w: number; h: number };
+
+export type LayoutSegment = { startSec?: number; endSec?: number; layoutType: string; regions: LayoutRegion[] };
+
+export type TemplateFrame = { url: string; atSec?: number; label: string };
+
 export type Template = {
   layout: string;
   aspectRatio?: string;
   durationSec?: number;
   visualStyle?: string;
   scenes?: TemplateScene[];
+  layoutSegments?: LayoutSegment[];
+  sceneChangesSec?: number[];
+  /** When the app end card starts, if the video has one. */
+  endCardSec?: number;
+  /** Frames every 2 seconds in one image, read left to right, top to bottom. */
+  spriteSheetUrl?: string;
+  frames?: TemplateFrame[];
 };
 
 /** What the analysis workflow returns: the parts of a creative we iterate on. */

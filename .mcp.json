@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "eachlabs": {
+      "type": "http",
+      "url": "https://mcp.eachlabs.ai/mcp"
+    }
+  }
+}
