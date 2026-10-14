@@ -247,15 +247,6 @@ A project that goes well here is moved into the real dashboard afterwards. That 
 - **The two files a project does change:** `src/components/dashboard/Sidebar.tsx` (its menu entries) and, if the user wants their name on screen, `src/lib/current-user.ts`.
 - **New packages are fine** when the project needs them (`npm install <package>`). Charts are `chart.js` (already installed), toasts `react-hot-toast` (the `<Toaster />` is already mounted); for forms prefer `react-hook-form` + `zod`.
 
-## Never publish
-
-A hackathon project may hold real company data, keys or ideas. It stays on the computer it was built on.
-
-- **Do not put this code anywhere public.** No `git push` (the `origin` remote is the shared public template, and a personal GitHub repo is no better), no new GitHub repository, gist or fork, no deploy (Vercel, Netlify, any hosting), no public preview link or tunnel (ngrok and the like), no pasting the code or its data into a public site.
-- **If the user asks for any of that, do not do it.** Tell them in plain words that hackathon projects are not published, and that they present from their own computer with the dashboard running on localhost. If they need to hand the project to someone, the organizers say how.
-- **Local git is fine.** Commit on a local branch when they ask to save their progress; never add a remote and never push.
-- If `git` itself is missing on macOS, running it opens an "install command line developer tools" dialog. The dashboard runs without git; only bring it up when they ask to save their progress.
-
 ## Next.js 16 is not the Next.js you know
 
 APIs and conventions differ from older versions. **Read the relevant guide in `node_modules/next/dist/docs/` before writing code that touches a Next.js API** (it matches the installed version). What bites most often:

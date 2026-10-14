@@ -45,12 +45,6 @@ Ne yapmak istediğini kendi cümlelerinle Claude'a yaz. Birkaç örnek:
 - **Veri sana kalmış.** Hiçbir şey vermezsen Claude sayfaları uydurma örnek veriyle kurar. Elindeki gerçek veriyi (dosya, export, bir kaynağa erişim) de kullanabilirsin; proje senin bilgisayarında çalışır. Bir dış servise ya da yapay zeka modeline bağlanmak istersen Claude'a söyle, anahtarını nereye koyacağını o gösterir.
 - **Arayüz metinleri İngilizce.** Gerçek dashboard'daki kural bu; Claude sayfaları İngilizce metinlerle kurar. Sen Türkçe yazmaya devam edebilirsin.
 
-## ⚠️ Projeni yayınlama
-
-Burada geliştirdiğin kodu **GitHub'a ya da herkese açık herhangi bir yere koyma**: push etme, yeni repo / gist açma, Vercel gibi bir yere deploy etme, dışarıya açık link ya da tünel (ngrok vb.) oluşturma. Projende şirket verisi, anahtar ya da henüz paylaşılmamış fikirler olabilir.
-
-Projen kendi bilgisayarında kalır; sunumu da kendi bilgisayarından, dashboard `localhost` üzerinde çalışırken yaparsın. Claude'dan yayınlamasını istersen bunu yapmayacak şekilde talimatlandırıldı.
-
 ## Elle çalıştırmak istersen
 
 Terminalle aran iyiyse Claude'a bırakmadan da çalıştırabilirsin. [Node.js](https://nodejs.org) 20.9 ya da üstü gerekir (LTS sürümünü kur).

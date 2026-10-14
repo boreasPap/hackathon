@@ -85,8 +85,6 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
   }, [running, creative.id, creative.analysis.status]);
 
   const analyze = async () => {
-    // A finished analysis is replaced, and its run is billed again.
-    if (analyzed && !window.confirm(`Analyze ${creative.id} again? The new analysis replaces the current one.`)) return;
     setBusy("analyze");
     try {
       const { creative: next } = await api.analyze(creative.id);
@@ -157,8 +155,9 @@ function Detail({ initialCreative, siblings, type }: { initialCreative: Creative
             </nav>
             <Button
               variant={analyzed ? "secondary" : "primary"}
-              disabled={analyzing || busy !== null || !creative.videoUrl}
-              title={analyzed ? "Analyze again" : creative.videoUrl ? undefined : NOT_UPLOADED}
+              // Once sent, it stays off: while the analysis runs and after it is done. A failed one can be retried.
+              disabled={analyzed || analyzing || busy !== null || !creative.videoUrl}
+              title={creative.videoUrl ? undefined : NOT_UPLOADED}
               onClick={analyze}
               className={STEP_BUTTON}
             >
