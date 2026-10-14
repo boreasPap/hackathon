@@ -14,6 +14,9 @@ export const ITERATION_TABS: {
   { type: "template", slug: "templates", label: "Templates", description: "Layouts and visual concepts" },
 ];
 
+/** Iterations whose workflow takes only its own input: no context, no direction from the page. */
+export const OWN_INPUT_TYPES: ReadonlySet<IterationType> = new Set(["wallText", "avatarVariation", "music"]);
+
 export const TYPE_LABELS: Record<FavoriteType, string> = {
   creative: "Creatives",
   ...(Object.fromEntries(ITERATION_TABS.map((t) => [t.type, t.label])) as Record<IterationType, string>),

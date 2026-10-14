@@ -72,7 +72,7 @@ export function IterationCard({
   onToggleFavorite: (itemIndex: number) => void;
 }) {
   return (
-    <Panel className="flex flex-col gap-4">
+    <Panel className="@container flex flex-col gap-4">
       <div className="flex flex-wrap items-center justify-between gap-2">
         <div className="flex items-center gap-2">
           <StatusBadge status={iteration.status} labels={{ running: "Generating" }} />
@@ -96,7 +96,24 @@ export function IterationCard({
         <p className="rounded-sm bg-danger-bg px-3 py-2 text-body-sm text-danger">{iteration.error ?? "The run failed."}</p>
       ) : null}
 
-      {iteration.items.length ? (
+      {iteration.items.length && iteration.items.every((item) => item.url && item.mediaType === "image") ? (
+        <ol className="grid grid-cols-2 gap-3 @min-[560px]:grid-cols-3 @min-[900px]:grid-cols-5">
+          {iteration.items.map((item, i) => (
+            <li key={i} className="flex min-w-0 flex-col gap-1.5">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.url}
+                alt={item.title ?? `Generated image ${i + 1}`}
+                className="aspect-9/16 w-full rounded-sm bg-muted object-cover"
+              />
+              <div className="flex items-center justify-between gap-1">
+                <span className="pl-0.5 text-caption font-num text-ink-3 tabular-nums">{i + 1}</span>
+                <ItemActions item={item} favorite={isFavorite(i)} onToggleFavorite={() => onToggleFavorite(i)} />
+              </div>
+            </li>
+          ))}
+        </ol>
+      ) : iteration.items.length ? (
         <ol className="flex flex-col divide-y divide-line">
           {iteration.items.map((item, i) => (
             <li key={i} className="flex gap-3 py-3 first:pt-0 last:pb-0">

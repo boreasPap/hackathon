@@ -21,13 +21,13 @@
         "expiresAt": "2027-04-12T11:32:26Z"
       },
       "createdAt": "2026-10-14T11:32:50.196Z",
-      "updatedAt": "2026-10-14T11:32:50.196Z",
+      "updatedAt": "2026-10-14T15:17:27.132Z",
       "analysis": {
-        "status": "idle",
-        "executionId": null,
-        "aiModelId": null,
+        "status": "running",
+        "executionId": "cc314d74-f1ff-4a07-b862-333383041b13",
+        "aiModelId": "vid2txt-creativeAnalysis",
         "error": null,
-        "startedAt": null,
+        "startedAt": "2026-10-14T15:17:27.132Z",
         "completedAt": null,
         "raw": null
       },
@@ -1883,13 +1883,13 @@
         "expiresAt": "2027-04-12T11:31:22Z"
       },
       "createdAt": "2026-10-14T11:31:32.604Z",
-      "updatedAt": "2026-10-14T11:31:32.604Z",
+      "updatedAt": "2026-10-14T15:16:44.388Z",
       "analysis": {
-        "status": "idle",
-        "executionId": null,
-        "aiModelId": null,
+        "status": "running",
+        "executionId": "4cd2b908-58c9-456c-aba5-992a6b1f96e4",
+        "aiModelId": "vid2txt-creativeAnalysis",
         "error": null,
-        "startedAt": null,
+        "startedAt": "2026-10-14T15:16:44.388Z",
         "completedAt": null,
         "raw": null
       },
@@ -1913,13 +1913,13 @@
         "expiresAt": "2027-04-12T11:30:33Z"
       },
       "createdAt": "2026-10-14T11:30:44.300Z",
-      "updatedAt": "2026-10-14T11:30:44.300Z",
+      "updatedAt": "2026-10-14T15:17:31.090Z",
       "analysis": {
-        "status": "idle",
-        "executionId": null,
-        "aiModelId": null,
+        "status": "running",
+        "executionId": "a147e671-85e7-4e86-a809-7db638957c87",
+        "aiModelId": "vid2txt-creativeAnalysis",
         "error": null,
-        "startedAt": null,
+        "startedAt": "2026-10-14T15:17:31.090Z",
         "completedAt": null,
         "raw": null
       },
@@ -1943,13 +1943,13 @@
         "expiresAt": "2027-04-12T11:29:55Z"
       },
       "createdAt": "2026-10-14T11:30:08.611Z",
-      "updatedAt": "2026-10-14T11:30:08.611Z",
+      "updatedAt": "2026-10-14T15:17:36.451Z",
       "analysis": {
-        "status": "idle",
-        "executionId": null,
-        "aiModelId": null,
+        "status": "running",
+        "executionId": "ee245cd3-a77f-4264-95f3-9566594abee0",
+        "aiModelId": "vid2txt-creativeAnalysis",
         "error": null,
-        "startedAt": null,
+        "startedAt": "2026-10-14T15:17:36.451Z",
         "completedAt": null,
         "raw": null
       },
@@ -1973,7 +1973,7 @@
         "expiresAt": "2027-04-12T11:29:29Z"
       },
       "createdAt": "2026-10-14T11:29:39.880Z",
-      "updatedAt": "2026-10-14T14:43:56.872Z",
+      "updatedAt": "2026-10-14T15:15:52.884Z",
       "analysis": {
         "status": "completed",
         "executionId": "1dc26af4-7359-4e73-b3ec-558ddbd29eb8",
@@ -3793,7 +3793,1772 @@
           ]
         }
       },
-      "iterations": []
+      "iterations": [
+        {
+          "id": "it_mv894ixr9trmzk",
+          "type": "music",
+          "aiModelId": "audio2audio-music",
+          "status": "completed",
+          "executionId": "c7cb67d4-623c-406e-89e7-0ea11f44d574",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "voice-test": "https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav"
+          },
+          "items": [
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/256a9a67-78c8-4740-9a09-cc07be3a3515.mp3",
+              "mediaType": "audio"
+            }
+          ],
+          "raw": {
+            "execution_id": "c7cb67d4-623c-406e-89e7-0ea11f44d574",
+            "workflow_id": "5d93df67-83ef-4d19-86ee-5673faa2a13e",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:15:19Z",
+            "completed_at": "2026-10-14T15:15:49Z",
+            "inputs": {
+              "voice-test": "https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:15:31Z",
+                "execution_cost": 0.1,
+                "metadata": {
+                  "model": "mureka-describe-song",
+                  "params": {
+                    "model": "audio-separation-2",
+                    "n": 2,
+                    "url": "https://cdn-us.eachlabs.ai/uploads/023f988f-511e-4e30-826e-4796ee93416e.mp3"
+                  },
+                  "processed_at": "2026-10-14T15:15:31Z",
+                  "type": "model"
+                },
+                "output": {
+                  "description": "This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and polished, with a modern sound palette that emphasizes clarity and impact. The structure is straightforward, focusing on maintaining a consistent and infectious energy level throughout.",
+                  "genres": [
+                    "Trap",
+                    "Hip Hop",
+                    "Instrumental"
+                  ],
+                  "instrument": [
+                    "Synth Lead (Plucky, Catchy)",
+                    "Electronic Drum Kit",
+                    "Synth Bass",
+                    "Synth Pad",
+                    "Sound Effects"
+                  ],
+                  "tags": [
+                    "Instrumental",
+                    "Trap Beat",
+                    "Hip Hop Instrumental",
+                    "Plucky Synth",
+                    "808s",
+                    "Modern",
+                    "Urban",
+                    "Danceable",
+                    "High Energy"
+                  ],
+                  "trace_id": "646e2080d962aea7c33aa312b9feb033"
+                },
+                "primary": {
+                  "description": "This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and polished, with a modern sound palette that emphasizes clarity and impact. The structure is straightforward, focusing on maintaining a consistent and infectious energy level throughout.",
+                  "genres": [
+                    "Trap",
+                    "Hip Hop",
+                    "Instrumental"
+                  ],
+                  "instrument": [
+                    "Synth Lead (Plucky, Catchy)",
+                    "Electronic Drum Kit",
+                    "Synth Bass",
+                    "Synth Pad",
+                    "Sound Effects"
+                  ],
+                  "tags": [
+                    "Instrumental",
+                    "Trap Beat",
+                    "Hip Hop Instrumental",
+                    "Plucky Synth",
+                    "808s",
+                    "Modern",
+                    "Urban",
+                    "Danceable",
+                    "High Energy"
+                  ],
+                  "trace_id": "646e2080d962aea7c33aa312b9feb033"
+                },
+                "started_at": "2026-10-14T15:15:19Z",
+                "status": "completed",
+                "step_id": "step1"
+              },
+              "step2": {
+                "completed_at": "2026-10-14T15:15:49Z",
+                "execution_cost": 0.08,
+                "metadata": {
+                  "model": "lyria-3-5",
+                  "params": {
+                    "prompt": "{\"description\":\"This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and polished, with a modern sound palette that emphasizes clarity and impact. The structure is straightforward, focusing on maintaining a consistent and infectious energy level throughout.\",\"genres\":[\"Trap\",\"Hip Hop\",\"Instrumental\"],\"instrument\":[\"Synth Lead (Plucky, Catchy)\",\"Electronic Drum Kit\",\"Synth Bass\",\"Synth Pad\",\"Sound Effects\"],\"tags\":[\"Instrumental\",\"Trap Beat\",\"Hip Hop Instrumental\",\"Plucky Synth\",\"808s\",\"Modern\",\"Urban\",\"Danceable\",\"High Energy\"],\"trace_id\":\"646e2080d962aea7c33aa312b9feb033\"} Generate one new music track based on the musical description provided by the previous Mureka Describe Song step.\n\nTreat that description as the source profile. Closely preserve its genre and subgenre, tempo feel, rhythm and groove, dominant instruments, production texture, mood, and energy. Preserve whether the source is instrumental or contains musical vocals.\n\nCreate a fresh melody with subtle variations in fills, accents, and supporting layers. Choose these details independently each time this prompt runs, while keeping the defining musical style consistent.\n\nPrioritize similarity to the described source over creative reinvention. Avoid genre changes, major tempo shifts, or replacing the dominant instruments. Do not reproduce any spoken voiceover or separation artifacts mentioned in the analysis.\n\nMAXIMUM DURATION IS 20 SECONDS. DO NOT EXCEED THIS.\n\nSource musical description:\n[CONNECT THE MUREKA DESCRIBE SONG OUTPUT HERE]"
+                  },
+                  "processed_at": "2026-10-14T15:15:49Z",
+                  "type": "model"
+                },
+                "output": "https://cdn-us.eachlabs.ai/uploads/256a9a67-78c8-4740-9a09-cc07be3a3515.mp3",
+                "primary": "https://cdn-us.eachlabs.ai/uploads/256a9a67-78c8-4740-9a09-cc07be3a3515.mp3",
+                "started_at": "2026-10-14T15:15:31Z",
+                "status": "completed",
+                "step_id": "step2"
+              }
+            },
+            "output": "https://cdn-us.eachlabs.ai/uploads/256a9a67-78c8-4740-9a09-cc07be3a3515.mp3",
+            "total_cost": 0.18
+          },
+          "createdAt": "2026-10-14T15:15:19.647Z",
+          "completedAt": "2026-10-14T15:15:52.884Z"
+        },
+        {
+          "id": "it_mv890wx5hg9qxp",
+          "type": "music",
+          "aiModelId": "audio2audio-music",
+          "status": "completed",
+          "executionId": "65fb038a-47b2-42b4-a101-1a6046a8978a",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "voice-test": "https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav"
+          },
+          "items": [
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/718eccb3-bfd2-436b-b3b2-15f39b90a58b.mp3",
+              "mediaType": "audio"
+            }
+          ],
+          "raw": {
+            "execution_id": "65fb038a-47b2-42b4-a101-1a6046a8978a",
+            "workflow_id": "5d93df67-83ef-4d19-86ee-5673faa2a13e",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:12:31Z",
+            "completed_at": "2026-10-14T15:13:31Z",
+            "inputs": {
+              "voice-test": "https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:12:42Z",
+                "execution_cost": 0.1,
+                "metadata": {
+                  "model": "mureka-describe-song",
+                  "params": {
+                    "model": "audio-separation-2",
+                    "n": 2,
+                    "url": "https://cdn-us.eachlabs.ai/uploads/023f988f-511e-4e30-826e-4796ee93416e.mp3"
+                  },
+                  "processed_at": "2026-10-14T15:12:42Z",
+                  "type": "model"
+                },
+                "output": {
+                  "description": "This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and modern, with a polished sound that makes it suitable for various urban and club settings.",
+                  "genres": [
+                    "Trap",
+                    "Hip Hop",
+                    "Instrumental"
+                  ],
+                  "instrument": [
+                    "Synth Lead (Plucky, Catchy)",
+                    "Electronic Drum Kit",
+                    "Synth Bass",
+                    "Synth Pad",
+                    "Sound Effects"
+                  ],
+                  "tags": [
+                    "Instrumental",
+                    "Trap Beat",
+                    "Hip Hop Instrumental",
+                    "Plucky Synth",
+                    "808s",
+                    "Modern",
+                    "Urban",
+                    "Danceable",
+                    "High Energy"
+                  ],
+                  "trace_id": "e858f5219553f84500aad2eedb5e1253"
+                },
+                "primary": {
+                  "description": "This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and modern, with a polished sound that makes it suitable for various urban and club settings.",
+                  "genres": [
+                    "Trap",
+                    "Hip Hop",
+                    "Instrumental"
+                  ],
+                  "instrument": [
+                    "Synth Lead (Plucky, Catchy)",
+                    "Electronic Drum Kit",
+                    "Synth Bass",
+                    "Synth Pad",
+                    "Sound Effects"
+                  ],
+                  "tags": [
+                    "Instrumental",
+                    "Trap Beat",
+                    "Hip Hop Instrumental",
+                    "Plucky Synth",
+                    "808s",
+                    "Modern",
+                    "Urban",
+                    "Danceable",
+                    "High Energy"
+                  ],
+                  "trace_id": "e858f5219553f84500aad2eedb5e1253"
+                },
+                "started_at": "2026-10-14T15:12:31Z",
+                "status": "completed",
+                "step_id": "step1"
+              },
+              "step2": {
+                "completed_at": "2026-10-14T15:13:31Z",
+                "execution_cost": 0.08,
+                "metadata": {
+                  "model": "lyria-3-5",
+                  "params": {
+                    "prompt": "{\"description\":\"This is an instrumental trap beat characterized by its high energy and danceable rhythm. The track features a prominent, catchy plucky synth lead that serves as the main melodic hook, complemented by a deep, resonant 808-style synth bass providing a powerful low-end foundation. The rhythm section is driven by crisp, rapid-fire hi-hats and a punchy snare, creating a dynamic and engaging groove. Atmospheric synth pads fill out the background, adding depth and texture to the arrangement. The overall production is clean and modern, with a polished sound that makes it suitable for various urban and club settings.\",\"genres\":[\"Trap\",\"Hip Hop\",\"Instrumental\"],\"instrument\":[\"Synth Lead (Plucky, Catchy)\",\"Electronic Drum Kit\",\"Synth Bass\",\"Synth Pad\",\"Sound Effects\"],\"tags\":[\"Instrumental\",\"Trap Beat\",\"Hip Hop Instrumental\",\"Plucky Synth\",\"808s\",\"Modern\",\"Urban\",\"Danceable\",\"High Energy\"],\"trace_id\":\"e858f5219553f84500aad2eedb5e1253\"} Generate one new music track based on the musical description provided by the previous Mureka Describe Song step.\n\nTreat that description as the source profile. Closely preserve its genre and subgenre, tempo feel, rhythm and groove, dominant instruments, production texture, mood, and energy. Preserve whether the source is instrumental or contains musical vocals.\n\nCreate a fresh melody with subtle variations in fills, accents, and supporting layers. Choose these details independently each time this prompt runs, while keeping the defining musical style consistent.\n\nPrioritize similarity to the described source over creative reinvention. Avoid genre changes, major tempo shifts, or replacing the dominant instruments. Do not reproduce any spoken voiceover or separation artifacts mentioned in the analysis.\n\nSource musical description:\n[CONNECT THE MUREKA DESCRIBE SONG OUTPUT HERE]"
+                  },
+                  "processed_at": "2026-10-14T15:13:31Z",
+                  "type": "model"
+                },
+                "output": "https://cdn-us.eachlabs.ai/uploads/718eccb3-bfd2-436b-b3b2-15f39b90a58b.mp3",
+                "primary": "https://cdn-us.eachlabs.ai/uploads/718eccb3-bfd2-436b-b3b2-15f39b90a58b.mp3",
+                "started_at": "2026-10-14T15:12:42Z",
+                "status": "completed",
+                "step_id": "step2"
+              }
+            },
+            "output": "https://cdn-us.eachlabs.ai/uploads/718eccb3-bfd2-436b-b3b2-15f39b90a58b.mp3",
+            "total_cost": 0.18
+          },
+          "createdAt": "2026-10-14T15:12:31.145Z",
+          "completedAt": "2026-10-14T15:13:31.435Z"
+        },
+        {
+          "id": "it_mv88yati8g6hcv",
+          "type": "avatarVariation",
+          "aiModelId": "img2img-avatarVariation",
+          "status": "completed",
+          "executionId": "9b2b7da0-76dc-47ae-97e8-8204a17de4f8",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "image": "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+          },
+          "items": [
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/deabeb73-2f0e-4eae-8e46-3a252f1a23f3.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/9b858620-01dd-4b78-911c-ee7e00fbca86.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/90af5915-be90-4a27-904e-6c3e322b041a.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/d645ed92-5cf6-40d6-93c7-6210ce4a5284.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/1576b8e1-29a4-4b11-baf3-3c2d48144403.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/64a59043-f1b5-4835-ac29-9f0c4b2eb7da.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/5bc1223d-a4ca-4db7-b050-aee6e260c270.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/5d85adb3-05bb-4b09-8ff5-42f4e4d8e195.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/0f934c0d-753a-4497-b4c2-89035559fd42.png",
+              "mediaType": "image"
+            },
+            {
+              "url": "https://cdn-us.eachlabs.ai/uploads/23ea325b-edd8-4591-8341-e9d45b3a3866.png",
+              "mediaType": "image"
+            }
+          ],
+          "raw": {
+            "execution_id": "9b2b7da0-76dc-47ae-97e8-8204a17de4f8",
+            "workflow_id": "e739b60d-781b-4fa7-b1a8-7f7fc943d518",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:10:29Z",
+            "completed_at": "2026-10-14T15:11:20Z",
+            "inputs": {
+              "image": "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+            },
+            "step_outputs": {
+              "step1": {
+                "branches": {
+                  "branch_0": {
+                    "final_output": {
+                      "output": [
+                        "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                        "https://cdn-us.eachlabs.ai/uploads/cadbeeea-b118-40d4-8640-859d9cc78c63.png",
+                        "https://cdn-us.eachlabs.ai/uploads/00b81273-8cd1-4aaf-84df-2a0cdd63735f.png",
+                        "https://cdn-us.eachlabs.ai/uploads/1e75d878-ba8e-47d2-908f-a602194bd51d.png"
+                      ],
+                      "primary": "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                      "status": "completed",
+                      "step_id": "step1_branch_0"
+                    },
+                    "final_status": "SUCCEEDED",
+                    "steps": {
+                      "step1_branch_0": {
+                        "completed_at": "2026-10-14T15:10:40Z",
+                        "metadata": {
+                          "model": "nano-banana-2-edit",
+                          "params": {
+                            "aspect_ratio": "9:16",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "num_images": 4,
+                            "output_format": "png",
+                            "prompt": "Edit this photo by changing only the location and background. Keep the person exactly the same, with the same face, hairstyle, hair length, hair color, skin tone, age, body type, outfit, pose and camera angle. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nIf the photo is indoors, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a sunny city street, a park with trees, a cafe terrace, a balcony with a city view, a quiet residential sidewalk, inside a parked car sitting in the passenger seat.\n\nIf the photo is outdoors or in a car, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a bathroom with a large mirror, a vanity table with a lit mirror, an elevator with a mirror, a fitting room with a mirror, a cafe by the window, a living room, a hotel room, a bedroom.\n\nThe new location must look completely different from the original background. Adjust the light on the person naturally to match the new location. The hair stays clearly visible and unchanged.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture. No retouching. Vertical 9:16, face and hair sharp. No text or stickers. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                            "resolution": "1K"
+                          },
+                          "processed_at": "2026-10-14T15:10:40Z",
+                          "type": "model"
+                        },
+                        "output": [
+                          "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                          "https://cdn-us.eachlabs.ai/uploads/cadbeeea-b118-40d4-8640-859d9cc78c63.png",
+                          "https://cdn-us.eachlabs.ai/uploads/00b81273-8cd1-4aaf-84df-2a0cdd63735f.png",
+                          "https://cdn-us.eachlabs.ai/uploads/1e75d878-ba8e-47d2-908f-a602194bd51d.png"
+                        ],
+                        "primary": "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                        "started_at": "2026-10-14T15:10:29Z",
+                        "status": "completed",
+                        "step_id": "step1_branch_0"
+                      },
+                      "step1_branch_0_fallback": {
+                        "fallback": {
+                          "fallback_from_step": "step1_branch_0",
+                          "reason": "not_triggered"
+                        },
+                        "metadata": {
+                          "model": "gpt-image-v2-edit",
+                          "params": {
+                            "background": "auto",
+                            "image_size": "1080 * 1920",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "moderation": "low",
+                            "num_images": 1,
+                            "output_format": "png",
+                            "prompt": "Edit this photo by changing only the location and background. Keep the person exactly the same, with the same face, hairstyle, hair length, hair color, skin tone, age, body type, outfit, pose and camera angle. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nIf the photo is indoors, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a sunny city street, a park with trees, a cafe terrace, a balcony with a city view, a quiet residential sidewalk, inside a parked car sitting in the passenger seat.\n\nIf the photo is outdoors or in a car, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a bathroom with a large mirror, a vanity table with a lit mirror, an elevator with a mirror, a fitting room with a mirror, a cafe by the window, a living room, a hotel room, a bedroom.\n\nThe new location must look completely different from the original background. Adjust the light on the person naturally to match the new location. The hair stays clearly visible and unchanged.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture. No retouching. Vertical 9:16, face and hair sharp. No text or stickers.",
+                            "quality": "auto"
+                          }
+                        },
+                        "status": "skipped",
+                        "step_id": "step1_branch_0_fallback"
+                      }
+                    }
+                  },
+                  "branch_1": {
+                    "final_output": {
+                      "output": [
+                        "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                        "https://cdn-us.eachlabs.ai/uploads/7bd8f01a-d863-43d5-985b-fd18a33889a9.png",
+                        "https://cdn-us.eachlabs.ai/uploads/86f45f69-afd1-477f-8819-b1f2b8c5e7b9.png",
+                        "https://cdn-us.eachlabs.ai/uploads/832a6864-5ff6-4532-a339-15c11f2b75c1.png"
+                      ],
+                      "primary": "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                      "status": "completed",
+                      "step_id": "step1_branch_1"
+                    },
+                    "final_status": "SUCCEEDED",
+                    "steps": {
+                      "step1_branch_1": {
+                        "completed_at": "2026-10-14T15:10:40Z",
+                        "metadata": {
+                          "model": "nano-banana-2-edit",
+                          "params": {
+                            "aspect_ratio": "9:16",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "num_images": 4,
+                            "output_format": "png",
+                            "prompt": "Edit the reference photo by changing ONLY the lighting and time of day. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same outfit, same pose, same camera angle, same framing and same location. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference lighting and pick ONE new lighting that looks clearly different from it:\n- If the reference is daytime or bright → choose one: warm golden hour sunlight from the side with long soft shadows, soft blue hour light just after sunset, evening light with warm street lamps or shop lights in the background, or cozy indoor warm lamp light at night.\n- If the reference is evening, night or dim → choose one: bright midday daylight with clear natural shadows, soft overcast daylight with even light and no harsh shadows, morning sunlight coming through a window, or warm golden hour sunlight.\n- If the reference is indoors → it can also be soft natural window light from one side.\n- If the reference is outdoors → it can also be dappled sunlight through trees.\nThe new lighting must look clearly different from the reference and must fit the location naturally. The light on the person must match the light in the background.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Natural, real-world light only: no studio lights, no ring light, no flash look, no dramatic cinematic grading.\n\nThe person looks into the camera lens with a relaxed soft smile or a natural neutral expression. Realistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp.\n\nDo not add any text, captions, watermarks, logos, stickers, emojis, frames or interface elements.",
+                            "resolution": "1K"
+                          },
+                          "processed_at": "2026-10-14T15:10:40Z",
+                          "type": "model"
+                        },
+                        "output": [
+                          "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                          "https://cdn-us.eachlabs.ai/uploads/7bd8f01a-d863-43d5-985b-fd18a33889a9.png",
+                          "https://cdn-us.eachlabs.ai/uploads/86f45f69-afd1-477f-8819-b1f2b8c5e7b9.png",
+                          "https://cdn-us.eachlabs.ai/uploads/832a6864-5ff6-4532-a339-15c11f2b75c1.png"
+                        ],
+                        "primary": "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                        "started_at": "2026-10-14T15:10:29Z",
+                        "status": "completed",
+                        "step_id": "step1_branch_1"
+                      },
+                      "step1_branch_1_fallback": {
+                        "fallback": {
+                          "fallback_from_step": "step1_branch_1",
+                          "reason": "not_triggered"
+                        },
+                        "metadata": {
+                          "model": "gpt-image-v2-edit",
+                          "params": {
+                            "background": "auto",
+                            "image_size": "1080 * 1920",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "moderation": "low",
+                            "num_images": 1,
+                            "output_format": "png",
+                            "prompt": "Edit the reference photo by changing ONLY the lighting and time of day. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same outfit, same pose, same camera angle, same framing and same location. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference lighting and pick ONE new lighting that looks clearly different from it:\n- If the reference is daytime or bright → choose one: warm golden hour sunlight from the side with long soft shadows, soft blue hour light just after sunset, evening light with warm street lamps or shop lights in the background, or cozy indoor warm lamp light at night.\n- If the reference is evening, night or dim → choose one: bright midday daylight with clear natural shadows, soft overcast daylight with even light and no harsh shadows, morning sunlight coming through a window, or warm golden hour sunlight.\n- If the reference is indoors → it can also be soft natural window light from one side.\n- If the reference is outdoors → it can also be dappled sunlight through trees.\nThe new lighting must look clearly different from the reference and must fit the location naturally. The light on the person must match the light in the background.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Natural, real-world light only: no studio lights, no ring light, no flash look, no dramatic cinematic grading.\n\nThe person looks into the camera lens with a relaxed soft smile or a natural neutral expression. Realistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp.\n\nDo not add any text, captions, watermarks, logos, stickers, emojis, frames or interface elements.",
+                            "quality": "auto"
+                          }
+                        },
+                        "status": "skipped",
+                        "step_id": "step1_branch_1_fallback"
+                      }
+                    }
+                  },
+                  "branch_2": {
+                    "final_output": {
+                      "output": [
+                        "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                        "https://cdn-us.eachlabs.ai/uploads/a8667c7a-3bad-41ee-bbb6-ac6d2d5126af.png",
+                        "https://cdn-us.eachlabs.ai/uploads/52f969bd-d41a-459e-b3d0-b6f6f9e69736.png",
+                        "https://cdn-us.eachlabs.ai/uploads/43231266-0bd7-49db-bca2-c0477014c968.png",
+                        "https://cdn-us.eachlabs.ai/uploads/f3b3a38f-b07e-4719-b9b5-d8f766c623aa.png",
+                        "https://cdn-us.eachlabs.ai/uploads/a4f19a9c-6f59-4213-8405-3ed3195a52f7.png",
+                        "https://cdn-us.eachlabs.ai/uploads/b03b53a8-8f8f-44cd-9397-f1aa733cfc14.png"
+                      ],
+                      "primary": "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                      "status": "completed",
+                      "step_id": "step1_branch_2"
+                    },
+                    "final_status": "SUCCEEDED",
+                    "steps": {
+                      "step1_branch_2": {
+                        "completed_at": "2026-10-14T15:10:50Z",
+                        "metadata": {
+                          "model": "nano-banana-2-edit",
+                          "params": {
+                            "aspect_ratio": "9:16",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "num_images": 7,
+                            "output_format": "png",
+                            "prompt": "Change ONLY the camera position and the body pose in this photo. Everything else stays exactly the same: same person, same face, same hairstyle, same hair color, same skin tone, same age, same body type, same outfit, same location, same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nNEVER a full-body shot. The feet and shoes are never visible. The framing is always from the knees up or closer.\n\nSTEP 1 – Look at the reference and decide which one it is:\nA) Close-up: only the face and shoulders are visible.\nB) Medium shot: the person is visible from the chest, waist or knees up.\nC) Full-body shot: the person is visible from head to shoes.\nD) Selfie: the person is holding the phone, an arm reaches toward the camera.\n\nSTEP 2 – Apply the new camera position for that type:\n\nIf A (close-up) → WAIST-UP FROM A LOW ANGLE.\nThe camera is 1.5 meters away at hip height, looking slightly up at the person. Visible from the waist up. The ceiling or sky is visible behind the head. The person stands relaxed, one hand in a pocket or touching the hair.\n\nIf B (medium shot) → TIGHT FACE CLOSE-UP FROM ABOVE.\nThe camera is 40 cm from the face, slightly above eye level, looking down. Only the face, hair and a bit of the neck are visible. The face fills most of the frame. The person tilts the chin slightly up.\n\nIf C (full body) → SIDE VIEW, CHEST-UP.\nThe camera is 1 meter away at chest height. The body is turned sideways in profile. The head is turned back over the shoulder toward the camera. Only the head, shoulders and chest are visible.\n\nIf D (selfie) → KNEE-UP, THREE-QUARTER ANGLE, TAKEN BY A FRIEND.\nThe camera is 2 meters away at chest height, at a 45 degree angle from the side. Visible from the knees up. The person leans one shoulder against a wall or shelf, both hands relaxed and empty, no phone in hand.\n\nIMPORTANT:\n- This is a real new camera position, not a crop or zoom of the reference.\n- The pose must change to fit the new angle.\n- If the new frame shows more of the room, continue the same location naturally: same walls, same furniture style, same floor.\n- If the result looks like the reference framing, it is wrong.\n- If the feet or shoes are visible, it is wrong.\n\nThe person always looks directly into the camera lens with clear eye contact, with a relaxed soft smile or a natural neutral expression.\n\nUGC style: a casual photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, natural everyday pose.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp. No text, stickers, watermarks, logos or interface elements.",
+                            "resolution": "1K"
+                          },
+                          "processed_at": "2026-10-14T15:10:50Z",
+                          "type": "model"
+                        },
+                        "output": [
+                          "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                          "https://cdn-us.eachlabs.ai/uploads/a8667c7a-3bad-41ee-bbb6-ac6d2d5126af.png",
+                          "https://cdn-us.eachlabs.ai/uploads/52f969bd-d41a-459e-b3d0-b6f6f9e69736.png",
+                          "https://cdn-us.eachlabs.ai/uploads/43231266-0bd7-49db-bca2-c0477014c968.png",
+                          "https://cdn-us.eachlabs.ai/uploads/f3b3a38f-b07e-4719-b9b5-d8f766c623aa.png",
+                          "https://cdn-us.eachlabs.ai/uploads/a4f19a9c-6f59-4213-8405-3ed3195a52f7.png",
+                          "https://cdn-us.eachlabs.ai/uploads/b03b53a8-8f8f-44cd-9397-f1aa733cfc14.png"
+                        ],
+                        "primary": "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                        "started_at": "2026-10-14T15:10:29Z",
+                        "status": "completed",
+                        "step_id": "step1_branch_2"
+                      },
+                      "step1_branch_2_fallback": {
+                        "fallback": {
+                          "fallback_from_step": "step1_branch_2",
+                          "reason": "not_triggered"
+                        },
+                        "metadata": {
+                          "model": "gpt-image-v2-edit",
+                          "params": {
+                            "background": "auto",
+                            "image_size": "1080 * 1920",
+                            "image_urls": [],
+                            "moderation": "low",
+                            "num_images": 1,
+                            "output_format": "png",
+                            "prompt": "Change ONLY the camera position and the body pose in this photo. Everything else stays exactly the same: same person, same face, same hairstyle, same hair color, same skin tone, same age, same body type, same outfit, same location, same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nNEVER a full-body shot. The feet and shoes are never visible. The framing is always from the knees up or closer.\n\nSTEP 1 – Look at the reference and decide which one it is:\nA) Close-up: only the face and shoulders are visible.\nB) Medium shot: the person is visible from the chest, waist or knees up.\nC) Full-body shot: the person is visible from head to shoes.\nD) Selfie: the person is holding the phone, an arm reaches toward the camera.\n\nSTEP 2 – Apply the new camera position for that type:\n\nIf A (close-up) → WAIST-UP FROM A LOW ANGLE.\nThe camera is 1.5 meters away at hip height, looking slightly up at the person. Visible from the waist up. The ceiling or sky is visible behind the head. The person stands relaxed, one hand in a pocket or touching the hair.\n\nIf B (medium shot) → TIGHT FACE CLOSE-UP FROM ABOVE.\nThe camera is 40 cm from the face, slightly above eye level, looking down. Only the face, hair and a bit of the neck are visible. The face fills most of the frame. The person tilts the chin slightly up.\n\nIf C (full body) → SIDE VIEW, CHEST-UP.\nThe camera is 1 meter away at chest height. The body is turned sideways in profile. The head is turned back over the shoulder toward the camera. Only the head, shoulders and chest are visible.\n\nIf D (selfie) → KNEE-UP, THREE-QUARTER ANGLE, TAKEN BY A FRIEND.\nThe camera is 2 meters away at chest height, at a 45 degree angle from the side. Visible from the knees up. The person leans one shoulder against a wall or shelf, both hands relaxed and empty, no phone in hand.\n\nIMPORTANT:\n- This is a real new camera position, not a crop or zoom of the reference.\n- The pose must change to fit the new angle.\n- If the new frame shows more of the room, continue the same location naturally: same walls, same furniture style, same floor.\n- If the result looks like the reference framing, it is wrong.\n- If the feet or shoes are visible, it is wrong.\n\nThe person always looks directly into the camera lens with clear eye contact, with a relaxed soft smile or a natural neutral expression.\n\nUGC style: a casual photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, natural everyday pose.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp. No text, stickers, watermarks, logos or interface elements.",
+                            "quality": "auto"
+                          }
+                        },
+                        "status": "skipped",
+                        "step_id": "step1_branch_2_fallback"
+                      }
+                    }
+                  },
+                  "branch_3": {
+                    "final_output": {
+                      "output": [
+                        "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                        "https://cdn-us.eachlabs.ai/uploads/583672b6-ff4e-41d8-8523-fbcf3ef3c45a.png",
+                        "https://cdn-us.eachlabs.ai/uploads/3fa84807-4833-4a54-ad24-c81358c17b6b.png",
+                        "https://cdn-us.eachlabs.ai/uploads/027367f3-4c52-404e-80fd-20fe4b61bb31.png"
+                      ],
+                      "primary": "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                      "status": "completed",
+                      "step_id": "step1_branch_3"
+                    },
+                    "final_status": "SUCCEEDED",
+                    "steps": {
+                      "step1_branch_3": {
+                        "completed_at": "2026-10-14T15:10:39Z",
+                        "metadata": {
+                          "model": "nano-banana-2-edit",
+                          "params": {
+                            "aspect_ratio": "9:16",
+                            "image_urls": [
+                              "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                            ],
+                            "num_images": 4,
+                            "output_format": "png",
+                            "prompt": "Edit the reference photo by changing ONLY the outfit. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same pose, same camera angle, same location and same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference clothing and follow these rules:\n- If the reference clothing is dark (black, navy, dark grey, brown) → choose one bright or colorful outfit: a mustard yellow sweatshirt, a light blue linen shirt, a red knit top, a pastel pink sweatshirt, a blue-white striped top, or a simple floral dress.\n- If the reference clothing is light (white, cream, beige, light grey) → choose one dark or saturated outfit: a black leather jacket over a t-shirt, a black turtleneck, a navy blazer, a dark green polo, a burgundy cardigan, or a denim jacket over a black t-shirt.\n- If the reference clothing is colorful → choose one neutral outfit: a grey oversized hoodie, a camel wool coat with a dark scarf, an olive green overshirt over a white t-shirt, or a black puffer jacket.\n- The new outfit must be a different garment type AND a different color from the reference. Never a white, cream or beige knit sweater.\n\nThe clothing fits naturally to the person's body and pose. Realistic modern phone photo, natural colors, slight grain, real fabric texture. No retouching. Vertical 9:16, face sharp. No text, stickers or interface elements. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                            "resolution": "1K"
+                          },
+                          "processed_at": "2026-10-14T15:10:39Z",
+                          "type": "model"
+                        },
+                        "output": [
+                          "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                          "https://cdn-us.eachlabs.ai/uploads/583672b6-ff4e-41d8-8523-fbcf3ef3c45a.png",
+                          "https://cdn-us.eachlabs.ai/uploads/3fa84807-4833-4a54-ad24-c81358c17b6b.png",
+                          "https://cdn-us.eachlabs.ai/uploads/027367f3-4c52-404e-80fd-20fe4b61bb31.png"
+                        ],
+                        "primary": "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                        "started_at": "2026-10-14T15:10:29Z",
+                        "status": "completed",
+                        "step_id": "step1_branch_3"
+                      },
+                      "step1_branch_3_fallback": {
+                        "fallback": {
+                          "fallback_from_step": "step1_branch_3",
+                          "reason": "not_triggered"
+                        },
+                        "metadata": {
+                          "model": "gpt-image-v2-edit",
+                          "params": {
+                            "background": "auto",
+                            "image_size": "1080 * 1920",
+                            "image_urls": [],
+                            "moderation": "low",
+                            "num_images": 1,
+                            "output_format": "png",
+                            "prompt": "Edit the reference photo by changing ONLY the outfit. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same pose, same camera angle, same location and same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference clothing and follow these rules:\n- If the reference clothing is dark (black, navy, dark grey, brown) → choose one bright or colorful outfit: a mustard yellow sweatshirt, a light blue linen shirt, a red knit top, a pastel pink sweatshirt, a blue-white striped top, or a simple floral dress.\n- If the reference clothing is light (white, cream, beige, light grey) → choose one dark or saturated outfit: a black leather jacket over a t-shirt, a black turtleneck, a navy blazer, a dark green polo, a burgundy cardigan, or a denim jacket over a black t-shirt.\n- If the reference clothing is colorful → choose one neutral outfit: a grey oversized hoodie, a camel wool coat with a dark scarf, an olive green overshirt over a white t-shirt, or a black puffer jacket.\n- The new outfit must be a different garment type AND a different color from the reference. Never a white, cream or beige knit sweater.\n\nThe clothing fits naturally to the person's body and pose. Realistic modern phone photo, natural colors, slight grain, real fabric texture. No retouching. Vertical 9:16, face sharp. No text, stickers or interface elements. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                            "quality": "auto"
+                          }
+                        },
+                        "status": "skipped",
+                        "step_id": "step1_branch_3_fallback"
+                      }
+                    }
+                  }
+                },
+                "completed_at": "2026-10-14T15:10:50Z",
+                "kind": "parallel",
+                "metadata": {
+                  "branches": [
+                    "branch_0",
+                    "branch_1",
+                    "branch_2",
+                    "branch_3"
+                  ]
+                },
+                "output": {
+                  "branch_0": {
+                    "output": [
+                      "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                      "https://cdn-us.eachlabs.ai/uploads/cadbeeea-b118-40d4-8640-859d9cc78c63.png",
+                      "https://cdn-us.eachlabs.ai/uploads/00b81273-8cd1-4aaf-84df-2a0cdd63735f.png",
+                      "https://cdn-us.eachlabs.ai/uploads/1e75d878-ba8e-47d2-908f-a602194bd51d.png"
+                    ],
+                    "primary": "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                    "status": "completed",
+                    "step_id": "step1_branch_0"
+                  },
+                  "branch_1": {
+                    "output": [
+                      "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                      "https://cdn-us.eachlabs.ai/uploads/7bd8f01a-d863-43d5-985b-fd18a33889a9.png",
+                      "https://cdn-us.eachlabs.ai/uploads/86f45f69-afd1-477f-8819-b1f2b8c5e7b9.png",
+                      "https://cdn-us.eachlabs.ai/uploads/832a6864-5ff6-4532-a339-15c11f2b75c1.png"
+                    ],
+                    "primary": "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                    "status": "completed",
+                    "step_id": "step1_branch_1"
+                  },
+                  "branch_2": {
+                    "output": [
+                      "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                      "https://cdn-us.eachlabs.ai/uploads/a8667c7a-3bad-41ee-bbb6-ac6d2d5126af.png",
+                      "https://cdn-us.eachlabs.ai/uploads/52f969bd-d41a-459e-b3d0-b6f6f9e69736.png",
+                      "https://cdn-us.eachlabs.ai/uploads/43231266-0bd7-49db-bca2-c0477014c968.png",
+                      "https://cdn-us.eachlabs.ai/uploads/f3b3a38f-b07e-4719-b9b5-d8f766c623aa.png",
+                      "https://cdn-us.eachlabs.ai/uploads/a4f19a9c-6f59-4213-8405-3ed3195a52f7.png",
+                      "https://cdn-us.eachlabs.ai/uploads/b03b53a8-8f8f-44cd-9397-f1aa733cfc14.png"
+                    ],
+                    "primary": "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                    "status": "completed",
+                    "step_id": "step1_branch_2"
+                  },
+                  "branch_3": {
+                    "output": [
+                      "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                      "https://cdn-us.eachlabs.ai/uploads/583672b6-ff4e-41d8-8523-fbcf3ef3c45a.png",
+                      "https://cdn-us.eachlabs.ai/uploads/3fa84807-4833-4a54-ad24-c81358c17b6b.png",
+                      "https://cdn-us.eachlabs.ai/uploads/027367f3-4c52-404e-80fd-20fe4b61bb31.png"
+                    ],
+                    "primary": "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                    "status": "completed",
+                    "step_id": "step1_branch_3"
+                  }
+                },
+                "started_at": "2026-10-14T15:10:29Z",
+                "status": "completed"
+              },
+              "step1_branch_0": {
+                "completed_at": "2026-10-14T15:10:40Z",
+                "execution_cost": 0.32,
+                "metadata": {
+                  "model": "nano-banana-2-edit",
+                  "params": {
+                    "aspect_ratio": "9:16",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "num_images": 4,
+                    "output_format": "png",
+                    "prompt": "Edit this photo by changing only the location and background. Keep the person exactly the same, with the same face, hairstyle, hair length, hair color, skin tone, age, body type, outfit, pose and camera angle. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nIf the photo is indoors, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a sunny city street, a park with trees, a cafe terrace, a balcony with a city view, a quiet residential sidewalk, inside a parked car sitting in the passenger seat.\n\nIf the photo is outdoors or in a car, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a bathroom with a large mirror, a vanity table with a lit mirror, an elevator with a mirror, a fitting room with a mirror, a cafe by the window, a living room, a hotel room, a bedroom.\n\nThe new location must look completely different from the original background. Adjust the light on the person naturally to match the new location. The hair stays clearly visible and unchanged.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture. No retouching. Vertical 9:16, face and hair sharp. No text or stickers. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                    "resolution": "1K"
+                  },
+                  "processed_at": "2026-10-14T15:10:40Z",
+                  "type": "model"
+                },
+                "output": [
+                  "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                  "https://cdn-us.eachlabs.ai/uploads/cadbeeea-b118-40d4-8640-859d9cc78c63.png",
+                  "https://cdn-us.eachlabs.ai/uploads/00b81273-8cd1-4aaf-84df-2a0cdd63735f.png",
+                  "https://cdn-us.eachlabs.ai/uploads/1e75d878-ba8e-47d2-908f-a602194bd51d.png"
+                ],
+                "primary": "https://cdn-us.eachlabs.ai/uploads/695d0aa5-c76e-4026-be19-a5b2c690e22f.png",
+                "started_at": "2026-10-14T15:10:29Z",
+                "status": "completed",
+                "step_id": "step1_branch_0"
+              },
+              "step1_branch_0_fallback": {
+                "fallback": {
+                  "fallback_from_step": "step1_branch_0",
+                  "reason": "not_triggered"
+                },
+                "metadata": {
+                  "model": "gpt-image-v2-edit",
+                  "params": {
+                    "background": "auto",
+                    "image_size": "1080 * 1920",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "moderation": "low",
+                    "num_images": 1,
+                    "output_format": "png",
+                    "prompt": "Edit this photo by changing only the location and background. Keep the person exactly the same, with the same face, hairstyle, hair length, hair color, skin tone, age, body type, outfit, pose and camera angle. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nIf the photo is indoors, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a sunny city street, a park with trees, a cafe terrace, a balcony with a city view, a quiet residential sidewalk, inside a parked car sitting in the passenger seat.\n\nIf the photo is outdoors or in a car, place the person in one of these locations. a hair salon or barbershop sitting in the styling chair facing the mirror, a hair salon or barbershop standing after a finished hairstyle, a bathroom with a large mirror, a vanity table with a lit mirror, an elevator with a mirror, a fitting room with a mirror, a cafe by the window, a living room, a hotel room, a bedroom.\n\nThe new location must look completely different from the original background. Adjust the light on the person naturally to match the new location. The hair stays clearly visible and unchanged.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture. No retouching. Vertical 9:16, face and hair sharp. No text or stickers.",
+                    "quality": "auto"
+                  }
+                },
+                "status": "skipped",
+                "step_id": "step1_branch_0_fallback"
+              },
+              "step1_branch_1": {
+                "completed_at": "2026-10-14T15:10:40Z",
+                "execution_cost": 0.32,
+                "metadata": {
+                  "model": "nano-banana-2-edit",
+                  "params": {
+                    "aspect_ratio": "9:16",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "num_images": 4,
+                    "output_format": "png",
+                    "prompt": "Edit the reference photo by changing ONLY the lighting and time of day. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same outfit, same pose, same camera angle, same framing and same location. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference lighting and pick ONE new lighting that looks clearly different from it:\n- If the reference is daytime or bright → choose one: warm golden hour sunlight from the side with long soft shadows, soft blue hour light just after sunset, evening light with warm street lamps or shop lights in the background, or cozy indoor warm lamp light at night.\n- If the reference is evening, night or dim → choose one: bright midday daylight with clear natural shadows, soft overcast daylight with even light and no harsh shadows, morning sunlight coming through a window, or warm golden hour sunlight.\n- If the reference is indoors → it can also be soft natural window light from one side.\n- If the reference is outdoors → it can also be dappled sunlight through trees.\nThe new lighting must look clearly different from the reference and must fit the location naturally. The light on the person must match the light in the background.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Natural, real-world light only: no studio lights, no ring light, no flash look, no dramatic cinematic grading.\n\nThe person looks into the camera lens with a relaxed soft smile or a natural neutral expression. Realistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp.\n\nDo not add any text, captions, watermarks, logos, stickers, emojis, frames or interface elements.",
+                    "resolution": "1K"
+                  },
+                  "processed_at": "2026-10-14T15:10:40Z",
+                  "type": "model"
+                },
+                "output": [
+                  "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                  "https://cdn-us.eachlabs.ai/uploads/7bd8f01a-d863-43d5-985b-fd18a33889a9.png",
+                  "https://cdn-us.eachlabs.ai/uploads/86f45f69-afd1-477f-8819-b1f2b8c5e7b9.png",
+                  "https://cdn-us.eachlabs.ai/uploads/832a6864-5ff6-4532-a339-15c11f2b75c1.png"
+                ],
+                "primary": "https://cdn-us.eachlabs.ai/uploads/c4e7d571-dc56-4503-b019-b4809c0c8c79.png",
+                "started_at": "2026-10-14T15:10:29Z",
+                "status": "completed",
+                "step_id": "step1_branch_1"
+              },
+              "step1_branch_1_fallback": {
+                "fallback": {
+                  "fallback_from_step": "step1_branch_1",
+                  "reason": "not_triggered"
+                },
+                "metadata": {
+                  "model": "gpt-image-v2-edit",
+                  "params": {
+                    "background": "auto",
+                    "image_size": "1080 * 1920",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "moderation": "low",
+                    "num_images": 1,
+                    "output_format": "png",
+                    "prompt": "Edit the reference photo by changing ONLY the lighting and time of day. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same outfit, same pose, same camera angle, same framing and same location. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference lighting and pick ONE new lighting that looks clearly different from it:\n- If the reference is daytime or bright → choose one: warm golden hour sunlight from the side with long soft shadows, soft blue hour light just after sunset, evening light with warm street lamps or shop lights in the background, or cozy indoor warm lamp light at night.\n- If the reference is evening, night or dim → choose one: bright midday daylight with clear natural shadows, soft overcast daylight with even light and no harsh shadows, morning sunlight coming through a window, or warm golden hour sunlight.\n- If the reference is indoors → it can also be soft natural window light from one side.\n- If the reference is outdoors → it can also be dappled sunlight through trees.\nThe new lighting must look clearly different from the reference and must fit the location naturally. The light on the person must match the light in the background.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Natural, real-world light only: no studio lights, no ring light, no flash look, no dramatic cinematic grading.\n\nThe person looks into the camera lens with a relaxed soft smile or a natural neutral expression. Realistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp.\n\nDo not add any text, captions, watermarks, logos, stickers, emojis, frames or interface elements.",
+                    "quality": "auto"
+                  }
+                },
+                "status": "skipped",
+                "step_id": "step1_branch_1_fallback"
+              },
+              "step1_branch_2": {
+                "completed_at": "2026-10-14T15:10:50Z",
+                "execution_cost": 0.56,
+                "metadata": {
+                  "model": "nano-banana-2-edit",
+                  "params": {
+                    "aspect_ratio": "9:16",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "num_images": 7,
+                    "output_format": "png",
+                    "prompt": "Change ONLY the camera position and the body pose in this photo. Everything else stays exactly the same: same person, same face, same hairstyle, same hair color, same skin tone, same age, same body type, same outfit, same location, same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nNEVER a full-body shot. The feet and shoes are never visible. The framing is always from the knees up or closer.\n\nSTEP 1 – Look at the reference and decide which one it is:\nA) Close-up: only the face and shoulders are visible.\nB) Medium shot: the person is visible from the chest, waist or knees up.\nC) Full-body shot: the person is visible from head to shoes.\nD) Selfie: the person is holding the phone, an arm reaches toward the camera.\n\nSTEP 2 – Apply the new camera position for that type:\n\nIf A (close-up) → WAIST-UP FROM A LOW ANGLE.\nThe camera is 1.5 meters away at hip height, looking slightly up at the person. Visible from the waist up. The ceiling or sky is visible behind the head. The person stands relaxed, one hand in a pocket or touching the hair.\n\nIf B (medium shot) → TIGHT FACE CLOSE-UP FROM ABOVE.\nThe camera is 40 cm from the face, slightly above eye level, looking down. Only the face, hair and a bit of the neck are visible. The face fills most of the frame. The person tilts the chin slightly up.\n\nIf C (full body) → SIDE VIEW, CHEST-UP.\nThe camera is 1 meter away at chest height. The body is turned sideways in profile. The head is turned back over the shoulder toward the camera. Only the head, shoulders and chest are visible.\n\nIf D (selfie) → KNEE-UP, THREE-QUARTER ANGLE, TAKEN BY A FRIEND.\nThe camera is 2 meters away at chest height, at a 45 degree angle from the side. Visible from the knees up. The person leans one shoulder against a wall or shelf, both hands relaxed and empty, no phone in hand.\n\nIMPORTANT:\n- This is a real new camera position, not a crop or zoom of the reference.\n- The pose must change to fit the new angle.\n- If the new frame shows more of the room, continue the same location naturally: same walls, same furniture style, same floor.\n- If the result looks like the reference framing, it is wrong.\n- If the feet or shoes are visible, it is wrong.\n\nThe person always looks directly into the camera lens with clear eye contact, with a relaxed soft smile or a natural neutral expression.\n\nUGC style: a casual photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, natural everyday pose.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp. No text, stickers, watermarks, logos or interface elements.",
+                    "resolution": "1K"
+                  },
+                  "processed_at": "2026-10-14T15:10:50Z",
+                  "type": "model"
+                },
+                "output": [
+                  "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                  "https://cdn-us.eachlabs.ai/uploads/a8667c7a-3bad-41ee-bbb6-ac6d2d5126af.png",
+                  "https://cdn-us.eachlabs.ai/uploads/52f969bd-d41a-459e-b3d0-b6f6f9e69736.png",
+                  "https://cdn-us.eachlabs.ai/uploads/43231266-0bd7-49db-bca2-c0477014c968.png",
+                  "https://cdn-us.eachlabs.ai/uploads/f3b3a38f-b07e-4719-b9b5-d8f766c623aa.png",
+                  "https://cdn-us.eachlabs.ai/uploads/a4f19a9c-6f59-4213-8405-3ed3195a52f7.png",
+                  "https://cdn-us.eachlabs.ai/uploads/b03b53a8-8f8f-44cd-9397-f1aa733cfc14.png"
+                ],
+                "primary": "https://cdn-us.eachlabs.ai/uploads/bf0ec373-ad69-4408-85c7-a1b79b7ed7fb.png",
+                "started_at": "2026-10-14T15:10:29Z",
+                "status": "completed",
+                "step_id": "step1_branch_2"
+              },
+              "step1_branch_2_fallback": {
+                "fallback": {
+                  "fallback_from_step": "step1_branch_2",
+                  "reason": "not_triggered"
+                },
+                "metadata": {
+                  "model": "gpt-image-v2-edit",
+                  "params": {
+                    "background": "auto",
+                    "image_size": "1080 * 1920",
+                    "image_urls": [],
+                    "moderation": "low",
+                    "num_images": 1,
+                    "output_format": "png",
+                    "prompt": "Change ONLY the camera position and the body pose in this photo. Everything else stays exactly the same: same person, same face, same hairstyle, same hair color, same skin tone, same age, same body type, same outfit, same location, same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nNEVER a full-body shot. The feet and shoes are never visible. The framing is always from the knees up or closer.\n\nSTEP 1 – Look at the reference and decide which one it is:\nA) Close-up: only the face and shoulders are visible.\nB) Medium shot: the person is visible from the chest, waist or knees up.\nC) Full-body shot: the person is visible from head to shoes.\nD) Selfie: the person is holding the phone, an arm reaches toward the camera.\n\nSTEP 2 – Apply the new camera position for that type:\n\nIf A (close-up) → WAIST-UP FROM A LOW ANGLE.\nThe camera is 1.5 meters away at hip height, looking slightly up at the person. Visible from the waist up. The ceiling or sky is visible behind the head. The person stands relaxed, one hand in a pocket or touching the hair.\n\nIf B (medium shot) → TIGHT FACE CLOSE-UP FROM ABOVE.\nThe camera is 40 cm from the face, slightly above eye level, looking down. Only the face, hair and a bit of the neck are visible. The face fills most of the frame. The person tilts the chin slightly up.\n\nIf C (full body) → SIDE VIEW, CHEST-UP.\nThe camera is 1 meter away at chest height. The body is turned sideways in profile. The head is turned back over the shoulder toward the camera. Only the head, shoulders and chest are visible.\n\nIf D (selfie) → KNEE-UP, THREE-QUARTER ANGLE, TAKEN BY A FRIEND.\nThe camera is 2 meters away at chest height, at a 45 degree angle from the side. Visible from the knees up. The person leans one shoulder against a wall or shelf, both hands relaxed and empty, no phone in hand.\n\nIMPORTANT:\n- This is a real new camera position, not a crop or zoom of the reference.\n- The pose must change to fit the new angle.\n- If the new frame shows more of the room, continue the same location naturally: same walls, same furniture style, same floor.\n- If the result looks like the reference framing, it is wrong.\n- If the feet or shoes are visible, it is wrong.\n\nThe person always looks directly into the camera lens with clear eye contact, with a relaxed soft smile or a natural neutral expression.\n\nUGC style: a casual photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, natural everyday pose.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No retouching, no heavy blur. Vertical 9:16, face sharp. No text, stickers, watermarks, logos or interface elements.",
+                    "quality": "auto"
+                  }
+                },
+                "status": "skipped",
+                "step_id": "step1_branch_2_fallback"
+              },
+              "step1_branch_3": {
+                "completed_at": "2026-10-14T15:10:39Z",
+                "execution_cost": 0.32,
+                "metadata": {
+                  "model": "nano-banana-2-edit",
+                  "params": {
+                    "aspect_ratio": "9:16",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "num_images": 4,
+                    "output_format": "png",
+                    "prompt": "Edit the reference photo by changing ONLY the outfit. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same pose, same camera angle, same location and same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference clothing and follow these rules:\n- If the reference clothing is dark (black, navy, dark grey, brown) → choose one bright or colorful outfit: a mustard yellow sweatshirt, a light blue linen shirt, a red knit top, a pastel pink sweatshirt, a blue-white striped top, or a simple floral dress.\n- If the reference clothing is light (white, cream, beige, light grey) → choose one dark or saturated outfit: a black leather jacket over a t-shirt, a black turtleneck, a navy blazer, a dark green polo, a burgundy cardigan, or a denim jacket over a black t-shirt.\n- If the reference clothing is colorful → choose one neutral outfit: a grey oversized hoodie, a camel wool coat with a dark scarf, an olive green overshirt over a white t-shirt, or a black puffer jacket.\n- The new outfit must be a different garment type AND a different color from the reference. Never a white, cream or beige knit sweater.\n\nThe clothing fits naturally to the person's body and pose. Realistic modern phone photo, natural colors, slight grain, real fabric texture. No retouching. Vertical 9:16, face sharp. No text, stickers or interface elements. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                    "resolution": "1K"
+                  },
+                  "processed_at": "2026-10-14T15:10:39Z",
+                  "type": "model"
+                },
+                "output": [
+                  "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                  "https://cdn-us.eachlabs.ai/uploads/583672b6-ff4e-41d8-8523-fbcf3ef3c45a.png",
+                  "https://cdn-us.eachlabs.ai/uploads/3fa84807-4833-4a54-ad24-c81358c17b6b.png",
+                  "https://cdn-us.eachlabs.ai/uploads/027367f3-4c52-404e-80fd-20fe4b61bb31.png"
+                ],
+                "primary": "https://cdn-us.eachlabs.ai/uploads/263cca0b-6d00-442e-8a5f-4dc995e3aa61.png",
+                "started_at": "2026-10-14T15:10:29Z",
+                "status": "completed",
+                "step_id": "step1_branch_3"
+              },
+              "step1_branch_3_fallback": {
+                "fallback": {
+                  "fallback_from_step": "step1_branch_3",
+                  "reason": "not_triggered"
+                },
+                "metadata": {
+                  "model": "gpt-image-v2-edit",
+                  "params": {
+                    "background": "auto",
+                    "image_size": "1080 * 1920",
+                    "image_urls": [],
+                    "moderation": "low",
+                    "num_images": 1,
+                    "output_format": "png",
+                    "prompt": "Edit the reference photo by changing ONLY the outfit. Keep the person exactly the same: same face, hairstyle, hair color, skin tone, age, body type, same pose, same camera angle, same location and same lighting. Remove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\n\nLook at the reference clothing and follow these rules:\n- If the reference clothing is dark (black, navy, dark grey, brown) → choose one bright or colorful outfit: a mustard yellow sweatshirt, a light blue linen shirt, a red knit top, a pastel pink sweatshirt, a blue-white striped top, or a simple floral dress.\n- If the reference clothing is light (white, cream, beige, light grey) → choose one dark or saturated outfit: a black leather jacket over a t-shirt, a black turtleneck, a navy blazer, a dark green polo, a burgundy cardigan, or a denim jacket over a black t-shirt.\n- If the reference clothing is colorful → choose one neutral outfit: a grey oversized hoodie, a camel wool coat with a dark scarf, an olive green overshirt over a white t-shirt, or a black puffer jacket.\n- The new outfit must be a different garment type AND a different color from the reference. Never a white, cream or beige knit sweater.\n\nThe clothing fits naturally to the person's body and pose. Realistic modern phone photo, natural colors, slight grain, real fabric texture. No retouching. Vertical 9:16, face sharp. No text, stickers or interface elements. Only take the person (avatar) and the location from the reference images. Do not copy any text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any reference image. The final image is a clean photo with no text or graphic elements anywhere.",
+                    "quality": "auto"
+                  }
+                },
+                "status": "skipped",
+                "step_id": "step1_branch_3_fallback"
+              },
+              "step2": {
+                "completed_at": "2026-10-14T15:11:20Z",
+                "execution_cost": 0.8,
+                "metadata": {
+                  "model": "nano-banana-2-edit",
+                  "params": {
+                    "aspect_ratio": "9:16",
+                    "background": "auto",
+                    "image_size": "1024x1024",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "moderation": "low",
+                    "num_images": 10,
+                    "output_format": "png",
+                    "prompt": "You are given 5 images in this order:\n- First image: the original photo of the person, used only for identity.\n- Second image: a location reference.\n- Third image: a lighting reference.\n- Fourth image: a camera angle and pose reference.\n- Fifth image: an outfit reference.\nRemove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\nThe person's face, hairstyle, hair length, hair color, skin tone, age and body type must match the first image exactly. Take nothing else from the first image: not its camera angle, framing, pose, background, lighting or clothing.\n\nUse exactly the location and background from the second image, and no other location.\n\nUse the lighting and time of day from the third image. The light on the person must match the light in the background.\n\nCopy the camera angle, framing, camera distance, camera height and body pose exactly from the fourth image. If the fourth image is a full-body shot, the result is a full-body shot. If it is a close-up, the result is a close-up. The result must look clearly different in angle and framing from the first image.\n\nDress the person in the clothing from the fifth image.\n\nEYE CONTACT: The person always looks directly into the camera lens, making clear eye contact with the viewer. Both eyes are visible and focused on the lens. Even if the body is turned sideways or the reference shows the person looking away, the head and eyes turn toward the camera. Never looking away, down, to the side or past the camera.\n\nThe person has a relaxed soft smile or a natural neutral expression. Unless it is a mirror selfie, the photo is taken by another person and the hands are relaxed, not holding a phone.\n\nTake only what is listed above from each image. Do not copy any other people, faces, text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any image.\n\nThe final photo is one natural, consistent scene where the location, lighting, angle and outfit fit together.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, relaxed everyday pose, authentic candid feeling. Default phone camera look, no professional camera or lens effects.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No studio look, no retouching, no heavy blur. Vertical 9:16, face, eyes and hair sharp. The final image is a clean photo with no text or graphic elements anywhere.",
+                    "quality": "auto",
+                    "resolution": "1K"
+                  },
+                  "processed_at": "2026-10-14T15:11:20Z",
+                  "type": "model"
+                },
+                "output": [
+                  "https://cdn-us.eachlabs.ai/uploads/deabeb73-2f0e-4eae-8e46-3a252f1a23f3.png",
+                  "https://cdn-us.eachlabs.ai/uploads/9b858620-01dd-4b78-911c-ee7e00fbca86.png",
+                  "https://cdn-us.eachlabs.ai/uploads/90af5915-be90-4a27-904e-6c3e322b041a.png",
+                  "https://cdn-us.eachlabs.ai/uploads/d645ed92-5cf6-40d6-93c7-6210ce4a5284.png",
+                  "https://cdn-us.eachlabs.ai/uploads/1576b8e1-29a4-4b11-baf3-3c2d48144403.png",
+                  "https://cdn-us.eachlabs.ai/uploads/64a59043-f1b5-4835-ac29-9f0c4b2eb7da.png",
+                  "https://cdn-us.eachlabs.ai/uploads/5bc1223d-a4ca-4db7-b050-aee6e260c270.png",
+                  "https://cdn-us.eachlabs.ai/uploads/5d85adb3-05bb-4b09-8ff5-42f4e4d8e195.png",
+                  "https://cdn-us.eachlabs.ai/uploads/0f934c0d-753a-4497-b4c2-89035559fd42.png",
+                  "https://cdn-us.eachlabs.ai/uploads/23ea325b-edd8-4591-8341-e9d45b3a3866.png"
+                ],
+                "primary": "https://cdn-us.eachlabs.ai/uploads/deabeb73-2f0e-4eae-8e46-3a252f1a23f3.png",
+                "started_at": "2026-10-14T15:10:50Z",
+                "status": "completed",
+                "step_id": "step2"
+              },
+              "step2_fallback": {
+                "fallback": {
+                  "fallback_from_step": "step2",
+                  "reason": "not_triggered"
+                },
+                "metadata": {
+                  "model": "gpt-image-v2-edit",
+                  "params": {
+                    "background": "auto",
+                    "image_size": "1080 * 1920",
+                    "image_urls": [
+                      "https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png"
+                    ],
+                    "moderation": "low",
+                    "num_images": 10,
+                    "output_format": "png",
+                    "prompt": "You are given 5 images in this order:\n- First image: the original photo of the person, used only for identity.\n- Second image: a location reference.\n- Third image: a lighting reference.\n- Fourth image: a camera angle and pose reference.\n- Fifth image: an outfit reference.\nRemove all text, captions, titles, logos, templates, graphic elements, overlays, borders, thumbnails, and editorial designs from the reference image.\n\nKeep only the main person and the original natural background.\n\nThe final image must be a clean, realistic photograph with absolutely no text, templates, or graphic elements.\nThe person's face, hairstyle, hair length, hair color, skin tone, age and body type must match the first image exactly. Take nothing else from the first image: not its camera angle, framing, pose, background, lighting or clothing.\n\nUse exactly the location and background from the second image, and no other location.\n\nUse the lighting and time of day from the third image. The light on the person must match the light in the background.\n\nCopy the camera angle, framing, camera distance, camera height and body pose exactly from the fourth image. If the fourth image is a full-body shot, the result is a full-body shot. If it is a close-up, the result is a close-up. The result must look clearly different in angle and framing from the first image.\n\nDress the person in the clothing from the fifth image.\n\nEYE CONTACT: The person always looks directly into the camera lens, making clear eye contact with the viewer. Both eyes are visible and focused on the lens. Even if the body is turned sideways or the reference shows the person looking away, the head and eyes turn toward the camera. Never looking away, down, to the side or past the camera.\n\nThe person has a relaxed soft smile or a natural neutral expression. Unless it is a mirror selfie, the photo is taken by another person and the hands are relaxed, not holding a phone.\n\nTake only what is listed above from each image. Do not copy any other people, faces, text, captions, watermarks, logos, usernames, stickers, emojis, borders, frames, app or social media interface elements, buttons, timestamps or overlays from any image.\n\nThe final photo is one natural, consistent scene where the location, lighting, angle and outfit fit together.\n\nUGC style: a casual social media photo taken by a friend on a smartphone, not a professional photoshoot. Slightly off-center, spontaneous, relaxed everyday pose, authentic candid feeling. Default phone camera look, no professional camera or lens effects.\n\nRealistic modern phone photo, natural colors, slight grain, real skin texture, natural hair. No studio look, no retouching, no heavy blur. Vertical 9:16, face, eyes and hair sharp. The final image is a clean photo with no text or graphic elements anywhere.",
+                    "quality": "auto"
+                  }
+                },
+                "status": "skipped",
+                "step_id": "step2_fallback"
+              }
+            },
+            "output": [
+              "https://cdn-us.eachlabs.ai/uploads/deabeb73-2f0e-4eae-8e46-3a252f1a23f3.png",
+              "https://cdn-us.eachlabs.ai/uploads/9b858620-01dd-4b78-911c-ee7e00fbca86.png",
+              "https://cdn-us.eachlabs.ai/uploads/90af5915-be90-4a27-904e-6c3e322b041a.png",
+              "https://cdn-us.eachlabs.ai/uploads/d645ed92-5cf6-40d6-93c7-6210ce4a5284.png",
+              "https://cdn-us.eachlabs.ai/uploads/1576b8e1-29a4-4b11-baf3-3c2d48144403.png",
+              "https://cdn-us.eachlabs.ai/uploads/64a59043-f1b5-4835-ac29-9f0c4b2eb7da.png",
+              "https://cdn-us.eachlabs.ai/uploads/5bc1223d-a4ca-4db7-b050-aee6e260c270.png",
+              "https://cdn-us.eachlabs.ai/uploads/5d85adb3-05bb-4b09-8ff5-42f4e4d8e195.png",
+              "https://cdn-us.eachlabs.ai/uploads/0f934c0d-753a-4497-b4c2-89035559fd42.png",
+              "https://cdn-us.eachlabs.ai/uploads/23ea325b-edd8-4591-8341-e9d45b3a3866.png"
+            ],
+            "total_cost": 2.3200000000000003
+          },
+          "createdAt": "2026-10-14T15:10:29.190Z",
+          "completedAt": "2026-10-14T15:11:21.528Z"
+        },
+        {
+          "id": "it_mv88tzvpwgut8m",
+          "type": "wallText",
+          "aiModelId": "txt2txt-wallText",
+          "status": "completed",
+          "executionId": "e717ec46-55e4-478f-8958-398aa89de3dd",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "text": "Descubre tu mejor peinado en cuestión de segundos"
+          },
+          "items": [
+            {
+              "text": "¿Y si pudieras saber qué peinado te queda mejor… en segundos?",
+              "title": "Curiosity"
+            },
+            {
+              "text": "¿Cansada de no saber qué peinado elegir? Encuentra el tuyo al instante",
+              "title": "Problem–Solution"
+            },
+            {
+              "text": "Tu peinado ideal, listo antes de que termines tu café",
+              "title": "Lifestyle"
+            },
+            {
+              "text": "Oye, tu peinado perfecto está a solo unos segundos de distancia",
+              "title": "Conversational"
+            },
+            {
+              "text": "Imagina verte al espejo y amar tu peinado desde el primer segundo",
+              "title": "Emotional"
+            }
+          ],
+          "raw": {
+            "execution_id": "e717ec46-55e4-478f-8958-398aa89de3dd",
+            "workflow_id": "78aa534d-eb11-4118-9116-cffb2ec0e531",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:07:08Z",
+            "completed_at": "2026-10-14T15:07:16Z",
+            "inputs": {
+              "text": "Descubre tu mejor peinado en cuestión de segundos"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:07:16Z",
+                "execution_cost": 0.0170699,
+                "metadata": {
+                  "model": "eachlabs-llm-router",
+                  "params": {
+                    "messages": [
+                      {
+                        "content": "You are a senior Creative Strategist and Copywriter specializing in short-form video advertising and angle-based creative iteration.\n\nYou work inside an automated pipeline. Your response is parsed by software, not read by a person. Follow these output rules without exception:\n\n1. Respond with exactly ONE valid JSON object that matches the schema given in the user message.\n2. No markdown, no code fences (```), no comments, no text before or after the JSON.\n3. Use double quotes for all keys and string values. Escape double quotes inside strings as \\\" and line breaks as \\n.\n4. Do not add, rename, or omit keys. Do not use trailing commas.\n5. The \"iterations\" array must contain exactly 5 items.\n\nCreative rules:\n- Write every iteration in the same language as the original text (same dialect, same script, same casing style when it is a design choice, e.g. ALL CAPS).\n- Never invent facts, features, numbers, claims, promises, or benefits that are not present in the original text.\n- The original text defines WHAT the message is; the creative angle defines HOW it is said.\n- Prioritize genuine creative diversity over synonym swaps.\n\nIf the provided text is empty, unreadable, or not real on-screen copy, return the JSON object with \"iterations\": [] and a short reason in \"error\".",
+                        "role": "system"
+                      },
+                      {
+                        "content": "You are an expert Creative Strategist and Copywriter specializing in creative angle-based text iterations.\n\nThe text between <<< and >>> at the end of this message was extracted from a short-form video. It is the on-screen copy (wall text) that viewers read in the video. Use it as your only source. Generate exactly 5 creative text variations based on it.\n\nYour goal is NOT to paraphrase the original text or simply replace words with synonyms.\n\nYour goal is to understand the original text's meaning, message, context, tone, and intended use, then create 5 different creative iterations that communicate the same underlying idea through different angles.\n\n### INSTRUCTIONS\n\n**1. Read the Original Text**\n- Use the provided text as your primary and only reference.\n- Understand what the text is communicating and how it is being used.\n- Do not invent missing text or unsupported context.\n- If the input contains several separate lines, treat them together as the video's on-screen copy and keep the same number of lines in each iteration only when that structure is essential to the message.\n\n**2. Understand the Meaning and Context**\n- Identify the central message and underlying concept.\n- Understand the text's purpose, subject, tone, and intended audience when identifiable.\n- Determine its likely usage (video hook, caption, headline, educational content, advertisement, etc.).\n- Establish the semantic boundaries within which creative variations can be generated.\n\n**3. Select 5 Different Creative Angles**\n\nChoose 5 distinct creative angles dynamically based on the original text.\n\nPossible angles include:\n- Curiosity\n- Education\n- Photography / Visual Perspective\n- Emotional\n- Storytelling\n- Problem–Solution\n- Discovery\n- Question-Based\n- Inspirational\n- Informational\n- Benefit-Oriented\n- Lifestyle\n- Intrigue\n- Perspective Shift\n- Conversational\n\nThese are examples, NOT fixed categories.\n\nSelect the 5 most relevant angles for the specific text. You may invent additional angle categories when appropriate.\n\nDo not force an angle that doesn't naturally fit the original message.\n\n**4. Generate 5 Creative Iterations**\n\nFor each selected angle, write one new text variation.\n\nEach variation MUST:\n- Preserve the original text's core meaning and central idea.\n- Stay within the same semantic and contextual range.\n- Approach the idea from a genuinely different creative perspective.\n- Use different hooks, sentence structures, framing, and emphasis.\n- Be noticeably different from the other variations.\n- Feel naturally written and appropriate for the original text's intended usage.\n- Maintain a similar length to the original text unless a small adjustment improves the result.\n- Preserve the original language.\n- Be usable as a direct replacement for the original text in the video.\n\nDO NOT:\n- Simply replace words with synonyms.\n- Generate five nearly identical sentences.\n- Introduce unrelated ideas.\n- Invent facts, claims, promises, or benefits.\n- Change the central subject or intended message.\n- Add unnecessary explanations or extra information.\n- Make every iteration follow the same sentence structure.\n\n**5. Creative Freedom Within Semantic Boundaries**\n\nYou are allowed to change the way the message is presented significantly, as long as its underlying meaning remains relevant to the original.\n\nThink of this as creating 5 different creative executions of the same concept, not rewriting the same sentence 5 times.\n\nPrioritize meaningful creative diversity over surface-level similarity.\n\nEach iteration should feel like a fresh creative idea while still belonging to the same original concept.\n\n**6. Final Quality Check**\n\nBefore responding, verify silently (do not include this check in your output):\n- All 5 iterations use different, relevant creative angles.\n- No two variations are merely synonym-based rewrites.\n- Each variation remains faithful to the original message.\n- Each text fits the original video's context and format.\n- Every variation can independently replace the original video text.\n- The response is a single valid JSON object that matches the schema below exactly.\n\n### OUTPUT FORMAT (JSON ONLY)\n\nRespond with ONLY this JSON object. No markdown, no code fences, no text before or after it.\n\n{\n  \"original_text\": \"<the original text exactly as provided, unchanged>\",\n  \"language\": \"<ISO 639-1 code of the original text, e.g. \\\"en\\\", \\\"es\\\", \\\"tr\\\">\",\n  \"usage\": \"<likely usage: hook | headline | caption | cta | educational | other>\",\n  \"core_message\": \"<the central idea in one short sentence, in English>\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 2, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 3, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 4, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 5, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" }\n  ],\n  \"error\": null\n}\n\nRules for the JSON:\n- \"iterations\" must contain exactly 5 objects, with \"index\" 1 to 5 in order.\n- Every \"angle\" must be different.\n- \"text\" contains only the replacement copy, with no quotes around it, no labels, and no explanations.\n- Keep the original casing style (e.g. ALL CAPS stays ALL CAPS) and use \\n only where the original text has a line break.\n- If the original text is empty or unusable, return \"iterations\": [] and put a short reason in \"error\".\n\n### CRITICAL RULE\n\nThe original text determines WHAT the message is about.\n\nThe creative angle determines HOW the message is communicated.\n\nGenerate 5 genuinely different creative approaches to the SAME underlying message.\n\nDo not produce synonym variations. Produce creative angle variations.\n\nORIGINAL TEXT:\n<<<\nDescubre tu mejor peinado en cuestión de segundos\n>>>",
+                        "role": "user"
+                      }
+                    ],
+                    "model": "anthropic/claude-opus-4-6",
+                    "temperature": 1
+                  },
+                  "processed_at": "2026-10-14T15:07:16Z",
+                  "type": "model"
+                },
+                "output": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda mejor… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"¿Cansada de no saber qué peinado elegir? Encuentra el tuyo al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines tu café\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a solo unos segundos de distancia\" },\n    { \"index\": 5, \"angle\": \"Emotional\", \"text\": \"Imagina verte al espejo y amar tu peinado desde el primer segundo\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990428,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 297,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.0170699,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.007425,
+                      "upstream_inference_cost": 0.01618,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2048
+                  }
+                },
+                "primary": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda mejor… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"¿Cansada de no saber qué peinado elegir? Encuentra el tuyo al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines tu café\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a solo unos segundos de distancia\" },\n    { \"index\": 5, \"angle\": \"Emotional\", \"text\": \"Imagina verte al espejo y amar tu peinado desde el primer segundo\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990428,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 297,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.0170699,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.007425,
+                      "upstream_inference_cost": 0.01618,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2048
+                  }
+                },
+                "started_at": "2026-10-14T15:07:08Z",
+                "status": "completed",
+                "step_id": "step1"
+              }
+            },
+            "output": {
+              "choices": [
+                {
+                  "finish_reason": "stop",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda mejor… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"¿Cansada de no saber qué peinado elegir? Encuentra el tuyo al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines tu café\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a solo unos segundos de distancia\" },\n    { \"index\": 5, \"angle\": \"Emotional\", \"text\": \"Imagina verte al espejo y amar tu peinado desde el primer segundo\" }\n  ],\n  \"error\": null\n}\n```",
+                    "reasoning": null,
+                    "refusal": null,
+                    "role": "assistant"
+                  },
+                  "native_finish_reason": "end_turn"
+                }
+              ],
+              "created": 1791990428,
+              "model": "anthropic/claude-opus-4.6",
+              "object": "chat.completion",
+              "provider": "Anthropic",
+              "service_tier": "default",
+              "system_fingerprint": null,
+              "usage": {
+                "completion_tokens": 297,
+                "completion_tokens_details": {
+                  "audio_tokens": 0,
+                  "image_tokens": 0,
+                  "reasoning_tokens": 0
+                },
+                "cost": 0.0170699,
+                "cost_details": {
+                  "upstream_inference_completions_cost": 0.007425,
+                  "upstream_inference_cost": 0.01618,
+                  "upstream_inference_prompt_cost": 0.008755
+                },
+                "is_byok": true,
+                "prompt_tokens": 1751,
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "total_tokens": 2048
+              }
+            },
+            "total_cost": 0.0170699
+          },
+          "createdAt": "2026-10-14T15:07:08.389Z",
+          "completedAt": "2026-10-14T15:07:16.693Z"
+        },
+        {
+          "id": "it_mv88t639hq1blh",
+          "type": "wallText",
+          "aiModelId": "txt2txt-wallText",
+          "status": "completed",
+          "executionId": "38107e4b-293a-425f-91b6-821be7d15f77",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "text": "Descubre tu mejor peinado en cuestión de segundos"
+          },
+          "items": [
+            {
+              "text": "¿Y si pudieras saber qué peinado te queda perfecto… en segundos?",
+              "title": "Curiosity"
+            },
+            {
+              "text": "Cansada de elegir peinados que no te favorecen? Encuentra el ideal al instante",
+              "title": "Problem–Solution"
+            },
+            {
+              "text": "Oye, tu peinado perfecto está a unos segundos de distancia",
+              "title": "Conversational"
+            },
+            {
+              "text": "Imagina salir de casa con el peinado que realmente te favorece, sin perder tiempo",
+              "title": "Lifestyle"
+            },
+            {
+              "text": "Segundos. Eso es todo lo que necesitas para dar con tu peinado ideal",
+              "title": "Challenge"
+            }
+          ],
+          "raw": {
+            "execution_id": "38107e4b-293a-425f-91b6-821be7d15f77",
+            "workflow_id": "78aa534d-eb11-4118-9116-cffb2ec0e531",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:06:29Z",
+            "completed_at": "2026-10-14T15:06:36Z",
+            "inputs": {
+              "text": "Descubre tu mejor peinado en cuestión de segundos"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:06:36Z",
+                "execution_cost": 0.017254525,
+                "metadata": {
+                  "model": "eachlabs-llm-router",
+                  "params": {
+                    "messages": [
+                      {
+                        "content": "You are a senior Creative Strategist and Copywriter specializing in short-form video advertising and angle-based creative iteration.\n\nYou work inside an automated pipeline. Your response is parsed by software, not read by a person. Follow these output rules without exception:\n\n1. Respond with exactly ONE valid JSON object that matches the schema given in the user message.\n2. No markdown, no code fences (```), no comments, no text before or after the JSON.\n3. Use double quotes for all keys and string values. Escape double quotes inside strings as \\\" and line breaks as \\n.\n4. Do not add, rename, or omit keys. Do not use trailing commas.\n5. The \"iterations\" array must contain exactly 5 items.\n\nCreative rules:\n- Write every iteration in the same language as the original text (same dialect, same script, same casing style when it is a design choice, e.g. ALL CAPS).\n- Never invent facts, features, numbers, claims, promises, or benefits that are not present in the original text.\n- The original text defines WHAT the message is; the creative angle defines HOW it is said.\n- Prioritize genuine creative diversity over synonym swaps.\n\nIf the provided text is empty, unreadable, or not real on-screen copy, return the JSON object with \"iterations\": [] and a short reason in \"error\".",
+                        "role": "system"
+                      },
+                      {
+                        "content": "You are an expert Creative Strategist and Copywriter specializing in creative angle-based text iterations.\n\nThe text between <<< and >>> at the end of this message was extracted from a short-form video. It is the on-screen copy (wall text) that viewers read in the video. Use it as your only source. Generate exactly 5 creative text variations based on it.\n\nYour goal is NOT to paraphrase the original text or simply replace words with synonyms.\n\nYour goal is to understand the original text's meaning, message, context, tone, and intended use, then create 5 different creative iterations that communicate the same underlying idea through different angles.\n\n### INSTRUCTIONS\n\n**1. Read the Original Text**\n- Use the provided text as your primary and only reference.\n- Understand what the text is communicating and how it is being used.\n- Do not invent missing text or unsupported context.\n- If the input contains several separate lines, treat them together as the video's on-screen copy and keep the same number of lines in each iteration only when that structure is essential to the message.\n\n**2. Understand the Meaning and Context**\n- Identify the central message and underlying concept.\n- Understand the text's purpose, subject, tone, and intended audience when identifiable.\n- Determine its likely usage (video hook, caption, headline, educational content, advertisement, etc.).\n- Establish the semantic boundaries within which creative variations can be generated.\n\n**3. Select 5 Different Creative Angles**\n\nChoose 5 distinct creative angles dynamically based on the original text.\n\nPossible angles include:\n- Curiosity\n- Education\n- Photography / Visual Perspective\n- Emotional\n- Storytelling\n- Problem–Solution\n- Discovery\n- Question-Based\n- Inspirational\n- Informational\n- Benefit-Oriented\n- Lifestyle\n- Intrigue\n- Perspective Shift\n- Conversational\n\nThese are examples, NOT fixed categories.\n\nSelect the 5 most relevant angles for the specific text. You may invent additional angle categories when appropriate.\n\nDo not force an angle that doesn't naturally fit the original message.\n\n**4. Generate 5 Creative Iterations**\n\nFor each selected angle, write one new text variation.\n\nEach variation MUST:\n- Preserve the original text's core meaning and central idea.\n- Stay within the same semantic and contextual range.\n- Approach the idea from a genuinely different creative perspective.\n- Use different hooks, sentence structures, framing, and emphasis.\n- Be noticeably different from the other variations.\n- Feel naturally written and appropriate for the original text's intended usage.\n- Maintain a similar length to the original text unless a small adjustment improves the result.\n- Preserve the original language.\n- Be usable as a direct replacement for the original text in the video.\n\nDO NOT:\n- Simply replace words with synonyms.\n- Generate five nearly identical sentences.\n- Introduce unrelated ideas.\n- Invent facts, claims, promises, or benefits.\n- Change the central subject or intended message.\n- Add unnecessary explanations or extra information.\n- Make every iteration follow the same sentence structure.\n\n**5. Creative Freedom Within Semantic Boundaries**\n\nYou are allowed to change the way the message is presented significantly, as long as its underlying meaning remains relevant to the original.\n\nThink of this as creating 5 different creative executions of the same concept, not rewriting the same sentence 5 times.\n\nPrioritize meaningful creative diversity over surface-level similarity.\n\nEach iteration should feel like a fresh creative idea while still belonging to the same original concept.\n\n**6. Final Quality Check**\n\nBefore responding, verify silently (do not include this check in your output):\n- All 5 iterations use different, relevant creative angles.\n- No two variations are merely synonym-based rewrites.\n- Each variation remains faithful to the original message.\n- Each text fits the original video's context and format.\n- Every variation can independently replace the original video text.\n- The response is a single valid JSON object that matches the schema below exactly.\n\n### OUTPUT FORMAT (JSON ONLY)\n\nRespond with ONLY this JSON object. No markdown, no code fences, no text before or after it.\n\n{\n  \"original_text\": \"<the original text exactly as provided, unchanged>\",\n  \"language\": \"<ISO 639-1 code of the original text, e.g. \\\"en\\\", \\\"es\\\", \\\"tr\\\">\",\n  \"usage\": \"<likely usage: hook | headline | caption | cta | educational | other>\",\n  \"core_message\": \"<the central idea in one short sentence, in English>\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 2, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 3, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 4, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 5, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" }\n  ],\n  \"error\": null\n}\n\nRules for the JSON:\n- \"iterations\" must contain exactly 5 objects, with \"index\" 1 to 5 in order.\n- Every \"angle\" must be different.\n- \"text\" contains only the replacement copy, with no quotes around it, no labels, and no explanations.\n- Keep the original casing style (e.g. ALL CAPS stays ALL CAPS) and use \\n only where the original text has a line break.\n- If the original text is empty or unusable, return \"iterations\": [] and put a short reason in \"error\".\n\n### CRITICAL RULE\n\nThe original text determines WHAT the message is about.\n\nThe creative angle determines HOW the message is communicated.\n\nGenerate 5 genuinely different creative approaches to the SAME underlying message.\n\nDo not produce synonym variations. Produce creative angle variations.\n\nORIGINAL TEXT:\n<<<\nDescubre tu mejor peinado en cuestión de segundos\n>>>",
+                        "role": "user"
+                      }
+                    ],
+                    "model": "anthropic/claude-opus-4-6",
+                    "temperature": 1
+                  },
+                  "processed_at": "2026-10-14T15:06:36Z",
+                  "type": "model"
+                },
+                "output": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your best hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de elegir peinados que no te favorecen? Encuentra el ideal al instante\" },\n    { \"index\": 3, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a unos segundos de distancia\" },\n    { \"index\": 4, \"angle\": \"Lifestyle\", \"text\": \"Imagina salir de casa con el peinado que realmente te favorece, sin perder tiempo\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado ideal\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990389,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 304,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.017254525,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.0076,
+                      "upstream_inference_cost": 0.016355,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2055
+                  }
+                },
+                "primary": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your best hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de elegir peinados que no te favorecen? Encuentra el ideal al instante\" },\n    { \"index\": 3, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a unos segundos de distancia\" },\n    { \"index\": 4, \"angle\": \"Lifestyle\", \"text\": \"Imagina salir de casa con el peinado que realmente te favorece, sin perder tiempo\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado ideal\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990389,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 304,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.017254525,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.0076,
+                      "upstream_inference_cost": 0.016355,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2055
+                  }
+                },
+                "started_at": "2026-10-14T15:06:29Z",
+                "status": "completed",
+                "step_id": "step1"
+              }
+            },
+            "output": {
+              "choices": [
+                {
+                  "finish_reason": "stop",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your best hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de elegir peinados que no te favorecen? Encuentra el ideal al instante\" },\n    { \"index\": 3, \"angle\": \"Conversational\", \"text\": \"Oye, tu peinado perfecto está a unos segundos de distancia\" },\n    { \"index\": 4, \"angle\": \"Lifestyle\", \"text\": \"Imagina salir de casa con el peinado que realmente te favorece, sin perder tiempo\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado ideal\" }\n  ],\n  \"error\": null\n}\n```",
+                    "reasoning": null,
+                    "refusal": null,
+                    "role": "assistant"
+                  },
+                  "native_finish_reason": "end_turn"
+                }
+              ],
+              "created": 1791990389,
+              "model": "anthropic/claude-opus-4.6",
+              "object": "chat.completion",
+              "provider": "Anthropic",
+              "service_tier": "default",
+              "system_fingerprint": null,
+              "usage": {
+                "completion_tokens": 304,
+                "completion_tokens_details": {
+                  "audio_tokens": 0,
+                  "image_tokens": 0,
+                  "reasoning_tokens": 0
+                },
+                "cost": 0.017254525,
+                "cost_details": {
+                  "upstream_inference_completions_cost": 0.0076,
+                  "upstream_inference_cost": 0.016355,
+                  "upstream_inference_prompt_cost": 0.008755
+                },
+                "is_byok": true,
+                "prompt_tokens": 1751,
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "total_tokens": 2055
+              }
+            },
+            "total_cost": 0.017254525
+          },
+          "createdAt": "2026-10-14T15:06:29.781Z",
+          "completedAt": "2026-10-14T15:06:44.914Z"
+        },
+        {
+          "id": "it_mv88swz0bbu9nq",
+          "type": "wallText",
+          "aiModelId": "txt2txt-wallText",
+          "status": "completed",
+          "executionId": "ddeb7d88-2fb1-4d4b-9eeb-83102d581e7f",
+          "error": null,
+          "prompt": null,
+          "inputs": {
+            "text": "Descubre tu mejor peinado en cuestión de segundos"
+          },
+          "items": [
+            {
+              "text": "¿Y si pudieras saber qué peinado te queda perfecto… en segundos?",
+              "title": "Curiosity"
+            },
+            {
+              "text": "Cansada de no saber qué peinado te favorece? Ahora lo ves al instante",
+              "title": "Problem–Solution"
+            },
+            {
+              "text": "Tu peinado ideal, listo antes de que termines de leer esto",
+              "title": "Lifestyle"
+            },
+            {
+              "text": "Oye, encontrar el peinado que más te va nunca fue tan rápido",
+              "title": "Conversational"
+            },
+            {
+              "text": "Segundos. Eso es todo lo que necesitas para dar con tu peinado perfecto",
+              "title": "Challenge"
+            }
+          ],
+          "raw": {
+            "execution_id": "ddeb7d88-2fb1-4d4b-9eeb-83102d581e7f",
+            "workflow_id": "78aa534d-eb11-4118-9116-cffb2ec0e531",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:06:17Z",
+            "completed_at": "2026-10-14T15:06:25Z",
+            "inputs": {
+              "text": "Descubre tu mejor peinado en cuestión de segundos"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:06:25Z",
+                "execution_cost": 0.01722815,
+                "metadata": {
+                  "model": "eachlabs-llm-router",
+                  "params": {
+                    "messages": [
+                      {
+                        "content": "You are a senior Creative Strategist and Copywriter specializing in short-form video advertising and angle-based creative iteration.\n\nYou work inside an automated pipeline. Your response is parsed by software, not read by a person. Follow these output rules without exception:\n\n1. Respond with exactly ONE valid JSON object that matches the schema given in the user message.\n2. No markdown, no code fences (```), no comments, no text before or after the JSON.\n3. Use double quotes for all keys and string values. Escape double quotes inside strings as \\\" and line breaks as \\n.\n4. Do not add, rename, or omit keys. Do not use trailing commas.\n5. The \"iterations\" array must contain exactly 5 items.\n\nCreative rules:\n- Write every iteration in the same language as the original text (same dialect, same script, same casing style when it is a design choice, e.g. ALL CAPS).\n- Never invent facts, features, numbers, claims, promises, or benefits that are not present in the original text.\n- The original text defines WHAT the message is; the creative angle defines HOW it is said.\n- Prioritize genuine creative diversity over synonym swaps.\n\nIf the provided text is empty, unreadable, or not real on-screen copy, return the JSON object with \"iterations\": [] and a short reason in \"error\".",
+                        "role": "system"
+                      },
+                      {
+                        "content": "You are an expert Creative Strategist and Copywriter specializing in creative angle-based text iterations.\n\nThe text between <<< and >>> at the end of this message was extracted from a short-form video. It is the on-screen copy (wall text) that viewers read in the video. Use it as your only source. Generate exactly 5 creative text variations based on it.\n\nYour goal is NOT to paraphrase the original text or simply replace words with synonyms.\n\nYour goal is to understand the original text's meaning, message, context, tone, and intended use, then create 5 different creative iterations that communicate the same underlying idea through different angles.\n\n### INSTRUCTIONS\n\n**1. Read the Original Text**\n- Use the provided text as your primary and only reference.\n- Understand what the text is communicating and how it is being used.\n- Do not invent missing text or unsupported context.\n- If the input contains several separate lines, treat them together as the video's on-screen copy and keep the same number of lines in each iteration only when that structure is essential to the message.\n\n**2. Understand the Meaning and Context**\n- Identify the central message and underlying concept.\n- Understand the text's purpose, subject, tone, and intended audience when identifiable.\n- Determine its likely usage (video hook, caption, headline, educational content, advertisement, etc.).\n- Establish the semantic boundaries within which creative variations can be generated.\n\n**3. Select 5 Different Creative Angles**\n\nChoose 5 distinct creative angles dynamically based on the original text.\n\nPossible angles include:\n- Curiosity\n- Education\n- Photography / Visual Perspective\n- Emotional\n- Storytelling\n- Problem–Solution\n- Discovery\n- Question-Based\n- Inspirational\n- Informational\n- Benefit-Oriented\n- Lifestyle\n- Intrigue\n- Perspective Shift\n- Conversational\n\nThese are examples, NOT fixed categories.\n\nSelect the 5 most relevant angles for the specific text. You may invent additional angle categories when appropriate.\n\nDo not force an angle that doesn't naturally fit the original message.\n\n**4. Generate 5 Creative Iterations**\n\nFor each selected angle, write one new text variation.\n\nEach variation MUST:\n- Preserve the original text's core meaning and central idea.\n- Stay within the same semantic and contextual range.\n- Approach the idea from a genuinely different creative perspective.\n- Use different hooks, sentence structures, framing, and emphasis.\n- Be noticeably different from the other variations.\n- Feel naturally written and appropriate for the original text's intended usage.\n- Maintain a similar length to the original text unless a small adjustment improves the result.\n- Preserve the original language.\n- Be usable as a direct replacement for the original text in the video.\n\nDO NOT:\n- Simply replace words with synonyms.\n- Generate five nearly identical sentences.\n- Introduce unrelated ideas.\n- Invent facts, claims, promises, or benefits.\n- Change the central subject or intended message.\n- Add unnecessary explanations or extra information.\n- Make every iteration follow the same sentence structure.\n\n**5. Creative Freedom Within Semantic Boundaries**\n\nYou are allowed to change the way the message is presented significantly, as long as its underlying meaning remains relevant to the original.\n\nThink of this as creating 5 different creative executions of the same concept, not rewriting the same sentence 5 times.\n\nPrioritize meaningful creative diversity over surface-level similarity.\n\nEach iteration should feel like a fresh creative idea while still belonging to the same original concept.\n\n**6. Final Quality Check**\n\nBefore responding, verify silently (do not include this check in your output):\n- All 5 iterations use different, relevant creative angles.\n- No two variations are merely synonym-based rewrites.\n- Each variation remains faithful to the original message.\n- Each text fits the original video's context and format.\n- Every variation can independently replace the original video text.\n- The response is a single valid JSON object that matches the schema below exactly.\n\n### OUTPUT FORMAT (JSON ONLY)\n\nRespond with ONLY this JSON object. No markdown, no code fences, no text before or after it.\n\n{\n  \"original_text\": \"<the original text exactly as provided, unchanged>\",\n  \"language\": \"<ISO 639-1 code of the original text, e.g. \\\"en\\\", \\\"es\\\", \\\"tr\\\">\",\n  \"usage\": \"<likely usage: hook | headline | caption | cta | educational | other>\",\n  \"core_message\": \"<the central idea in one short sentence, in English>\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 2, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 3, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 4, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 5, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" }\n  ],\n  \"error\": null\n}\n\nRules for the JSON:\n- \"iterations\" must contain exactly 5 objects, with \"index\" 1 to 5 in order.\n- Every \"angle\" must be different.\n- \"text\" contains only the replacement copy, with no quotes around it, no labels, and no explanations.\n- Keep the original casing style (e.g. ALL CAPS stays ALL CAPS) and use \\n only where the original text has a line break.\n- If the original text is empty or unusable, return \"iterations\": [] and put a short reason in \"error\".\n\n### CRITICAL RULE\n\nThe original text determines WHAT the message is about.\n\nThe creative angle determines HOW the message is communicated.\n\nGenerate 5 genuinely different creative approaches to the SAME underlying message.\n\nDo not produce synonym variations. Produce creative angle variations.\n\nORIGINAL TEXT:\n<<<\nDescubre tu mejor peinado en cuestión de segundos\n>>>",
+                        "role": "user"
+                      }
+                    ],
+                    "model": "anthropic/claude-opus-4-6",
+                    "temperature": 1
+                  },
+                  "processed_at": "2026-10-14T15:06:25Z",
+                  "type": "model"
+                },
+                "output": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de no saber qué peinado te favorece? Ahora lo ves al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines de leer esto\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, encontrar el peinado que más te va nunca fue tan rápido\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado perfecto\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990378,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 303,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.01722815,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.007575,
+                      "upstream_inference_cost": 0.01633,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2054
+                  }
+                },
+                "primary": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de no saber qué peinado te favorece? Ahora lo ves al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines de leer esto\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, encontrar el peinado que más te va nunca fue tan rápido\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado perfecto\" }\n  ],\n  \"error\": null\n}\n```",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990378,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 303,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.01722815,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.007575,
+                      "upstream_inference_cost": 0.01633,
+                      "upstream_inference_prompt_cost": 0.008755
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1751,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 2054
+                  }
+                },
+                "started_at": "2026-10-14T15:06:17Z",
+                "status": "completed",
+                "step_id": "step1"
+              }
+            },
+            "output": {
+              "choices": [
+                {
+                  "finish_reason": "stop",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": "```json\n{\n  \"original_text\": \"Descubre tu mejor peinado en cuestión de segundos\",\n  \"language\": \"es\",\n  \"usage\": \"hook\",\n  \"core_message\": \"Find your ideal hairstyle instantly.\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"Curiosity\", \"text\": \"¿Y si pudieras saber qué peinado te queda perfecto… en segundos?\" },\n    { \"index\": 2, \"angle\": \"Problem–Solution\", \"text\": \"Cansada de no saber qué peinado te favorece? Ahora lo ves al instante\" },\n    { \"index\": 3, \"angle\": \"Lifestyle\", \"text\": \"Tu peinado ideal, listo antes de que termines de leer esto\" },\n    { \"index\": 4, \"angle\": \"Conversational\", \"text\": \"Oye, encontrar el peinado que más te va nunca fue tan rápido\" },\n    { \"index\": 5, \"angle\": \"Challenge\", \"text\": \"Segundos. Eso es todo lo que necesitas para dar con tu peinado perfecto\" }\n  ],\n  \"error\": null\n}\n```",
+                    "reasoning": null,
+                    "refusal": null,
+                    "role": "assistant"
+                  },
+                  "native_finish_reason": "end_turn"
+                }
+              ],
+              "created": 1791990378,
+              "model": "anthropic/claude-opus-4.6",
+              "object": "chat.completion",
+              "provider": "Anthropic",
+              "service_tier": "default",
+              "system_fingerprint": null,
+              "usage": {
+                "completion_tokens": 303,
+                "completion_tokens_details": {
+                  "audio_tokens": 0,
+                  "image_tokens": 0,
+                  "reasoning_tokens": 0
+                },
+                "cost": 0.01722815,
+                "cost_details": {
+                  "upstream_inference_completions_cost": 0.007575,
+                  "upstream_inference_cost": 0.01633,
+                  "upstream_inference_prompt_cost": 0.008755
+                },
+                "is_byok": true,
+                "prompt_tokens": 1751,
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "total_tokens": 2054
+              }
+            },
+            "total_cost": 0.01722815
+          },
+          "createdAt": "2026-10-14T15:06:17.964Z",
+          "completedAt": "2026-10-14T15:07:20.701Z"
+        },
+        {
+          "id": "it_mv88qd0eonu8x2",
+          "type": "wallText",
+          "aiModelId": "txt2txt-wallText",
+          "status": "failed",
+          "executionId": "b2f36114-9c82-4cfb-b3b6-b94026e3d6d9",
+          "error": "The provided text is empty. No on-screen copy was given to generate iterations from.",
+          "prompt": null,
+          "inputs": {
+            "video_url": "https://cdn-us.eachlabs.ai/uploads/0634e366-8e6d-4e4b-89e3-7eae9f4a3b46.mp4",
+            "language": "en",
+            "context": "{\"wallTexts\":[{\"text\":\"Descubre tu mejor peinado en cuestión de segundos\",\"startSec\":0,\"endSec\":10,\"position\":\"top\",\"style\":\"Yellow font with black outline\",\"persistent\":true}],\"voiceover\":{\"script\":\"Don't cut your hair yet. I was literally about to change mine. Then I tried this one. You just upload your photo and it instantly shows you different hairstyles on your face in seconds. Shaved cut, long hair, unhaired styles, everything. Honestly, it saved me from a bad haircut. Try it.\",\"speaker\":\"Speaker 1\",\"segments\":[{\"text\":\"Don't cut your hair yet.\",\"startSec\":0,\"endSec\":1.44,\"speaker\":\"Speaker 1\"},{\"text\":\"I was literally about to change mine.\",\"startSec\":1.44,\"endSec\":3.48,\"speaker\":\"Speaker 1\"},{\"text\":\"Then I tried this one.\",\"startSec\":3.48,\"endSec\":4.8,\"speaker\":\"Speaker 1\"},{\"text\":\"You just upload your photo and it instantly shows you different hairstyles on your face in seconds.\",\"startSec\":4.8,\"endSec\":9.6,\"speaker\":\"Speaker 1\"},{\"text\":\"Shaved cut, long hair, unhaired styles, everything.\",\"startSec\":9.6,\"endSec\":13.08,\"speaker\":\"Speaker 1\"},{\"text\":\"Honestly, it saved me from a bad haircut.\",\"startSec\":13.08,\"endSec\":15.48,\"speaker\":\"Speaker 1\"},{\"text\":\"Try it.\",\"startSec\":15.48,\"endSec\":16.32,\"speaker\":\"Speaker 1\"}],\"transcript\":\"Don't cut your hair yet. I was literally about to change mine. Then I tried this one. You just upload your photo and it instantly shows you different hairstyles on your face in seconds. Shaved cut, long hair, unhaired styles, everything. Honestly, it saved me from a bad haircut. Try it.\"},\"avatar\":{\"description\":\"\",\"imageUrl\":\"https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png\",\"frameSec\":2},\"music\":{\"description\":\"\",\"audioUrl\":\"https://cdn-us.eachlabs.ai/uploads/e6b1ad1b-f50a-41c6-be59-51336c227f83.mp3\",\"stemsUrl\":\"https://cdn.mureka.ai/cos-prod/skm/audio/20261014/79726060306433/VadsKDEHcQsnGnhfgCRB1z.zip\",\"instrumentalUrl\":\"https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav\"},\"template\":{\"layout\":\"full_screen\",\"aspectRatio\":\"9:16\",\"durationSec\":10,\"layoutSegments\":[{\"startSec\":0,\"endSec\":10,\"layoutType\":\"full_screen\",\"regions\":[{\"role\":\"avatar\",\"x\":0,\"y\":0,\"w\":1,\"h\":1},{\"role\":\"wall_text\",\"x\":0.2,\"y\":0.02,\"w\":0.6,\"h\":0.08},{\"role\":\"caption\",\"x\":0.2,\"y\":0.4,\"w\":0.6,\"h\":0.1}]}],\"sceneChangesSec\":[4],\"endCardSec\":10,\"spriteSheetUrl\":\"https://cdn-us.eachlabs.ai/uploads/b75e0f99-c626-4973-adec-47eb9801cc68.jpg\",\"frames\":[{\"url\":\"https://cdn-us.eachlabs.ai/uploads/42bc94c7-3045-4ac1-b808-fe6b0f927e98.png\",\"atSec\":0,\"label\":\"First frame\"},{\"url\":\"https://cdn-us.eachlabs.ai/uploads/227d92a5-5316-43a8-a18b-796e3ffb6186.png\",\"atSec\":0,\"label\":\"Text frame 1\"},{\"url\":\"https://cdn-us.eachlabs.ai/uploads/ff173214-9ac3-44db-8c85-e5d3f548d53a.png\",\"atSec\":2,\"label\":\"Text frame 2\"}]}}",
+            "wall_texts": "[{\"text\":\"Descubre tu mejor peinado en cuestión de segundos\",\"startSec\":0,\"endSec\":10,\"position\":\"top\",\"style\":\"Yellow font with black outline\",\"persistent\":true}]",
+            "hook": ""
+          },
+          "items": [],
+          "raw": {
+            "execution_id": "b2f36114-9c82-4cfb-b3b6-b94026e3d6d9",
+            "workflow_id": "78aa534d-eb11-4118-9116-cffb2ec0e531",
+            "version_id": "v1",
+            "status": "completed",
+            "started_at": "2026-10-14T15:04:18Z",
+            "completed_at": "2026-10-14T15:04:21Z",
+            "inputs": {
+              "context": "{\"wallTexts\":[{\"text\":\"Descubre tu mejor peinado en cuestión de segundos\",\"startSec\":0,\"endSec\":10,\"position\":\"top\",\"style\":\"Yellow font with black outline\",\"persistent\":true}],\"voiceover\":{\"script\":\"Don't cut your hair yet. I was literally about to change mine. Then I tried this one. You just upload your photo and it instantly shows you different hairstyles on your face in seconds. Shaved cut, long hair, unhaired styles, everything. Honestly, it saved me from a bad haircut. Try it.\",\"speaker\":\"Speaker 1\",\"segments\":[{\"text\":\"Don't cut your hair yet.\",\"startSec\":0,\"endSec\":1.44,\"speaker\":\"Speaker 1\"},{\"text\":\"I was literally about to change mine.\",\"startSec\":1.44,\"endSec\":3.48,\"speaker\":\"Speaker 1\"},{\"text\":\"Then I tried this one.\",\"startSec\":3.48,\"endSec\":4.8,\"speaker\":\"Speaker 1\"},{\"text\":\"You just upload your photo and it instantly shows you different hairstyles on your face in seconds.\",\"startSec\":4.8,\"endSec\":9.6,\"speaker\":\"Speaker 1\"},{\"text\":\"Shaved cut, long hair, unhaired styles, everything.\",\"startSec\":9.6,\"endSec\":13.08,\"speaker\":\"Speaker 1\"},{\"text\":\"Honestly, it saved me from a bad haircut.\",\"startSec\":13.08,\"endSec\":15.48,\"speaker\":\"Speaker 1\"},{\"text\":\"Try it.\",\"startSec\":15.48,\"endSec\":16.32,\"speaker\":\"Speaker 1\"}],\"transcript\":\"Don't cut your hair yet. I was literally about to change mine. Then I tried this one. You just upload your photo and it instantly shows you different hairstyles on your face in seconds. Shaved cut, long hair, unhaired styles, everything. Honestly, it saved me from a bad haircut. Try it.\"},\"avatar\":{\"description\":\"\",\"imageUrl\":\"https://cdn-us.eachlabs.ai/uploads/44566e4e-4fd7-4471-8b4d-96df5e7e7d09.png\",\"frameSec\":2},\"music\":{\"description\":\"\",\"audioUrl\":\"https://cdn-us.eachlabs.ai/uploads/e6b1ad1b-f50a-41c6-be59-51336c227f83.mp3\",\"stemsUrl\":\"https://cdn.mureka.ai/cos-prod/skm/audio/20261014/79726060306433/VadsKDEHcQsnGnhfgCRB1z.zip\",\"instrumentalUrl\":\"https://cdn-us.eachlabs.ai/uploads/a9064e7c-30d9-47e1-ae7a-f7ee27e2d342.wav\"},\"template\":{\"layout\":\"full_screen\",\"aspectRatio\":\"9:16\",\"durationSec\":10,\"layoutSegments\":[{\"startSec\":0,\"endSec\":10,\"layoutType\":\"full_screen\",\"regions\":[{\"role\":\"avatar\",\"x\":0,\"y\":0,\"w\":1,\"h\":1},{\"role\":\"wall_text\",\"x\":0.2,\"y\":0.02,\"w\":0.6,\"h\":0.08},{\"role\":\"caption\",\"x\":0.2,\"y\":0.4,\"w\":0.6,\"h\":0.1}]}],\"sceneChangesSec\":[4],\"endCardSec\":10,\"spriteSheetUrl\":\"https://cdn-us.eachlabs.ai/uploads/b75e0f99-c626-4973-adec-47eb9801cc68.jpg\",\"frames\":[{\"url\":\"https://cdn-us.eachlabs.ai/uploads/42bc94c7-3045-4ac1-b808-fe6b0f927e98.png\",\"atSec\":0,\"label\":\"First frame\"},{\"url\":\"https://cdn-us.eachlabs.ai/uploads/227d92a5-5316-43a8-a18b-796e3ffb6186.png\",\"atSec\":0,\"label\":\"Text frame 1\"},{\"url\":\"https://cdn-us.eachlabs.ai/uploads/ff173214-9ac3-44db-8c85-e5d3f548d53a.png\",\"atSec\":2,\"label\":\"Text frame 2\"}]}}",
+              "hook": "",
+              "language": "en",
+              "text": "",
+              "video_url": "https://cdn-us.eachlabs.ai/uploads/0634e366-8e6d-4e4b-89e3-7eae9f4a3b46.mp4",
+              "wall_texts": "[{\"text\":\"Descubre tu mejor peinado en cuestión de segundos\",\"startSec\":0,\"endSec\":10,\"position\":\"top\",\"style\":\"Yellow font with black outline\",\"persistent\":true}]"
+            },
+            "step_outputs": {
+              "step1": {
+                "completed_at": "2026-10-14T15:04:21Z",
+                "execution_cost": 0.010365375,
+                "metadata": {
+                  "model": "eachlabs-llm-router",
+                  "params": {
+                    "messages": [
+                      {
+                        "content": "You are a senior Creative Strategist and Copywriter specializing in short-form video advertising and angle-based creative iteration.\n\nYou work inside an automated pipeline. Your response is parsed by software, not read by a person. Follow these output rules without exception:\n\n1. Respond with exactly ONE valid JSON object that matches the schema given in the user message.\n2. No markdown, no code fences (```), no comments, no text before or after the JSON.\n3. Use double quotes for all keys and string values. Escape double quotes inside strings as \\\" and line breaks as \\n.\n4. Do not add, rename, or omit keys. Do not use trailing commas.\n5. The \"iterations\" array must contain exactly 5 items.\n\nCreative rules:\n- Write every iteration in the same language as the original text (same dialect, same script, same casing style when it is a design choice, e.g. ALL CAPS).\n- Never invent facts, features, numbers, claims, promises, or benefits that are not present in the original text.\n- The original text defines WHAT the message is; the creative angle defines HOW it is said.\n- Prioritize genuine creative diversity over synonym swaps.\n\nIf the provided text is empty, unreadable, or not real on-screen copy, return the JSON object with \"iterations\": [] and a short reason in \"error\".",
+                        "role": "system"
+                      },
+                      {
+                        "content": "You are an expert Creative Strategist and Copywriter specializing in creative angle-based text iterations.\n\nThe text between <<< and >>> at the end of this message was extracted from a short-form video. It is the on-screen copy (wall text) that viewers read in the video. Use it as your only source. Generate exactly 5 creative text variations based on it.\n\nYour goal is NOT to paraphrase the original text or simply replace words with synonyms.\n\nYour goal is to understand the original text's meaning, message, context, tone, and intended use, then create 5 different creative iterations that communicate the same underlying idea through different angles.\n\n### INSTRUCTIONS\n\n**1. Read the Original Text**\n- Use the provided text as your primary and only reference.\n- Understand what the text is communicating and how it is being used.\n- Do not invent missing text or unsupported context.\n- If the input contains several separate lines, treat them together as the video's on-screen copy and keep the same number of lines in each iteration only when that structure is essential to the message.\n\n**2. Understand the Meaning and Context**\n- Identify the central message and underlying concept.\n- Understand the text's purpose, subject, tone, and intended audience when identifiable.\n- Determine its likely usage (video hook, caption, headline, educational content, advertisement, etc.).\n- Establish the semantic boundaries within which creative variations can be generated.\n\n**3. Select 5 Different Creative Angles**\n\nChoose 5 distinct creative angles dynamically based on the original text.\n\nPossible angles include:\n- Curiosity\n- Education\n- Photography / Visual Perspective\n- Emotional\n- Storytelling\n- Problem–Solution\n- Discovery\n- Question-Based\n- Inspirational\n- Informational\n- Benefit-Oriented\n- Lifestyle\n- Intrigue\n- Perspective Shift\n- Conversational\n\nThese are examples, NOT fixed categories.\n\nSelect the 5 most relevant angles for the specific text. You may invent additional angle categories when appropriate.\n\nDo not force an angle that doesn't naturally fit the original message.\n\n**4. Generate 5 Creative Iterations**\n\nFor each selected angle, write one new text variation.\n\nEach variation MUST:\n- Preserve the original text's core meaning and central idea.\n- Stay within the same semantic and contextual range.\n- Approach the idea from a genuinely different creative perspective.\n- Use different hooks, sentence structures, framing, and emphasis.\n- Be noticeably different from the other variations.\n- Feel naturally written and appropriate for the original text's intended usage.\n- Maintain a similar length to the original text unless a small adjustment improves the result.\n- Preserve the original language.\n- Be usable as a direct replacement for the original text in the video.\n\nDO NOT:\n- Simply replace words with synonyms.\n- Generate five nearly identical sentences.\n- Introduce unrelated ideas.\n- Invent facts, claims, promises, or benefits.\n- Change the central subject or intended message.\n- Add unnecessary explanations or extra information.\n- Make every iteration follow the same sentence structure.\n\n**5. Creative Freedom Within Semantic Boundaries**\n\nYou are allowed to change the way the message is presented significantly, as long as its underlying meaning remains relevant to the original.\n\nThink of this as creating 5 different creative executions of the same concept, not rewriting the same sentence 5 times.\n\nPrioritize meaningful creative diversity over surface-level similarity.\n\nEach iteration should feel like a fresh creative idea while still belonging to the same original concept.\n\n**6. Final Quality Check**\n\nBefore responding, verify silently (do not include this check in your output):\n- All 5 iterations use different, relevant creative angles.\n- No two variations are merely synonym-based rewrites.\n- Each variation remains faithful to the original message.\n- Each text fits the original video's context and format.\n- Every variation can independently replace the original video text.\n- The response is a single valid JSON object that matches the schema below exactly.\n\n### OUTPUT FORMAT (JSON ONLY)\n\nRespond with ONLY this JSON object. No markdown, no code fences, no text before or after it.\n\n{\n  \"original_text\": \"<the original text exactly as provided, unchanged>\",\n  \"language\": \"<ISO 639-1 code of the original text, e.g. \\\"en\\\", \\\"es\\\", \\\"tr\\\">\",\n  \"usage\": \"<likely usage: hook | headline | caption | cta | educational | other>\",\n  \"core_message\": \"<the central idea in one short sentence, in English>\",\n  \"iterations\": [\n    { \"index\": 1, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 2, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 3, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 4, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" },\n    { \"index\": 5, \"angle\": \"<creative angle name in English>\", \"text\": \"<new text in the original language>\" }\n  ],\n  \"error\": null\n}\n\nRules for the JSON:\n- \"iterations\" must contain exactly 5 objects, with \"index\" 1 to 5 in order.\n- Every \"angle\" must be different.\n- \"text\" contains only the replacement copy, with no quotes around it, no labels, and no explanations.\n- Keep the original casing style (e.g. ALL CAPS stays ALL CAPS) and use \\n only where the original text has a line break.\n- If the original text is empty or unusable, return \"iterations\": [] and put a short reason in \"error\".\n\n### CRITICAL RULE\n\nThe original text determines WHAT the message is about.\n\nThe creative angle determines HOW the message is communicated.\n\nGenerate 5 genuinely different creative approaches to the SAME underlying message.\n\nDo not produce synonym variations. Produce creative angle variations.\n\nORIGINAL TEXT:\n<<<\n\n>>>",
+                        "role": "user"
+                      }
+                    ],
+                    "model": "anthropic/claude-opus-4-6",
+                    "temperature": 1
+                  },
+                  "processed_at": "2026-10-14T15:04:21Z",
+                  "type": "model"
+                },
+                "output": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "{\"original_text\":\"\",\"language\":\"\",\"usage\":\"other\",\"core_message\":\"\",\"iterations\":[],\"error\":\"The provided text is empty. No on-screen copy was given to generate iterations from.\"}",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990258,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 46,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.010365375,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.00115,
+                      "upstream_inference_cost": 0.009825,
+                      "upstream_inference_prompt_cost": 0.008675
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1735,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 1781
+                  }
+                },
+                "primary": {
+                  "choices": [
+                    {
+                      "finish_reason": "stop",
+                      "index": 0,
+                      "logprobs": null,
+                      "message": {
+                        "content": "{\"original_text\":\"\",\"language\":\"\",\"usage\":\"other\",\"core_message\":\"\",\"iterations\":[],\"error\":\"The provided text is empty. No on-screen copy was given to generate iterations from.\"}",
+                        "reasoning": null,
+                        "refusal": null,
+                        "role": "assistant"
+                      },
+                      "native_finish_reason": "end_turn"
+                    }
+                  ],
+                  "created": 1791990258,
+                  "model": "anthropic/claude-opus-4.6",
+                  "object": "chat.completion",
+                  "provider": "Anthropic",
+                  "service_tier": "default",
+                  "system_fingerprint": null,
+                  "usage": {
+                    "completion_tokens": 46,
+                    "completion_tokens_details": {
+                      "audio_tokens": 0,
+                      "image_tokens": 0,
+                      "reasoning_tokens": 0
+                    },
+                    "cost": 0.010365375,
+                    "cost_details": {
+                      "upstream_inference_completions_cost": 0.00115,
+                      "upstream_inference_cost": 0.009825,
+                      "upstream_inference_prompt_cost": 0.008675
+                    },
+                    "is_byok": true,
+                    "prompt_tokens": 1735,
+                    "prompt_tokens_details": {
+                      "audio_tokens": 0,
+                      "cache_write_tokens": 0,
+                      "cached_tokens": 0,
+                      "video_tokens": 0
+                    },
+                    "total_tokens": 1781
+                  }
+                },
+                "started_at": "2026-10-14T15:04:18Z",
+                "status": "completed",
+                "step_id": "step1"
+              }
+            },
+            "output": {
+              "choices": [
+                {
+                  "finish_reason": "stop",
+                  "index": 0,
+                  "logprobs": null,
+                  "message": {
+                    "content": "{\"original_text\":\"\",\"language\":\"\",\"usage\":\"other\",\"core_message\":\"\",\"iterations\":[],\"error\":\"The provided text is empty. No on-screen copy was given to generate iterations from.\"}",
+                    "reasoning": null,
+                    "refusal": null,
+                    "role": "assistant"
+                  },
+                  "native_finish_reason": "end_turn"
+                }
+              ],
+              "created": 1791990258,
+              "model": "anthropic/claude-opus-4.6",
+              "object": "chat.completion",
+              "provider": "Anthropic",
+              "service_tier": "default",
+              "system_fingerprint": null,
+              "usage": {
+                "completion_tokens": 46,
+                "completion_tokens_details": {
+                  "audio_tokens": 0,
+                  "image_tokens": 0,
+                  "reasoning_tokens": 0
+                },
+                "cost": 0.010365375,
+                "cost_details": {
+                  "upstream_inference_completions_cost": 0.00115,
+                  "upstream_inference_cost": 0.009825,
+                  "upstream_inference_prompt_cost": 0.008675
+                },
+                "is_byok": true,
+                "prompt_tokens": 1735,
+                "prompt_tokens_details": {
+                  "audio_tokens": 0,
+                  "cache_write_tokens": 0,
+                  "cached_tokens": 0,
+                  "video_tokens": 0
+                },
+                "total_tokens": 1781
+              }
+            },
+            "total_cost": 0.010365375
+          },
+          "createdAt": "2026-10-14T15:04:18.782Z",
+          "completedAt": "2026-10-14T15:04:23.274Z"
+        }
+      ]
     }
   ],
   "favorites": []

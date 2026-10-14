@@ -28,7 +28,8 @@
       "outputTypes": ["text"],
       "customConfig": null
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "78aa534d-eb11-4118-9116-cffb2ec0e531",
+    "versionId": "v1",
     "platform": "eachlabs"
   },
   {
@@ -69,26 +70,28 @@
     "cost": 0.08,
     "requestConfig": {
       "type": "img2img",
-      "inputTypes": ["image", "text"],
+      "inputTypes": ["image"],
       "outputTypes": ["image"],
       "customConfig": null
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "e739b60d-781b-4fa7-b1a8-7f7fc943d518",
+    "versionId": "v1",
     "platform": "eachlabs"
   },
   {
-    "id": "txt2audio-music",
-    "modelType": "txt2audio",
+    "id": "audio2audio-music",
+    "modelType": "audio2audio",
     "subModelType": "music",
     "validationRules": null,
-    "cost": 0.08,
+    "cost": 0.18,
     "requestConfig": {
-      "type": "txt2audio",
-      "inputTypes": ["text"],
+      "type": "audio2audio",
+      "inputTypes": ["audio"],
       "outputTypes": ["audio"],
       "customConfig": null
     },
-    "apiUsageModels": "WORKFLOW_ID",
+    "apiUsageModels": "5d93df67-83ef-4d19-86ee-5673faa2a13e",
+    "versionId": "v1",
     "platform": "eachlabs"
   },
   {

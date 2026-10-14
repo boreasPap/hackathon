@@ -11,7 +11,7 @@ import { api, formatDateTime } from "./client";
 import { EmptyState, FavoriteButton, Overline, Panel, StatusBadge, TabBar, Tag } from "./components/bits";
 import { IterationCard } from "./components/IterationCard";
 import { OriginalPanel } from "./components/OriginalPanel";
-import { ITERATION_TABS, tabBySlug } from "./constants";
+import { ITERATION_TABS, OWN_INPUT_TYPES, tabBySlug } from "./constants";
 import { ANALYSIS_LABELS } from "./CreativeLibrary";
 import type { Creative, Favorite } from "./types";
 import { useFavorites } from "./useFavorites";
@@ -187,16 +187,20 @@ export function CreativeDetail({ initialCreative, favorites }: { initialCreative
           <OriginalPanel type={tab.type} extracted={creative.extracted} />
 
           <Panel className="flex flex-col gap-3">
-            <Label htmlFor="direction">Direction (optional)</Label>
-            <textarea
-              id="direction"
-              rows={3}
-              value={prompts[tab.type] ?? ""}
-              onChange={(e) => setPrompts((p) => ({ ...p, [tab.type]: e.target.value }))}
-              placeholder={`What should the new ${tab.label.toLowerCase()} explore? e.g. a curiosity-led angle, a calmer tone…`}
-              disabled={!analyzed}
-              className="w-full resize-y rounded-sm border border-line bg-surface px-2.5 py-2 font-prose text-body text-ink outline-none placeholder:text-ink-3 focus-visible:ring-2 focus-visible:ring-accent-border disabled:opacity-40"
-            />
+            {!OWN_INPUT_TYPES.has(tab.type) ? (
+              <>
+                <Label htmlFor="direction">Direction (optional)</Label>
+                <textarea
+                  id="direction"
+                  rows={3}
+                  value={prompts[tab.type] ?? ""}
+                  onChange={(e) => setPrompts((p) => ({ ...p, [tab.type]: e.target.value }))}
+                  placeholder={`What should the new ${tab.label.toLowerCase()} explore? e.g. a curiosity-led angle, a calmer tone…`}
+                  disabled={!analyzed}
+                  className="w-full resize-y rounded-sm border border-line bg-surface px-2.5 py-2 font-prose text-body text-ink outline-none placeholder:text-ink-3 focus-visible:ring-2 focus-visible:ring-accent-border disabled:opacity-40"
+                />
+              </>
+            ) : null}
             <div className="flex flex-wrap items-center justify-between gap-3">
               <span className="text-caption text-ink-3">
                 {analyzed ? tab.description : "Analyze the video first."}

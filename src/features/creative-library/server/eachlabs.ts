@@ -159,6 +159,18 @@ export async function getExecution(executionId: string): Promise<Execution> {
   };
 }
 
+/**
+ * eachlabs can report "completed" a moment before it writes the outputs. A run
+ * that finished under a minute ago with nothing in it is still being written.
+ */
+export function outputsPending(execution: Execution): boolean {
+  if (execution.status !== "completed" || execution.output != null || execution.workflowOutput) return false;
+  const steps = Object.values(execution.stepOutputs ?? {});
+  if (steps.some((s) => isRecord(s) && (s.output != null || s.primary != null))) return false;
+  const completedAt = Date.parse(String(execution.raw.completed_at ?? ""));
+  return Number.isFinite(completedAt) && Date.now() - completedAt < 60_000;
+}
+
 export function extractOutputUrls(execution: Execution): string[] {
   const urls: string[] = [];
   const pushIfUrl = (value: unknown) => {
@@ -169,12 +181,13 @@ export function extractOutputUrls(execution: Execution): string[] {
     if (typeof value === "string") return pushIfUrl(value);
     if (Array.isArray(value)) return value.forEach(collect);
     if (isRecord(value)) {
-      pushIfUrl(value.url || value.primary);
+      pushIfUrl(value.url || value.primary || value.result);
       if (value.output != null && value.output !== value) collect(value.output);
     }
   };
 
   collect(execution.output);
+  if (urls.length === 0 && execution.workflowOutput) collect(Object.values(execution.workflowOutput));
   if (urls.length === 0 && execution.stepOutputs) {
     for (const step of Object.values(execution.stepOutputs)) {
       if (!isRecord(step)) continue;
@@ -192,7 +205,8 @@ function collectPayloads(execution: Execution): Record<string, unknown>[] {
       if (isRecord(step)) payloads.push(step.output, step.primary);
     }
   }
-  return payloads.filter(isRecord);
+  // Some outputs come wrapped as `{ result: … }`.
+  return payloads.flatMap((p) => (isRecord(p) && isRecord(p.result) ? [p, p.result] : [p])).filter(isRecord);
 }
 
 export function findEmbeddedError(execution: Execution): string | null {

@@ -297,6 +297,8 @@ function textItems(execution: Execution): IterationItem[] {
   let list: unknown = data;
   if (isRecord(data)) {
     const key = LIST_KEYS.find((k) => Array.isArray(data[k]));
+    const reason = str(data.error);
+    if (reason && (!key || !(data[key] as unknown[]).length)) throw new Error(reason);
     list = key ? data[key] : [data];
   }
   return Array.isArray(list) ? list.map(toTextItem).filter((i): i is IterationItem => !!i) : [];

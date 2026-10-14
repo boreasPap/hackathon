@@ -7,6 +7,7 @@ import {
   type Execution,
   executionFailureMessage,
   getExecution,
+  outputsPending,
   TERMINAL_STATUSES,
   triggerWorkflow,
 } from "./eachlabs";
@@ -85,7 +86,7 @@ async function poll(executionId: string | null): Promise<Poll> {
   if (!executionId) return { failure: "The run has no execution id." };
   try {
     const execution = await getExecution(executionId);
-    return TERMINAL_STATUSES.has(execution.status) ? { execution } : null;
+    return TERMINAL_STATUSES.has(execution.status) && !outputsPending(execution) ? { execution } : null;
   } catch (error) {
     // eachlabs does not know this run: stop waiting for it. Anything else
     // (network, 5xx) is retried on the next sync.
